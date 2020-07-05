@@ -1,4 +1,4 @@
-package edu.rita.api.robocode
+package edu.robocode.service.application
 
 import net.sf.robocode.battle.snapshot.TurnSnapshot
 import robocode.control.events.*

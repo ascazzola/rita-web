@@ -1,4 +1,4 @@
-package edu.rita.api.robocode
+package edu.robocode.service.application
 
 import robocode.control.snapshot.ITurnSnapshot
 import java.util.*

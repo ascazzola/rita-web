@@ -1,4 +1,4 @@
-package edu.rita.api
+package edu.robocode.service
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.EnableConfigurationProperties

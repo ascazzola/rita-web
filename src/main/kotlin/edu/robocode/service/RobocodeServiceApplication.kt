@@ -1,11 +1,11 @@
-package edu.rita.api
+package edu.robocode.service
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class RitaApiApplication
+class RobocodeServiceApplication
 
 fun main(args: Array<String>) {
-    runApplication<RitaApiApplication>(*args)
+    runApplication<RobocodeServiceApplication>(*args)
 }

@@ -1,6 +1,6 @@
-package edu.rita.api.robocode
+package edu.robocode.service.application
 
-import edu.rita.api.RobocodeConfiguration
+import edu.robocode.service.RobocodeConfiguration
 import org.springframework.stereotype.Service
 import robocode.control.BattleSpecification
 import robocode.control.BattlefieldSpecification
@@ -13,7 +13,7 @@ import kotlin.collections.HashMap
 @Service
 class RobocodeInstanceManager : IRobocodeInstanceManager {
     val configuration: RobocodeConfiguration;
-    val battles = HashMap<UUID,RobocodeState>();
+    val battles = HashMap<UUID, RobocodeState>();
     
     constructor(configuration: RobocodeConfiguration) {
         this.configuration = configuration;
@@ -26,16 +26,16 @@ class RobocodeInstanceManager : IRobocodeInstanceManager {
         val listener = BattleListener(this, id)
         engine.addBattleListener(listener)
 
-        engine.runBattle(getBattleSpecification(engine, robots))
+        engine.runBattle(getBattleSpecification(engine, numberOfRounds, inactivityTime, gunCoolingRate, robots))
 
         battles[id] = RobocodeState(engine, listener)
         return id;
     }
 
-    private fun getBattleSpecification(engine: RobocodeEngine, robots: Array<String>): BattleSpecification {
+    private fun getBattleSpecification(engine: RobocodeEngine, numberOfRounds: Int, inactivityTime: Long, gunCoolingRate: Double, robots: Array<String>): BattleSpecification {
         val battlefieldSpecification = BattlefieldSpecification(800, 600)
-        val robots = engine.getLocalRepository(robots.joinToString())
-        return BattleSpecification(1, 450, 0.1, battlefieldSpecification, robots)
+        val robotsSpecifications = engine.getLocalRepository(robots.joinToString())
+        return BattleSpecification(numberOfRounds, inactivityTime, gunCoolingRate, battlefieldSpecification, robotsSpecifications)
     }
 
     override fun getSnapshot(id: UUID): ITurnSnapshot {
@@ -44,7 +44,7 @@ class RobocodeInstanceManager : IRobocodeInstanceManager {
     }
 
     override fun dispose(id: UUID) {
-        getBattle(id).engine.close()
+        //TODO remove engine getBattle(id).engine.close()
         battles.remove(id);
     }
 

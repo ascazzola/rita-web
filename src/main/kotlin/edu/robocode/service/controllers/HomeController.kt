@@ -1,6 +1,6 @@
-package edu.rita.api.controllers
+package edu.robocode.service.controllers
 
-import edu.rita.api.robocode.IRobocodeInstanceManager
+import edu.robocode.service.application.IRobocodeInstanceManager
 import org.springframework.context.annotation.Scope
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -18,6 +18,6 @@ class HomeController {
     @RequestMapping("/hello")
     fun hello() : String {
         val battle = instanceManager.newBattle(1,450, 0.1, arrayOf("sample.Corners", "sample.Walls"))
-        return battle.toString()
+        return battle.toString();
     }
 }
