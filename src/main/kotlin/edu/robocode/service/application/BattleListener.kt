@@ -1,29 +1,22 @@
 package edu.robocode.service.application
 
-import net.sf.robocode.battle.snapshot.TurnSnapshot
+import reactor.core.publisher.ReplayProcessor
 import robocode.control.events.*
-import robocode.control.snapshot.ITurnSnapshot
 import java.util.*
 
-class BattleListener: BattleAdaptor {
-    private val manager: IRobocodeInstanceManager;
-    private val id: UUID;
-    var snapshot: ITurnSnapshot = TurnSnapshot()
-    private  set
+class BattleListener(private val manager: IRobocodeInstanceManager, private val id: UUID): BattleAdaptor() {
+    val battleEventProcessor: ReplayProcessor<BattleEvent> = ReplayProcessor.create(1)
 
-    constructor(manager: IRobocodeInstanceManager, id: UUID): super() {
-        this.manager = manager;
-        this.id = id;
+    override fun onBattleStarted(event: BattleStartedEvent) {
+        this.battleEventProcessor.onNext(event)
     }
 
     override fun onRoundStarted(event: RoundStartedEvent) {
-        this.snapshot = event.startSnapshot
-        // Inform via webSocked
+        this.battleEventProcessor.onNext(event);
     }
 
     override fun onTurnEnded(event: TurnEndedEvent) {
-        this.snapshot = event.turnSnapshot
-        // Inform via webSocked
+        this.battleEventProcessor.onNext(event);
     }
 
     override fun onBattleCompleted(event: BattleCompletedEvent) {
