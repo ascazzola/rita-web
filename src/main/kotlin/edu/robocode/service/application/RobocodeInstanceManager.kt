@@ -7,7 +7,6 @@ import reactor.core.publisher.ReplayProcessor
 import robocode.control.BattleSpecification
 import robocode.control.BattlefieldSpecification
 import robocode.control.RobocodeEngine
-import robocode.control.events.BattleEvent
 import java.io.File
 import java.util.*
 import kotlin.collections.HashMap
@@ -38,15 +37,14 @@ class RobocodeInstanceManager(val configuration: RobocodeConfiguration) : IRoboc
        return this.battlesProcessor
     }
 
-    override fun getBattleEvents(id: UUID): Flux<BattleEvent> {
+    override fun getBattleEvents(id: UUID): Flux<String> {
         val battleState = this.getBattleState(id)
         return battleState.listener.battleEventProcessor
     }
 
     override fun dispose(id: UUID) {
-        //TODO remove engine getBattle(id).engine.close()
-        /*battles.remove(id);
-        battlesProcessor.onNext(battles.keys.toTypedArray())*/
+        battles.remove(id);
+        battlesProcessor.onNext(battles.keys.toTypedArray())
     }
 
     private fun getBattleSpecification(engine: RobocodeEngine, numberOfRounds: Int, inactivityTime: Long, gunCoolingRate: Double, robots: Array<String>): BattleSpecification {
@@ -65,7 +63,7 @@ class RobocodeInstanceManager(val configuration: RobocodeConfiguration) : IRoboc
 
 }
 
-class BattleState(val engine: RobocodeEngine, val listener: BattleListener, val specification: BattleSpecification) {
+class BattleState(val engine: RobocodeEngine, val listener: BattleListener, private val specification: BattleSpecification) {
     var started = false
 
     fun start () {
@@ -73,7 +71,7 @@ class BattleState(val engine: RobocodeEngine, val listener: BattleListener, val 
             if (this.started) {
                 throw Exception("Battle already started")
             }
-            this.engine.runBattle(this.specification)
+            this.engine.runBattle(this.specification, true)
             started = true
         }
     }
