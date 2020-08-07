@@ -1,3 +1,22 @@
+server:
+  port: 8081
+keycloak:
+  realm: RITA
+  auth-server-url: http://localhost:8080/auth
+  ssl-required: external
+  resource: robocode-service
+  credentials:
+    secret: 6db69ef6-91c7-48b3-974a-0adb12e29942
+  use-resource-role-mappings: true
+  bearer-only: true
+  enabled: true
+  security-constraints:
+    -
+     authRoles:
+      - admin
+     securityCollections:
+      - patterns:
+        - /api/*
 app:
   robocode:
     homePath: ""

@@ -1,6 +1,6 @@
 package edu.robocode.service.application
 
-import edu.robocode.service.RobocodeConfiguration
+import edu.robocode.service.config.RobocodeConfiguration
 import edu.robocode.service.models.Battle
 import edu.robocode.service.models.BattleSpecification as BattleSpecificationModel
 import org.springframework.stereotype.Service
@@ -17,7 +17,7 @@ import kotlin.collections.HashMap
 @Service
 class RobocodeInstanceManager(val configuration: RobocodeConfiguration) : IRobocodeInstanceManager {
     val battlesProcessor = ReplayProcessor.create<List<Battle>>(1)
-    val battles = HashMap<UUID, BattleState>();
+    val battles = HashMap<UUID, BattleState>()
 
     override fun newBattle(name: String, numberOfRounds: Int, inactivityTime: Long, gunCoolingRate: Double, robots: List<String>, battlefieldSpecification: BattlefieldSpecification): UUID {
         val id = UUID.randomUUID()
@@ -28,7 +28,7 @@ class RobocodeInstanceManager(val configuration: RobocodeConfiguration) : IRoboc
 
         battles[id] = BattleState(engine, listener, name, getBattleSpecification(engine, numberOfRounds, inactivityTime, gunCoolingRate, robots, battlefieldSpecification))
         battlesProcessor.onNext(mapBattles())
-        return id;
+        return id
     }
 
     override fun startBattle(id: UUID) {
@@ -46,7 +46,7 @@ class RobocodeInstanceManager(val configuration: RobocodeConfiguration) : IRoboc
     }
 
     override fun dispose(id: UUID) {
-        battles.remove(id);
+        battles.remove(id)
         battlesProcessor.onNext(mapBattles())
     }
 
@@ -56,7 +56,7 @@ class RobocodeInstanceManager(val configuration: RobocodeConfiguration) : IRoboc
     }
 
     private fun getBattleState(id: UUID): BattleState {
-        val battle = battles[id];
+        val battle = battles[id]
         if (battle === null) {
             throw Exception("Battle not found with id = $id")
         }

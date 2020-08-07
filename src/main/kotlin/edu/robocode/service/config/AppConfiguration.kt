@@ -1,4 +1,4 @@
-package edu.robocode.service
+package edu.robocode.service.config
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.EnableConfigurationProperties
@@ -15,5 +15,5 @@ class AppConfiguration {
 @Configuration
 @ConfigurationProperties(prefix="app.robocode")
 class RobocodeConfiguration {
-    var homePath: String = "";
+    var homePath: String = ""
 }
