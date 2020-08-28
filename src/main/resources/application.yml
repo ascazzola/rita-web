@@ -9,7 +9,6 @@ keycloak:
     secret: 6db69ef6-91c7-48b3-974a-0adb12e29942
   use-resource-role-mappings: true
   bearer-only: true
-  enabled: true
   security-constraints:
     -
      authRoles:
@@ -17,6 +16,8 @@ keycloak:
      securityCollections:
       - patterns:
         - /api/*
+  cors: true
+  enabled: true
 app:
   robocode:
     homePath: ""
