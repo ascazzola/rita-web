@@ -1,0 +1,16 @@
+<div class="container">
+  <mat-toolbar class="toolbar" color="primary">
+    <button mat-icon-button (click)="snav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <h1 class="app-name">Rita web</h1>
+  </mat-toolbar>
+  <mat-sidenav-container [style.marginTop.px]="56" class="sidenav-container">
+    <mat-sidenav #snav mode="side" fixedTopGap="56">
+      <app-bar></app-bar>
+    </mat-sidenav>
+    <mat-sidenav-content class="content">
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

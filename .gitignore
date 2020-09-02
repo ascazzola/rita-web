@@ -1,33 +1,43 @@
-HELP.md
-target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**
-!**/src/test/**
+/.dockerignore
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
+# compiled output
+client/dist
+client/tmp
+client/out-tsc
+
+# dependencies
+client/node_modules
+
+# IDEs and editors
 .project
-.settings
-.springBeans
-.sts4-cache
-
-### IntelliJ IDEA ###
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
 .idea
-*.iws
-*.iml
-*.ipr
 
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
 
-### VS Code ###
-.vscode/
+# misc
+client/.sass-cache
+client/connect.lock
+client/coverage
+client/libpeerconnection.log
+npm-debug.log
+testem.log
 
-/config/*
+# e2e
+client/e2e/*.js
+client/e2e/*.map
+
+# System Files
+.DS_Store
+Thumbs.db
+.vscode/settings.json
+backend/target/classes/application.yml
