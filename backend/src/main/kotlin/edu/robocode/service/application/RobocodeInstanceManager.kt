@@ -2,7 +2,7 @@ package edu.robocode.service.application
 
 import edu.robocode.service.config.RobocodeConfiguration
 import edu.robocode.service.config.WebSocketConfig
-import edu.robocode.service.controllers.BattleController
+import edu.robocode.service.controllers.BattlesController
 import edu.robocode.service.models.Battle
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -21,7 +21,7 @@ import edu.robocode.service.models.BattleSpecification as BattleSpecificationMod
 
 @Service
 class RobocodeInstanceManager(val websocket: SimpMessagingTemplate, val configuration: RobocodeConfiguration) : IRobocodeInstanceManager {
-    val logger: Logger = LoggerFactory.getLogger(BattleController::class.java)
+    val logger: Logger = LoggerFactory.getLogger(BattlesController::class.java)
     val battlesProcessor = ReplayProcessor.cacheLastOrDefault<List<Battle>>(emptyList())
     val battles = HashMap<UUID, BattleState>()
 

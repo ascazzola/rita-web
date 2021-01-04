@@ -17,12 +17,14 @@ import reactor.core.publisher.Mono
 import robocode.control.events.BattleEvent
 import java.time.Duration
 import java.util.*
+import javax.annotation.security.RolesAllowed
 
 @RestController
 @Scope(value = WebApplicationContext.SCOPE_REQUEST)
 @RequestMapping("api/battles")
 @CrossOrigin()
-class BattleController(private val instanceManager: IRobocodeInstanceManager, private val simpMessagingTemplate: SimpMessagingTemplate) {
+
+class BattlesController(private val instanceManager: IRobocodeInstanceManager, private val simpMessagingTemplate: SimpMessagingTemplate) {
 
     @GetMapping("")
     fun getBattles() : Mono<List<Battle>> {
