@@ -4,9 +4,8 @@ import { initialState, adapter, State } from './state';
 
 const battlesReducer = createReducer(
   initialState,
-  on(battleActions.create, state => ({ ...state, loading: true })),
-  on(battleActions.changed, (state, { items }) =>
-    ({ loading: false, ...adapter.setAll(items, adapter.removeAll(state)) })),
+  on(battleActions.loaded, (state, { items }) => adapter.setAll(items, adapter.removeAll(state))),
+  on(battleActions.changed, (state, { items }) => adapter.setAll(items, adapter.removeAll(state))),
   on(battleActions.unload, state => adapter.removeAll(state))
 );
 

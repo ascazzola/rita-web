@@ -6,7 +6,7 @@ keycloak:
   ssl-required: external
   resource: robocode-service
   credentials:
-    secret: bd8326be-96eb-4cc8-9cd6-c6bf544046db
+    secret: 041b58d4-2a73-4c4b-a8c8-c78304b43191
   use-resource-role-mappings: true
   bearer-only: true
   security-constraints:

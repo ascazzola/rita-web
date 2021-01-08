@@ -3,14 +3,13 @@ import { Store, select } from '@ngrx/store';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { State } from 'app/modules/root-store';
-import * as fromBattles from 'app/modules/root-store/battles';
+import * as fromCurrentBattle from 'app/modules/root-store/current-battle';
 
 @Component({
   templateUrl: './new-battle.component.html',
   styleUrls: ['./new-battle.component.scss']
 })
 export class NewBattleComponent implements OnInit {
-  loading$: Observable<boolean>;
   form: FormGroup;
 
   constructor(private fb: FormBuilder, private store: Store<State>) { }
@@ -24,12 +23,10 @@ export class NewBattleComponent implements OnInit {
       robots: [null, Validators.required],
       battlefieldSpecification: [null, Validators.required]
     });
-
-    this.loading$ = this.store.pipe(select(fromBattles.selectLoading));
   }
 
   newBattle() {
-    this.store.dispatch(fromBattles.create({
+    this.store.dispatch(fromCurrentBattle.create({
       name: 'Test moqueado',
       specification: {
         numberOfRounds: 10,

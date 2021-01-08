@@ -22,7 +22,6 @@ export class BattleListComponent implements OnInit {
   }
 
   viewBattle(battle: Battle) {
-    console.log('go to view ', battle);
   }
 
 }

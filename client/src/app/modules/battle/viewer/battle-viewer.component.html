@@ -1,13 +1,24 @@
-<p>viewer works!</p>
-<div #battle style="margin-top:40px; display: inline-block; background-image:url('/assets/battle/battlefield.png')">
-  <ng-container *ngIf="battle$|async as battle">
-    <app-robots [robots]="battle.snapshot.robots"></app-robots>
-    <app-bullets [bullets]="battle.snapshot.bullets"></app-bullets>
+<ng-container *ngIf="battle$|async as battle">
+  <ng-container [ngTemplateOutlet]="battle.state.snapshot ? battleViewer : startBattleTemplate"
+    [ngTemplateOutletContext]="{battle: battle.state}">
   </ng-container>
-</div>
-<ng-template #startBattleTemplate>
-  <button mat-raised-button color="primary" (click)="startBattle()">Iniciar batalla</button>
-</ng-template>
-<div *ngIf="battle$|async as battle; else startBattleTemplate">
-  {{battle$|async|json}}
-</div>
+
+  <ng-template #loading>
+    loading...
+  </ng-template>
+
+  <ng-template #battleViewer let-battle="battle">
+    <ng-container>
+      <div #battle
+        style="margin-top:40px; display: inline-block; background-image:url('/assets/battle/battlefield.png')">
+        <ng-container *ngIf="stage">
+          <app-robots [robots]="battle.snapshot.robots"></app-robots>
+          <app-bullets [bullets]="battle.snapshot.bullets"></app-bullets>
+        </ng-container>
+      </div>
+    </ng-container>
+  </ng-template>
+
+  <ng-template #startBattleTemplate>
+    <button mat-raised-button color="primary" (click)="startBattle()">Iniciar batalla</button>
+  </ng-template>

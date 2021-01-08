@@ -12,7 +12,7 @@ import java.util.*
 interface IRobocodeInstanceManager {
     fun newBattle(name: String, numberOfRounds: Int, inactivityTime: Long, gunCoolingRate: Double, robots: List<String>, battlefieldSpecification: BattlefieldSpecification): UUID
     fun startBattle(id: UUID)
-    fun dispose(id: UUID)
+    fun disposeBattle(id: UUID)
     fun getBattle(id: UUID): Mono<Battle>
     fun getBattles(): Mono<List<Battle>>
 }

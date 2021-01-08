@@ -1,11 +1,15 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StoreModule } from '@ngrx/store';
+import { Store, StoreModule } from '@ngrx/store';
 import { BattlesStoreModule } from './battles/battles.store.module';
 import { CurrentBattleStoreModule } from './current-battle/current-battle.store.module';
-import { reducers, metaReducers } from './state';
+import { reducers, metaReducers, State } from './state';
 import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from './effects';
+import { KeycloakEventType, KeycloakService } from 'keycloak-angular';
+import { Login } from './actions';
+import { Logout } from './actions';
+import { filter } from 'rxjs/operators';
 
 function throwIfAlreadyLoaded(parentModule: any, moduleName: string) {
   if (parentModule) {
@@ -30,7 +34,15 @@ function throwIfAlreadyLoaded(parentModule: any, moduleName: string) {
   ]
 })
 export class RootStoreModule {
-  constructor(@Optional() @SkipSelf() parentModule: RootStoreModule) {
+  constructor(@Optional() @SkipSelf() parentModule: RootStoreModule, keycloakService: KeycloakService, store: Store<State>) {
     throwIfAlreadyLoaded(parentModule, 'RootStoreModule');
+
+    keycloakService.keycloakEvents$.pipe(filter(e => e.type === KeycloakEventType.OnAuthSuccess)).subscribe(authStatus => {
+      if (authStatus) {
+        store.dispatch(new Login());
+      } else {
+        store.dispatch(new Logout());
+      }
+    });
   }
 }

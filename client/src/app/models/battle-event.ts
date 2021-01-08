@@ -4,7 +4,8 @@ import { BattleResult } from './battle-result';
 export type BattleEvent = BattleStarted | RoundStarted | TurnChanged | BattleFinished;
 
 export interface BattleStarted {
-    type: 'BattleStartedEvent';
+    id: string;
+    type: 'BattleStarted';
     numberOfRounds: number;
     gunCoolingRate: number;
     inactivityTime: number;
@@ -13,17 +14,20 @@ export interface BattleStarted {
 }
 
 export interface RoundStarted {
-    type: 'RoundStartedEvent';
+    id: string;
+    type: 'RoundStarted';
     round: number;
     startSnapshot: BattleSnapshot;
 }
 
 export interface TurnChanged {
-    type: 'TurnEndedEvent';
+    id: string;
+    type: 'TurnEnded';
     turnSnapshot: BattleSnapshot;
 }
 
 export interface BattleFinished {
+    id: string;
     type: 'BattleCompletedEvent';
     results: BattleResult[];
 }

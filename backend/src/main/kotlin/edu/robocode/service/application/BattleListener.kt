@@ -32,7 +32,7 @@ class BattleListener(private val manager: IRobocodeInstanceManager, private val 
     init {
         this.robocodeBattleEventProcessor
                 .delayElements(Duration.ofMillis(500))
-                .doAfterTerminate {  this.manager.dispose(this.id); }
+                .doAfterTerminate {  this.manager.disposeBattle(this.id); }
                 .subscribe { e ->
                     customBattleEventProcessor.onNext(e)
                     websocket.convertAndSend("${WebSocketConfig.MESSAGE_PREFIX}/battles/${id}", e)

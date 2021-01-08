@@ -20,7 +20,7 @@ enum class BattleEventType {
 }
 
 interface IBattleEvent {
-    val eventType: BattleEventType
+    val type: BattleEventType
 }
 
 data class Robot(val name: String, val shortName: String, val veryShortName: String, val teamName: String, val robotIndex: Int, val teamIndex: Int, val state: RobotState,
@@ -39,24 +39,24 @@ data class ScoreSnapshot(val name: String, val totalScore: Double, val totalSurv
 data class TurnSnapshot(val robots: Array<Robot>, val bullets: Array<Bullet>, val round: Int, val turn: Int, val sortedTeamScore: Array<ScoreSnapshot>, val indexedTeamScores: Array<ScoreSnapshot>)
 
 data class BattleStartedEvent(val numberOfRounds: Int, val gunCoolingRate: Double, val inactivityTime: Long, val robotsCount: Int, val isReplay: Boolean): BattleEvent(), IBattleEvent {
-    override val eventType: BattleEventType = BattleEventType.BattleStarted
+    override val type: BattleEventType = BattleEventType.BattleStarted
 
 }
 
 data class BattleResult(val teamLeaderName: String, val rank: Int, val score: Int, val survival: Int, val lastSurvivorBonus: Int, val bulletDamage: Int, val bulletDamageBonus: Int, val ramDamage: Int, val ramDamageBonus: Int, val firsts: Int, val seconds: Int, val thirds: Int);
 
 data class BattleCompletedEvent(val result: Array<BattleResult>): BattleEvent(), IBattleEvent {
-    override val eventType: BattleEventType = BattleEventType.BattleCompleted
+    override val type: BattleEventType = BattleEventType.BattleCompleted
 }
 
 data class RoundStartedEvent(val round: Int, val startSnapshot: TurnSnapshot): IBattleEvent {
-    override val eventType: BattleEventType = BattleEventType.RoundStarted
+    override val type: BattleEventType = BattleEventType.RoundStarted
 }
 
 data class RoundEndedEvent(val round: Int, val turns: Int, val totalTurns: Int): BattleEvent(), IBattleEvent{
-    override val eventType: BattleEventType = BattleEventType.RoundEnded
+    override val type: BattleEventType = BattleEventType.RoundEnded
 }
 
 data class TurnEndedEvent(val turnSnapshot: TurnSnapshot): BattleEvent(), IBattleEvent {
-    override val eventType: BattleEventType = BattleEventType.TurnEnded
+    override val type: BattleEventType = BattleEventType.TurnEnded
 }

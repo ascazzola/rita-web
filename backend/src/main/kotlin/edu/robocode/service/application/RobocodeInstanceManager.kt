@@ -27,7 +27,7 @@ class RobocodeInstanceManager(val websocket: SimpMessagingTemplate, val configur
 
     init {
         this.battlesProcessor.subscribe{battles ->
-            this.logger.info("battle created / deleted");
+            this.logger.info("battle created / started / deleted");
             this.websocket.convertAndSend("${WebSocketConfig.MESSAGE_PREFIX}/battles", battles)}
     }
 
@@ -46,9 +46,10 @@ class RobocodeInstanceManager(val websocket: SimpMessagingTemplate, val configur
     override fun startBattle(id: UUID) {
         val battleState = this.getBattleState(id)
         battleState.start()
+        battlesProcessor.onNext(mapBattles())
     }
 
-    override fun dispose(id: UUID) {
+    override fun disposeBattle(id: UUID) {
         battles.remove(id)
         battlesProcessor.onNext(mapBattles())
     }

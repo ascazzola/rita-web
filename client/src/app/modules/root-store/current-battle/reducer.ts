@@ -4,11 +4,15 @@ import { initialState, State } from './state';
 
 const currentBattleReducer = createReducer(
   initialState,
-  on(currentBattleActions.load, (_, { id }) => ({ id })),
-  on(currentBattleActions.roundStarted, (state, { round, snapshot }) => ({ ...state, round, snapshot })),
-  on(currentBattleActions.snapshotChanged, (state, { snapshot }) => ({ ...state, snapshot })),
-  on(currentBattleActions.battleFinished, (state, { results }) => ({ ...state, results })),
-  on(currentBattleActions.unload, _ => null),
+  on(currentBattleActions.create, _ => ({ loading: true })),
+  on(currentBattleActions.load, (_, { id }) => ({ current: { id }, loading: false })),
+  on(currentBattleActions.start, (state) => ({ current: { ...state.current } })),
+  on(currentBattleActions.roundStarted, (state, { round, snapshot }) => ({
+    current: { ...state.current, round, snapshot }
+  })),
+  on(currentBattleActions.snapshotChanged, (state, { snapshot }) => ({ current: { ...state.current, snapshot } })),
+  on(currentBattleActions.battleFinished, (state, { results }) => ({ current: { ...state.current, results } })),
+  on(currentBattleActions.unload, _ => ({})),
 );
 
 export function reducer(state: State | undefined, action: Action) {

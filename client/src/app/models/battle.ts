@@ -1,4 +1,5 @@
 import { Robot } from './robot';
+
 export interface Battle {
   id: string;
   name: string;

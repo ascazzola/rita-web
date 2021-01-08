@@ -1,8 +1,9 @@
-import { BattleSpecification, Battle } from './battle';
 import { BattleSnapshot } from './battle-snapshot';
+import { BattleResult } from './battle-result';
 
 export interface CurrentBattle {
-  battle: Battle;
-  specification: BattleSpecification;
-  snapshot: BattleSnapshot;
+  id: number;
+  round?: number;
+  snapshot?: BattleSnapshot;
+  results?: BattleResult[];
 }
