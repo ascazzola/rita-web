@@ -15,6 +15,10 @@ Run ./start.sh to start development environment
 
 Run ./stop.sh to stop development environment
 
+
+First time user should be created accesing to keycloak by default http://localhost:8081/auth/ user admin and password admin
+in realm RITA users should be created with roles admin (for administrator) and user (for non administrator users)
+
 ## Troubleshooting
 
 To verify the running status of the stack services you can do:
