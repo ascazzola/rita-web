@@ -61,7 +61,7 @@ class RobocodeInstanceManager(val websocket: SimpMessagingTemplate, val configur
             return Mono.just(Battle(id, state.name, state.started, state.getBattleSpecificationModel()));
         }
 
-        return state!!.listener.getLastEvent().map { event -> Battle(id, state.name, state.started, state.getBattleSpecificationModel(), event) }
+        return state.listener.getLastEvent().map { event -> Battle(id, state.name, state.started, state.getBattleSpecificationModel(), event) }
     }
 
     override fun getBattles(): Mono<List<Battle>> {

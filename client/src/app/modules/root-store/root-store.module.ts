@@ -37,12 +37,10 @@ export class RootStoreModule {
   constructor(@Optional() @SkipSelf() parentModule: RootStoreModule, keycloakService: KeycloakService, store: Store<State>) {
     throwIfAlreadyLoaded(parentModule, 'RootStoreModule');
 
-    keycloakService.keycloakEvents$.pipe(filter(e => e.type === KeycloakEventType.OnAuthSuccess)).subscribe(authStatus => {
-      if (authStatus) {
-        store.dispatch(new Login());
-      } else {
-        store.dispatch(new Logout());
-      }
-    });
+    keycloakService.keycloakEvents$.pipe(filter(e => e.type === KeycloakEventType.OnAuthSuccess))
+      .subscribe(() => store.dispatch(new Login()));
+
+    keycloakService.keycloakEvents$.pipe(filter(e => e.type === KeycloakEventType.OnAuthLogout))
+      .subscribe(() => store.dispatch(new Logout()));
   }
 }

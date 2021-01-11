@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'RITA-battle-royal'`, () => {
+  it(`should have as title 'rita'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('RITA-battle-royal');
+    expect(app.title).toEqual('rita');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('RITA-battle-royal app is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain('rita app is running!');
   });
 });

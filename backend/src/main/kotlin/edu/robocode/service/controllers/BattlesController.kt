@@ -14,7 +14,6 @@ import javax.annotation.security.RolesAllowed
 @Scope(value = WebApplicationContext.SCOPE_REQUEST)
 @RequestMapping("api/battles")
 @CrossOrigin()
-@RolesAllowed("robocode-service-admin")
 class BattlesController(private val instanceManager: IRobocodeInstanceManager) {
 
     @GetMapping("")

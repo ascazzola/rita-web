@@ -16,6 +16,10 @@ keycloak:
      securityCollections:
       - patterns:
         - /api/*
+    -
+      securityCollections:
+      - patterns:
+        - /api/version
   cors: true
   enabled: true
 app:

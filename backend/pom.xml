@@ -77,36 +77,26 @@
             <groupId>net.sf.robocode</groupId>
             <artifactId>robocode.battle</artifactId>
             <version>1.9.3.9</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/src/main/resources/lib/robocode.battle-1.9.3.9.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>net.sf.robocode</groupId>
             <artifactId>robocode.api</artifactId>
             <version>1.9.3.9</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/src/main/resources/lib/robocode.api-1.9.3.9.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>net.sf.robocode</groupId>
             <artifactId>robocode.core</artifactId>
             <version>1.9.3.9</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/src/main/resources/lib/robocode.core-1.9.3.9.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>net.sf.robocode</groupId>
             <artifactId>robocode.host</artifactId>
             <version>1.9.3.9</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/src/main/resources/lib/robocode.host-1.9.3.9.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>net.sf.robocode</groupId>
             <artifactId>robocode.repository</artifactId>
             <version>1.9.3.9</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/src/main/resources/lib/robocode.repository-1.9.3.9.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>org.picocontainer</groupId>
@@ -170,6 +160,93 @@
                         <version>${kotlin.version}</version>
                     </dependency>
                 </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>2.5.2</version>
+                <executions>
+                    <execution>
+                        <id>install-robocode.battle</id>
+                        <phase>clean</phase>
+                        <configuration>
+                            <file>${basedir}/src/main/resources/lib/robocode.battle-1.9.3.9.jar</file>
+                            <repositoryLayout>default</repositoryLayout>
+                            <groupId>net.sf.robocode</groupId>
+                            <artifactId>robocode.battle</artifactId>
+                            <version>1.9.3.9</version>
+                            <packaging>jar</packaging>
+                            <generatePom>true</generatePom>
+                        </configuration>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>install-robocode.api</id>
+                        <phase>clean</phase>
+                        <configuration>
+                            <file>${basedir}/src/main/resources/lib/robocode.api-1.9.3.9.jar</file>
+                            <repositoryLayout>default</repositoryLayout>
+                            <groupId>net.sf.robocode</groupId>
+                            <artifactId>robocode.api</artifactId>
+                            <version>1.9.3.9</version>
+                            <packaging>jar</packaging>
+                            <generatePom>true</generatePom>
+                        </configuration>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>install-robocode.core</id>
+                        <phase>clean</phase>
+                        <configuration>
+                            <file>${basedir}/src/main/resources/lib/robocode.core-1.9.3.9.jar</file>
+                            <repositoryLayout>default</repositoryLayout>
+                            <groupId>net.sf.robocode</groupId>
+                            <artifactId>robocode.core</artifactId>
+                            <version>1.9.3.9</version>
+                            <packaging>jar</packaging>
+                            <generatePom>true</generatePom>
+                        </configuration>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>install-robocode.host</id>
+                        <phase>clean</phase>
+                        <configuration>
+                            <file>${basedir}/src/main/resources/lib/robocode.host-1.9.3.9.jar</file>
+                            <repositoryLayout>default</repositoryLayout>
+                            <groupId>net.sf.robocode</groupId>
+                            <artifactId>robocode.host</artifactId>
+                            <version>1.9.3.9</version>
+                            <packaging>jar</packaging>
+                            <generatePom>true</generatePom>
+                        </configuration>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>install-robocode.repository</id>
+                        <phase>clean</phase>
+                        <configuration>
+                            <file>${basedir}/src/main/resources/lib/robocode.repository-1.9.3.9.jar</file>
+                            <repositoryLayout>default</repositoryLayout>
+                            <groupId>net.sf.robocode</groupId>
+                            <artifactId>robocode.repository</artifactId>
+                            <version>1.9.3.9</version>
+                            <packaging>jar</packaging>
+                            <generatePom>true</generatePom>
+                        </configuration>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

@@ -43,6 +43,9 @@ Thumbs.db
 backend/target/classes/application.yml
 *.directory
 
+.gradle
+*/target/*
+
 # java files
 *.class
 
