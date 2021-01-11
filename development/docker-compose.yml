@@ -1,0 +1,38 @@
+version: "3.4"
+
+services:
+  file:
+    image: minio/minio
+    environment:
+      - MINIO_SECRET_KEY=${MINIO_SECRET_KEY}
+      - MINIO_ACCESS_KEY=${MINIO_ACCESS_KEY}
+    ports:
+      - ${MINIO_PORT}:9000
+    command: server /data
+    volumes:
+      - file_store:/data
+  keycloak: 
+    image: jboss/keycloak
+    environment:
+      DB_VENDOR: ${KEYCLOAK_DB_VENDOR}
+      DB_ADDR: ${KEYCLOAK_DB_ADDR}
+      DB_DATABASE: ${KEYCLOAK_DB_NAME}
+      DB_USER: ${KEYCLOAK_DB_USER}
+      DB_PASSWORD: ${KEYCLOAK_DB_PASSWORD}
+      KEYCLOAK_USER: ${KEYCLOAK_USER}
+      KEYCLOAK_PASSWORD: ${KEYCLOAK_PASSWORD}
+      KEYCLOAK_IMPORT: /tmp/keycloak/realm.json
+    ports:
+      - ${KEYCLOAK_HTTP_PORT}:8080
+      - ${KEYCLOAK_HTTPS_PORT}:8443
+    configs:
+      - source: realms
+        target: /tmp/keycloak/realm.json
+    command: -Djava.net.preferIPv4Stack=true
+
+volumes:
+  file_store:
+
+configs:
+  realms:
+    file: ./realm.json

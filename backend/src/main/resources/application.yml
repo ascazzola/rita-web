@@ -1,8 +1,8 @@
 server:
-  port: 8081
+  port: 8080
 keycloak:
   realm: RITA
-  auth-server-url: http://localhost:8080/auth
+  auth-server-url: http://localhost:8081/auth
   ssl-required: external
   resource: robocode-service
   credentials:
