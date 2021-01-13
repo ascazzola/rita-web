@@ -61,7 +61,12 @@
         "id": "ed663051-c4db-4e75-9f13-5e6f196b7563",
         "name": "uma_authorization",
         "description": "${role_uma_authorization}",
-        "composite": false,
+        "composite": true,
+        "composites": {
+          "realm": [
+            "user"
+          ]
+        },
         "clientRole": false,
         "containerId": "RITA",
         "attributes": {}

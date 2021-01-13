@@ -16,12 +16,19 @@ keycloak:
      securityCollections:
       - patterns:
         - /api/*
+    - authRoles:
+        - robocode-service-user
+      securityCollections:
+        - patterns:
+            - /api/battles/*
+            - /api/me
     -
       securityCollections:
       - patterns:
         - /api/version
   cors: true
   enabled: true
+  principal-attribute: preferred_username
 app:
   robocode:
     homePath: ""
