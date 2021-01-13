@@ -167,51 +167,11 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-jcl:5.2.7.RELEASE" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework:spring-test:5.2.7.RELEASE" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.xmlunit:xmlunit-core:2.7.0" level="project" />
-    <orderEntry type="module-library">
-      <library name="Maven: net.sf.robocode:robocode.battle:1.9.3.9">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/src/main/resources/lib/robocode.battle-1.9.3.9.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="Maven: net.sf.robocode:robocode.api:1.9.3.9">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/src/main/resources/lib/robocode.api-1.9.3.9.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="Maven: net.sf.robocode:robocode.core:1.9.3.9">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/src/main/resources/lib/robocode.core-1.9.3.9.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="Maven: net.sf.robocode:robocode.host:1.9.3.9">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/src/main/resources/lib/robocode.host-1.9.3.9.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="Maven: net.sf.robocode:robocode.repository:1.9.3.9">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/src/main/resources/lib/robocode.repository-1.9.3.9.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
+    <orderEntry type="library" name="Maven: net.sf.robocode:robocode.battle:1.9.3.9" level="project" />
+    <orderEntry type="library" name="Maven: net.sf.robocode:robocode.api:1.9.3.9" level="project" />
+    <orderEntry type="library" name="Maven: net.sf.robocode:robocode.core:1.9.3.9" level="project" />
+    <orderEntry type="library" name="Maven: net.sf.robocode:robocode.host:1.9.3.9" level="project" />
+    <orderEntry type="library" name="Maven: net.sf.robocode:robocode.repository:1.9.3.9" level="project" />
     <orderEntry type="library" name="Maven: org.picocontainer:picocontainer:2.14.2" level="project" />
     <orderEntry type="library" name="Maven: org.jetbrains.kotlin:kotlin-stdlib:1.3.72" level="project" />
     <orderEntry type="library" name="Maven: org.jetbrains.kotlin:kotlin-stdlib-common:1.3.72" level="project" />
