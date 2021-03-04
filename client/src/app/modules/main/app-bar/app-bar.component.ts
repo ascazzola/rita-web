@@ -9,7 +9,7 @@ import { KeycloakService } from 'keycloak-angular';
 })
 export class AppBarComponent {
 
-  constructor(private readonly keycloak: KeycloakService, private readonly router: Router) { }
+  constructor(private readonly keycloak: KeycloakService) { }
 
   async logout() {
     await this.keycloak.logout();
