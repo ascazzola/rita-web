@@ -1,8 +1,17 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { KeycloakService } from 'keycloak-angular';
 
 @Component({
   selector: 'app-bar',
   templateUrl: './app-bar.component.html',
   styleUrls: ['./app-bar.component.scss']
 })
-export class AppBarComponent { }
+export class AppBarComponent {
+
+  constructor(private readonly keycloak: KeycloakService, private readonly router: Router) { }
+
+  async logout() {
+    await this.keycloak.logout();
+  }
+}

@@ -10,7 +10,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import {MatTableModule} from '@angular/material/table';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatPaginatorModule } from '@angular/material/paginator';
-
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [],
@@ -28,7 +28,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatGridListModule,
     MatButtonToggleModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatMenuModule
   ]
 })
 export class SharedModule { }

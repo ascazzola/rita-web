@@ -12,4 +12,8 @@ export class AppContainerComponent implements OnInit {
   ngOnInit() {
   }
 
+  logout() {
+    
+  }
+
 }
