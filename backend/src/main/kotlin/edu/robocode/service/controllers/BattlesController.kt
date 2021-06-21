@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*
 import org.springframework.web.context.WebApplicationContext
 import reactor.core.publisher.Mono
 import java.util.*
-import javax.annotation.security.RolesAllowed
 
 @RestController
 @Scope(value = WebApplicationContext.SCOPE_REQUEST)

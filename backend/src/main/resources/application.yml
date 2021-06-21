@@ -1,5 +1,12 @@
 server:
   port: 8081
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/robocode
+    username: robocodeuser
+    password: robocodepassword
+    driver-class-name: org.postgresql.Driver
+  jpa.hibernate.ddl-auto: update
 keycloak:
   realm: RITA
   auth-server-url: http://localhost:8081/auth
