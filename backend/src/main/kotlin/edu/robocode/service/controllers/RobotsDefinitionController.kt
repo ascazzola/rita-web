@@ -37,7 +37,11 @@ class RobotsDefinitionController(private val repository: JpaRepository<RobotDefi
 
         return repository.findById(robotDefinitionId).map { existingRobotDefinition ->
             val updatedArticle: RobotDefinition = existingRobotDefinition
-                .copy(title = newRobotDefinition.title)
+                .copy(
+                    userId = newRobotDefinition.userId,
+                    name = newRobotDefinition.name,
+                    sourceCode = newRobotDefinition.sourceCode
+                )
 
             ResponseEntity.ok().body(repository.save(updatedArticle))
         }.orElse(ResponseEntity.notFound().build())
