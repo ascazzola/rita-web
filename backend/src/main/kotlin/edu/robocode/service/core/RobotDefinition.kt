@@ -12,9 +12,9 @@ data class RobotDefinition(
     val userId: UUID = UUID.randomUUID(), // TODO create validator
     @NotBlank()
     @Column(length = 50, nullable = false)
-    val name: String = "",
+    var name: String = "",
     @NotBlank
     @Column(nullable = false)
     @Lob
-    val sourceCode: String = ""
+    var sourceCode: String = ""
 ) : BaseEntity()

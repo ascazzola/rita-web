@@ -8,18 +8,14 @@ import javax.persistence.MappedSuperclass
 import javax.persistence.Version
 
 @MappedSuperclass
-abstract class BaseEntity(givenId: UUID? = null) : Persistable<UUID> {
+abstract class BaseEntity(givenId: UUID? = null) {
 
     @Id
     @Column(name = "id", length = 16, unique = true, nullable = false)
-    private val id: UUID = givenId ?: UUID.randomUUID()
+    val id: UUID = givenId ?: UUID.randomUUID()
 
     @Version
     val version: Long? = null
-
-    override fun getId(): UUID = id
-
-    override fun isNew(): Boolean = version == null
 
     override fun hashCode(): Int = id.hashCode()
 
@@ -28,7 +24,7 @@ abstract class BaseEntity(givenId: UUID? = null) : Persistable<UUID> {
             this === other -> true
             other == null -> false
             other !is BaseEntity -> false
-            else -> getId() == other.getId()
+            else -> id == other.id
         }
     }
 }
