@@ -9,12 +9,14 @@ import javax.validation.constraints.NotBlank
 @Entity
 data class RobotDefinition(
     @Column(nullable = false)
-    val userId: UUID = UUID.randomUUID(), // TODO create validator
+    val userId: UUID,
     @NotBlank()
     @Column(length = 50, nullable = false)
-    var name: String = "",
+    var name: String,
     @NotBlank
     @Column(nullable = false)
     @Lob
-    var sourceCode: String = ""
-) : BaseEntity()
+    var sourceCode: String
+) : BaseEntity() {
+    protected constructor(): this(UUID.randomUUID(),"", "")
+}

@@ -1,6 +1,5 @@
 package edu.robocode.service.core
 
-import org.springframework.data.domain.Persistable
 import java.util.*
 import javax.persistence.Column
 import javax.persistence.Id

@@ -1,0 +1,18 @@
+<mat-nav-list>
+  <mat-list-item mat-list-item routerLink="/home">  
+    <mat-icon>home</mat-icon>
+    <span>Home</span>
+  </mat-list-item>
+  <mat-list-item mat-list-item routerLink="/robots/new">  
+    <mat-icon>smart_toy</mat-icon>
+    <span>Crear robots</span>
+  </mat-list-item>
+  <mat-list-item mat-list-item routerLink="/battles/new">  
+    <mat-icon>videogame_asset</mat-icon>
+    <span>Inciar batalla</span>
+  </mat-list-item>
+  <mat-list-item (click)="logout()">  
+    <mat-icon>exit_to_app</mat-icon>
+    <span>Logout</span>
+  </mat-list-item>
+</mat-nav-list>
