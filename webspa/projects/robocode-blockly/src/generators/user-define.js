@@ -38,6 +38,7 @@ Blockly.Robocode['junior_robot_class'] = function(block) {
 
   // eslint-disable-next-line max-len
   const code = `public class ${className} extends JuniorRobot ${getStatement(body)}`;
+  console.warn(code);
   Blockly.Robocode.definitions_['import_robocode'] = 'robocode.JuniorRobot';
   return code;
 };

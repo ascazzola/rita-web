@@ -1,6 +1,6 @@
 {
   "name": "blockly-plugin-robocode",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A Blockly plugin.",
   "scripts": {
     "audit:fix": "blockly-scripts auditFix",

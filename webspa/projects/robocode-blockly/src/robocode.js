@@ -174,7 +174,7 @@ Blockly.Robocode.scrub_ = function(block, code, parms) {
   // Only collect comments for blocks that aren't inline.
   if (!block.outputConnection || !block.outputConnection.targetConnection) {
     // Collect comment for this block.
-    commentCode = block.getCommentText();
+    commentCode = block.getCommentText() || '';
     if (commentCode) {
       commentCode += this.prefixLines(commentCode, '// ') + '\n';
     }
