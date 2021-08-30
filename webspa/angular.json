@@ -172,7 +172,11 @@
             "styles": [
               "projects/ngx-robocode-blockly-test/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/blockly/blockly_compressed.js",
+              "node_modules/blockly/blocks_compressed.js",
+              "node_modules/blockly/msg/es.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -240,7 +244,11 @@
             "styles": [
               "projects/ngx-robocode-blockly-test/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/blockly/blockly_compressed.js",
+              "node_modules/blockly/blocks_compressed.js",
+              "node_modules/blockly/msg/es.js"
+            ]
           }
         },
         "lint": {

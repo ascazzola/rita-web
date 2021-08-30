@@ -1,0 +1,62 @@
+{
+  "name": "blockly-plugin-robocode",
+  "version": "0.1.0",
+  "description": "A Blockly plugin.",
+  "scripts": {
+    "audit:fix": "blockly-scripts auditFix",
+    "build": "blockly-scripts build",
+    "clean": "blockly-scripts clean",
+    "lint": "blockly-scripts lint",
+    "predeploy": "blockly-scripts predeploy",
+    "prepublishOnly": "npm run clean && npm run build",
+    "start": "blockly-scripts start",
+    "test": "blockly-scripts test"
+  },
+  "main": "./dist/index.js",
+  "module": "./src/index.js",
+  "unpkg": "./dist/index.js",
+  "author": "",
+  "keywords": [
+    "blockly",
+    "blockly-plugin",
+    "robocode"
+  ],
+  "homepage": "git@github.com:ascazzola/rita-web/tree/master/webspa/projects/robocode-blockly#readme",
+  "bugs": {
+    "url": "git@github.com:ascazzola/rita-web/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ascazzola/rita-web.git",
+    "directory": "webspa/projects/robocode-blockly"
+  },
+  "license": "Apache-2.0",
+  "directories": {
+    "dist": "dist",
+    "src": "src"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "devDependencies": {
+    "@blockly/dev-scripts": "^1.2.10",
+    "@blockly/dev-tools": "^2.5.6",
+    "blockly": "^6.20210701.0"
+  },
+  "peerDependencies": {
+    "blockly": "^6.20210701.0"
+  },
+  "publishConfig": {},
+  "eslintConfig": {
+    "extends": "@blockly/eslint-config"
+  },
+  "engines": {
+    "node": ">=8.17.0"
+  },
+  "browserslist": [
+    "defaults",
+    "IE 11",
+    "IE_Mob 11"
+  ]
+}

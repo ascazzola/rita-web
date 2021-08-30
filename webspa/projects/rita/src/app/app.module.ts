@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { MainModule } from './modules/main/main.module';
 import { RootStoreModule } from './modules/root-store/root-store.module';
 import { rxStompConfig } from './rx-stomp.config';
+import * as Blockly from 'blockly';
+import * as ES from 'blockly/msg/es';
 
 
 function initializeKeycloak(keycloak: KeycloakService) {
@@ -57,4 +59,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor() {
+    Blockly.setLocale(ES);
+  }
+}

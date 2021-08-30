@@ -25,16 +25,16 @@ client/node_modules
 !.vscode/extensions.json
 
 # misc
-client/.sass-cache
-client/connect.lock
-client/coverage
-client/libpeerconnection.log
+webspa/.sass-cache
+webspa/connect.lock
+webspa/coverage
+webspa/libpeerconnection.log
 npm-debug.log
 testem.log
 
 # e2e
-client/e2e/*.js
-client/e2e/*.map
+webspa/e2e/*.js
+webspa/e2e/*.map
 
 # System Files
 .DS_Store
@@ -50,3 +50,7 @@ backend/target/classes/application.yml
 *.class
 
 _vars.custom.sh
+
+webspa/projects/robocode-blockly/node_modules/*
+webspa/projects/robocode-blockly/build/*
+webspa/projects/robocode-blockly/dist/*
