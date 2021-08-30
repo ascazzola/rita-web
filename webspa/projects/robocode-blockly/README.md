@@ -29,10 +29,6 @@ import {robocodeTolbox} from '../src/index';
 const workspace = Blockly.inject('blocklyDiv', {
   toolbox: robocodeTolbox,
 });
-
-// Initialize plugin.
-const plugin = new Plugin(workspace);
-plugin.init();
 ```
 
 ## API

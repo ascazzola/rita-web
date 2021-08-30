@@ -1,6 +1,6 @@
 {
   "name": "blockly-plugin-robocode",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A Blockly plugin.",
   "scripts": {
     "audit:fix": "blockly-scripts auditFix",
@@ -15,15 +15,17 @@
   "main": "./dist/index.js",
   "module": "./src/index.js",
   "unpkg": "./dist/index.js",
-  "author": "",
   "keywords": [
     "blockly",
     "blockly-plugin",
     "robocode"
   ],
-  "homepage": "git@github.com:ascazzola/rita-web/tree/master/webspa/projects/robocode-blockly#readme",
+  "homepage": "https://github.com/ascazzola/rita-web/tree/master/webspa/projects/robocode-blockly#readme",
+  "author": {
+    "name": "Adriano Scazzola"
+  },
   "bugs": {
-    "url": "git@github.com:ascazzola/rita-web/issues"
+    "url": "https://github.com/ascazzola/rita-web/issues"
   },
   "repository": {
     "type": "git",

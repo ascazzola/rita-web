@@ -11,7 +11,7 @@
 import * as Blockly from 'blockly';
 import {createPlayground} from '@blockly/dev-tools';
 import {robocodeTolbox} from '../src/index';
-
+import * as ES from 'blockly/msg/es';
 
 /**
  * Method used to configure the playground.
@@ -37,6 +37,7 @@ function configurePlayground(playground) {
  * @return {!Blockly.WorkspaceSvg} The created workspace.
  */
 function createWorkspace(blocklyDiv, options) {
+  Blockly.setLocale(ES);
   const workspace = Blockly.inject(blocklyDiv, options);
   return workspace;
 }
