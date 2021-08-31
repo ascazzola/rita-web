@@ -1,9 +1,10 @@
 <div style="display: flex;">
   <div style="flex-grow: 1;">
-    <lib-ngx-robocode-blockly (codeChanged)="code=$event;"></lib-ngx-robocode-blockly>
+    <lib-ngx-robocode-blockly (codeChanged)="onCodeChanged($event);" (xmlChanged)="xml=$event" [xml]="xml"></lib-ngx-robocode-blockly>
   </div>
   <div style="flex-grow: 1;">
-    <pre>{{code}}</pre>
+    <ngx-monaco-editor [options]="editorOptions" [ngModel]="code$|async"></ngx-monaco-editor>
   </div>
 </div>
+<pre>{{xml}}</pre>
 

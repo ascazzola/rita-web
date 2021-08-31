@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { MonacoEditorConstructionOptions } from '@materia-ui/ngx-monaco-editor';
+import { BehaviorSubject } from 'rxjs';
 
-const DEFAULT_BLOCKS = `<xml xmlns="https://developers.google.com/blockly/xml" id="workspace-blocks" style="display: none">
+const DEFAULT_XML = `<xml xmlns="https://developers.google.com/blockly/xml" id="workspace-blocks" style="display: none">
 <block type="junior_robot_class" id="jY7hU+kM]gXKO}.5$w:S" x="0" y="0">
   <field name="ROBOT_NAME">MyRobot</field>
   <statement name="BODY">
@@ -81,6 +83,9 @@ const DEFAULT_BLOCKS = `<xml xmlns="https://developers.google.com/blockly/xml" i
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  code = '';
-  blocks = DEFAULT_BLOCKS;
+  code$ = new BehaviorSubject('');
+  xml = DEFAULT_XML;
+  editorOptions: MonacoEditorConstructionOptions = {theme: 'vs-dark', language: 'java', readOnly: true};
+
+  onCodeChanged = (code: string):void => this.code$.next(code);
 }

@@ -167,7 +167,8 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "projects/ngx-robocode-blockly-test/src/favicon.ico",
-              "projects/ngx-robocode-blockly-test/src/assets"
+              "projects/ngx-robocode-blockly-test/src/assets",
+              { "glob": "**/*", "input": "node_modules/monaco-editor", "output": "assets/monaco-editor/" }
             ],
             "styles": [
               "projects/ngx-robocode-blockly-test/src/styles.scss"

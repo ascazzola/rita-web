@@ -15,13 +15,14 @@ declare var robocodeTolbox: string;
 export class NgxRobocodeBlocklyComponent implements OnInit, AfterViewInit {
   @ViewChild('blocklyDiv') blocklyDiv!: ElementRef;
   workspace!: BlocklyDef.Workspace;
-  // private initialBlocks$ = new ReplaySubject<string>(1);
+  private xml$ = new ReplaySubject<string>(1);
 
-  // @Input() set blocks(value: string) {
-  //   this.initialBlocks$.next(value);
-  // }
+  @Input() set xml(value: string) {
+    this.xml$.next(value);
+  }
 
   @Output() public codeChanged: EventEmitter<string> = new EventEmitter<string>();
+  @Output() public xmlChanged: EventEmitter<string> = new EventEmitter<string>();
 
   ngOnInit(): void { }
 
@@ -31,18 +32,21 @@ export class NgxRobocodeBlocklyComponent implements OnInit, AfterViewInit {
 
     this.workspace.addChangeListener(this._onWorkspaceChange.bind(this));
 
-    // this.initialBlocks$.subscribe(blocks => {
-    //   console.log(this.workspace);
-    //   BlocklyDef.Xml.appendDomToWorkspace(blocks, this.workspace)
-    // });
+    this.xml$.subscribe(xml => BlocklyDef.Xml.clearWorkspaceAndLoadFromXml(Blockly.Xml.textToDom(xml), this.workspace));
   }
 
-  private _onWorkspaceChange(_: any) {
+  private _onWorkspaceChange(_: any): void {
     this.workspaceToCode();
+    this.workspaceToXml();
   }
 
-  workspaceToCode() {
+  workspaceToCode(): void {
     const code = Blockly.Robocode.workspaceToCode(this.workspace)
     this.codeChanged.emit(code);
+  }
+
+  workspaceToXml(): void {
+    const xml = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(this.workspace));
+    this.xmlChanged.emit(xml);
   }
 }
