@@ -40,7 +40,6 @@ Blockly.Robocode['controls_whileUntil'] = function(block) {
       until ? Blockly.Robocode.ORDER_LOGICAL_NOT :
       Blockly.Robocode.ORDER_NONE) || 'false';
   let branch = Blockly.Robocode.statementToCode(block, 'DO');
-  console.warn('robocode branch', branch);
   branch = Blockly.Robocode.addLoopTrap(branch, block);
 
   if (until) {
