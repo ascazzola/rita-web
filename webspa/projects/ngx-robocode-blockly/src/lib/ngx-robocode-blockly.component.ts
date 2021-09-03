@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild } from '@angular/core';
 import * as BlocklyDef from 'blockly';
 import { ReplaySubject } from 'rxjs';
 declare var Blockly: any;
@@ -7,10 +7,11 @@ declare var robocodeTolbox: string;
 @Component({
   selector: 'lib-ngx-robocode-blockly',
   template: `
-    <div #blocklyDiv style="height: 100vh"></div>
+    <div #blocklyDiv style="height: 100%"></div>
   `,
   styles: [
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NgxRobocodeBlocklyComponent implements OnInit, AfterViewInit {
   @ViewChild('blocklyDiv') blocklyDiv!: ElementRef;
@@ -32,7 +33,7 @@ export class NgxRobocodeBlocklyComponent implements OnInit, AfterViewInit {
 
     this.workspace.addChangeListener(this._onWorkspaceChange.bind(this));
 
-    this.xml$.subscribe(xml => BlocklyDef.Xml.clearWorkspaceAndLoadFromXml(Blockly.Xml.textToDom(xml), this.workspace));
+    this.xml$.subscribe(xml => Blockly.Xml.clearWorkspaceAndLoadFromXml(Blockly.Xml.textToDom(xml), this.workspace));
   }
 
   private _onWorkspaceChange(_: any): void {

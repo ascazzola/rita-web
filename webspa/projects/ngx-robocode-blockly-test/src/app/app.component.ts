@@ -84,7 +84,8 @@ const DEFAULT_XML = `<xml xmlns="https://developers.google.com/blockly/xml" id="
 })
 export class AppComponent {
   code$ = new BehaviorSubject('');
-  xml = DEFAULT_XML;
+  originalXml = DEFAULT_XML;
+  currentXml = DEFAULT_XML;
   editorOptions: MonacoEditorConstructionOptions = {theme: 'vs-dark', language: 'java', readOnly: true};
 
   onCodeChanged = (code: string):void => this.code$.next(code);

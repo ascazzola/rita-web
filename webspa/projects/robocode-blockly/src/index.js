@@ -1,6 +1,7 @@
 import './robocode';
 import './blocks';
 export * from './toolbox';
+export * from './workspace-blocks';
 import './msg/es';
 import './generators/logic';
 import './generators/loops';

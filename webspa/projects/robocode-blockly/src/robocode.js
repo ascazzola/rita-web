@@ -114,50 +114,41 @@ robocodeGenerator.init = function(workspace) {
     defvars.push(`${type} ${variableName};`);
   }
 
-  this.definitions_['variables'] = defvars.join('\n');
+  if (defvars.length > 0) {
+    this.definitions_['variables'] = defvars.join('\n');
+  }
   this.isInitialized = true;
 };
 
-
-/**
- * Method used to add the variables to the existing Java code.
- * @param {string} code Current code without variables.
- * @param {string[]} definitions Array of variables.
- * @return {string} Code With variable declarations.
- */
-function addVariablesToCode(code, definitions) {
-  const codeLineArray = code.split('\n');
-  const classLine = codeLineArray.find((x) => x.indexOf('public class') > -1);
-
-  if (!classLine) {
-    return [...definitions, ...codeLineArray].join('\n');
-  }
-  const indexToAddVariables = codeLineArray.indexOf(classLine);
-
-
-  return [
-    ...codeLineArray.slice(0, indexToAddVariables + 1),
-    definitions.map((x) => robocodeGenerator
-        .prefixLines(x, robocodeGenerator.INDENT)),
-    ...codeLineArray
-        .slice(indexToAddVariables + 1, codeLineArray.length)].join('\n');
-}
+robocodeGenerator.getCodeBlock = function(code) {
+  return `{${code}}`;
+};
 
 robocodeGenerator.finish = function(code) {
   const imports = [];
   const definitions = [];
+  let className = 'MyRobot';
   // eslint-disable-next-line guard-for-in
   for (const name in this.definitions_) {
     const def = this.definitions_[name];
     if (name.match(/^import_/)) {
       imports.push(def);
-    } else {
+    } else if (name.match(/^variables/)) {
       definitions.push(def);
+    } else if (name === 'className') {
+      className = def;
     }
   }
   this.nameDB_.reset();
-  const codeWithVariables = addVariablesToCode(code, definitions);
-  return `package robots;\n\n${getImports(imports)}\n\n${codeWithVariables}`;
+  const classLine = `public class ${className} extends JuniorRobot `;
+  const javaImports = getImports(imports);
+  const variables = definitions.length > 0 &&
+    `\n\n${definitions.join('\n')}` || '';
+
+  // eslint-disable-next-line max-len
+  const classBody = this.getCodeBlock(this.prefixLines(`${variables}\n\n${code}`, this.INDENT));
+  console.log(variables);
+  return `package robots;\n${javaImports}\n${classLine}${classBody}`;
 };
 
 

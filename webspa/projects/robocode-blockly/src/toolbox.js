@@ -1,15 +1,8 @@
 export const robocodeTolbox = `
 <xml id="toolbox" style="display: none">
   <category name="Robocode" colour="1">
-    <category name="Requeridos" colour="1">
-      <block type="junior_robot_class"/>
-      <block type="method_run"/>
-      <block type="method_onHitByBullet"/>
-      <block type="method_onHitRobot"/>
-      <block type="method_onHitWall"/>
-      <block type="method_onScannedRobot"/>
-    </category>
     <category name="Movimiento" colour="20">
+      <block type="class_name" />
       <block type="move_ahead"/>
       <block type="move_back"/>
       <block type="move_ahead_left"/>

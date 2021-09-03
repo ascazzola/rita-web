@@ -1,16 +1,6 @@
 'use strict';
 
 /**
- * Get statement from code.
- * @param {string} code Code inside the stametement.
- * @return {string} Statement with braces.
- */
-function getStatement(code) {
-  return `{${code}}`;
-}
-
-
-/**
  * Get code from methods.
  * @param {!Blockly.Block} block The block used to get the code.
  * @param {string} name The method name.
@@ -21,25 +11,27 @@ function getMethodCode(block, name) {
   if (body) {
     body = `\n${body}`;
   }
-
-  const code = `public void ${name}() ${getStatement(body)}\n\n`;
+  const codeBlock = Blockly.Robocode.getCodeBlock(body);
+  const code = `public void ${name}() ${codeBlock}\n`;
   return code;
 }
 
+/**
+ * Convert text to camelCase.
+ * @param {string} text String to convert.
+ * @return {string} Text in camelcase.
+ */
+function camelCase(text) {
+  const regex = /\s+(\w)?/gi;
 
-Blockly.Robocode['junior_robot_class'] = function(block) {
-  let body = Blockly.Robocode.statementToCode(block, 'BODY');
-  if (body) {
-    body = `\n${body}\n`;
-  }
-  const className = block
-      .getFieldValue('ROBOT_NAME')
-      .replace(/\W+(.)/g, (_, chr) => chr.toUpperCase());
-
-  // eslint-disable-next-line max-len
-  const code = `public class ${className} extends JuniorRobot ${getStatement(body)}`;
-  Blockly.Robocode.definitions_['import_robocode'] = 'robocode.JuniorRobot';
-  return code;
+  return text.replace(regex, function(match, letter) {
+    return letter.toUpperCase();
+  });
+}
+Blockly.Robocode['class_name'] = function(block) {
+  const className = camelCase(block.getFieldValue('NAME'));
+  Blockly.Robocode.definitions_['className'] = className;
+  return null;
 };
 
 Blockly.Robocode['method_run'] = function(block) {

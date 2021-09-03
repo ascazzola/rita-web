@@ -1,3 +1,4 @@
+Blockly.Msg['CLASS_NAME'] = 'Robot %1';
 Blockly.Msg['JUNIOR_ROBOT_CLASS'] = 'Junior Robot %1 %2 %3';
 Blockly.Msg['RUN_METHOD'] = 'Ejecutar %1 %2';
 Blockly.Msg['ON_HIT_BY_BULLET_METHOD'] = 'Al recibir disparo %1 %2';

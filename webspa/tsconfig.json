@@ -11,12 +11,7 @@
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,
-    "paths": {
-      "ngx-robocode-blockly": [
-        "dist/ngx-robocode-blockly/ngx-robocode-blockly",
-        "dist/ngx-robocode-blockly"
-      ]
-    },
+    "paths": {},
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,

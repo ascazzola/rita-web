@@ -10,7 +10,7 @@
 
 import * as Blockly from 'blockly';
 import {createPlayground} from '@blockly/dev-tools';
-import {robocodeTolbox} from '../src/index';
+import {robocodeTolbox, defaultWorkspaceBlocks} from '../src/index';
 import * as ES from 'blockly/msg/es';
 
 /**
@@ -23,10 +23,8 @@ function configurePlayground(playground) {
 
   const ws = playground.getWorkspace();
   if (ws.getAllBlocks().length == 0) {
-    const blocks = document.getElementById('workspace-blocks');
-    if (blocks.firstElementChild) {
-      Blockly.Xml.appendDomToWorkspace(blocks, ws);
-    }
+    const xml = Blockly.Xml.textToDom(defaultWorkspaceBlocks);
+    Blockly.Xml.clearWorkspaceAndLoadFromXml(xml, ws);
   }
 }
 

@@ -1,19 +1,6 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-  <meta charset="utf-8">
-  <title>Blockly Plugin Test</title>
-  <style>
-    html, body {
-      margin: 0;
-    }
-  </style>
-</head>
-
-<body>
-  <div id="root"></div>
-  <xml xmlns="https://developers.google.com/blockly/xml" id="workspace-blocks" style="display: none">
+/* eslint-disable max-len */
+export const defaultWorkspaceBlocks = `
+<xml xmlns="https://developers.google.com/blockly/xml">
     <block type="class_name" deletable="false" movable="false" id="bY3]kC1zk]L_PsBXsg@O" x="10" y="0">
       <field name="NAME">Mi Robot</field>
     </block>
@@ -37,7 +24,7 @@
                 <block type="move_ahead" id="akeFDV:I3+^J.ok1._{M">
                   <field name="DISTANCE">100</field>
                   <next>
-                    <block type="action_turn_gun_right" id="M;Klg`~UOW^cu?f(fiI2">
+                    <block type="action_turn_gun_right" id="M;Klg\`~UOW^cu?f(fiI2">
                       <field name="DEGRESS">180</field>
                       <next>
                         <block type="move_back" id="vI}MjrVZU2*}!vvhc|hb">
@@ -65,7 +52,7 @@
         </block>
       </statement>
     </block>
-    <block type="method_onHitByBullet" deletable="false" id="#-U4.vh,4,#`Eaz#+:Hp" x="300" y="350">
+    <block type="method_onHitByBullet" deletable="false" id="#-U4.vh,4,#\`Eaz#+:Hp" x="300" y="350">
       <statement name="BODY">
         <block type="move_back" id="f@,.2p|=E+FZnt~W9$.|">
           <field name="DISTANCE">10</field>
@@ -74,7 +61,7 @@
     </block>
     <block type="method_onHitWall" deletable="false" id="A.%,bh%i_.iOON%]dbVH" x="10" y="650">
       <statement name="BODY">
-        <block type="move_back" id="e^V13SPir~g$?*wTvWc`">
+        <block type="move_back" id="e^V13SPir~g$?*wTvWc\`">
           <field name="DISTANCE">20</field>
         </block>
       </statement>
@@ -84,7 +71,4 @@
       </statement>
     </block>
   </xml>
-  <script src="../build/test_bundle.js"></script>
-</body>
-
-</html>
+  `;

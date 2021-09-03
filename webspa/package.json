@@ -34,6 +34,7 @@
     "konva": "^8.1.3",
     "monaco-editor": "^0.27.0",
     "ngrx-store-freeze": "^0.2.4",
+    "ngx-robocode-blockly": "^0.1.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.1.0",
     "zone.js": "~0.11.4"

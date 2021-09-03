@@ -7,10 +7,11 @@ import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import {MatMenuModule} from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
+import { NgxRobocodeBlocklyModule } from 'ngx-robocode-blockly';
 
 @NgModule({
   declarations: [],
@@ -29,7 +30,8 @@ import {MatMenuModule} from '@angular/material/menu';
     MatButtonToggleModule,
     MatTableModule,
     MatPaginatorModule,
-    MatMenuModule
+    MatMenuModule,
+    NgxRobocodeBlocklyModule
   ]
 })
 export class SharedModule { }
