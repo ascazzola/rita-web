@@ -4,7 +4,7 @@
  * @param {!Blockly.Workspace} workspace The workspace containing variables.
  * @return {!Array<!Element>} Array of XML elements.
  */
- Blockly.VariablesDynamic.flyoutCategory = function(workspace) {
+Blockly.VariablesDynamic.flyoutCategory = function(workspace) {
   let xmlList = [];
   let button = document.createElement('button');
   button.setAttribute('text', Blockly.Msg['NEW_STRING_VARIABLE']);
