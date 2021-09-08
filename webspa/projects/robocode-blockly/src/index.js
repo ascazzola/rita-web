@@ -1,3 +1,4 @@
+import './workspace';
 import './robocode';
 import './blocks';
 export * from './toolbox';
