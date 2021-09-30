@@ -1,8 +1,27 @@
-<mat-grid-list cols="4" rowHeight="100%">
-  <mat-grid-tile [colspan]="3">
-    <!-- <app-blocks (codeChanged)="sourceCode=$event"></app-blocks> -->
-  </mat-grid-tile>
-  <mat-grid-tile [colspan]="1">
-    <!-- <app-source-viewer [sourceCode]="sourceCode"></app-source-viewer> -->
-  </mat-grid-tile>
-</mat-grid-list>
+<mat-toolbar class="toolbar" color="accent">
+  <span>Crear robot</span>
+  <span style="flex: 1 1 auto;"></span>
+  <div class="flex-stretch"></div>
+  <button mat-mini-fab color="primary">
+    <mat-icon>save</mat-icon>
+  </button>
+</mat-toolbar>
+<mat-card>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Nombre</mat-label>
+    <input matInput>
+  </mat-form-field>
+</mat-card>
+<mat-card style="display: flex; height: 70vh">
+  <div style="flex-grow: 1;">
+    <mat-grid-list cols="4" rowHeight="100%">
+      <mat-grid-tile [colspan]="2">
+        <lib-ngx-robocode-blockly (codeChanged)="onCodeChanged($event);" (xmlChanged)="currentXml=$event"
+          [xml]="originalXml"></lib-ngx-robocode-blockly>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="2">
+        <ngx-monaco-editor [options]="editorOptions" [ngModel]="code$|async"></ngx-monaco-editor>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</mat-card>

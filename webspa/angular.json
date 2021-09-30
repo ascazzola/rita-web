@@ -62,13 +62,18 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "projects/rita/src/favicon.ico",
-              "projects/rita/src/assets"
+              "projects/rita/src/assets",
+              { "glob": "**/*", "input": "node_modules/monaco-editor", "output": "assets/monaco-editor/" }
             ],
             "styles": [
-              "node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "projects/rita/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/blockly/blockly_compressed.js",
+              "node_modules/blockly/blocks_compressed.js",
+              "node_modules/blockly/msg/es.js",
+              "node_modules/blockly-plugin-robocode/dist/index.js"
+            ]
           },
           "configurations": {
             "production": {

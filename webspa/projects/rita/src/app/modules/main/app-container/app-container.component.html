@@ -4,13 +4,21 @@
       <mat-icon>menu</mat-icon>
     </button>
     <h1 class="app-name">Rita web</h1>
+    <span style="flex: 1 1 auto;"></span>
+    <div class="flex-stretch"></div>
+    <mat-icon class="mr-8">brightness_5</mat-icon>
+    <mat-slide-toggle [formControl]="toggleControl" class="mr-8">
+    </mat-slide-toggle>
+    <mat-icon>bedtime</mat-icon>
   </mat-toolbar>
   <mat-sidenav-container [style.marginTop.px]="56" class="sidenav-container">
     <mat-sidenav #snav mode="side" fixedTopGap="56">
       <app-bar></app-bar>
     </mat-sidenav>
     <mat-sidenav-content class="content">
-      <router-outlet></router-outlet>
+      <div>
+        <router-outlet></router-outlet>
+      </div>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>

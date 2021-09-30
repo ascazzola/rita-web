@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '../shared/shared.module';
 import { BattleModule } from '../battle/battle.module';
+import { RobotsBrowseComponent } from './robot/robots-browse.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { BattleModule } from '../battle/battle.module';
     HomeComponent,
     AppContainerComponent,
     HomeComponent,
+    RobotsBrowseComponent,
     RobotsEditComponent
   ],
   imports: [

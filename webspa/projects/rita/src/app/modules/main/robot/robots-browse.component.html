@@ -1,0 +1,46 @@
+<ng-container *ngIf="model$|async as model else loading;">
+
+
+  <mat-card>
+    <mat-toolbar class="toolbar" color="accent">
+      <span>Mis robots</span>
+      <span style="flex: 1 1 auto;"></span>
+      <div class="flex-stretch"></div>
+      <a mat-mini-fab color="primary" routerLink="/robots/new">
+        <mat-icon>add</mat-icon>
+      </a>
+    </mat-toolbar>
+
+
+
+
+  <mat-table [dataSource]="model" class="mat-elevation-z8">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef class="action-link"> Acciones </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-icon-button>
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon color="warn">delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="datasource"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: datasource;"></mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
+  </mat-paginator>
+</mat-card>
+</ng-container>
+<ng-template #loading>
+  loading...
+</ng-template>
