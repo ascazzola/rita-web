@@ -13,4 +13,17 @@ export class RobotDefinitionsService {
     return this.httpClient.get<RobotDefinition[]>(`${environment.apiUrl}/api/robots-definitions`);
   }
 
+  getById(id: string): Observable<RobotDefinition> {
+    return this.httpClient.get<RobotDefinition>(`${environment.apiUrl}/api/robots-definitions/${id}`);
+  }
+
+  insert(robotDefinition: RobotDefinition): Observable<RobotDefinition> {
+    return this.httpClient.post<RobotDefinition>(`${environment.apiUrl}/api/robots-definitions`, robotDefinition);
+  }
+
+  update(robotDefinition: RobotDefinition): Observable<RobotDefinition> {
+    const id = robotDefinition.id;
+    return this.httpClient.put<RobotDefinition>(`${environment.apiUrl}/api/robots-definitions/${id}`, robotDefinition);
+  }
+
 }

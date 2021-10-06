@@ -17,7 +17,12 @@ data class RobotDefinition(
     @Column(nullable = false)
     @Lob
     @Type(type = "org.hibernate.type.TextType")
-    var sourceCode: String
+    var code: String,
+    @NotBlank
+    @Column(nullable = false)
+    @Lob
+    @Type(type = "org.hibernate.type.TextType")
+    var xml: String
 ) : BaseEntity() {
-    protected constructor(): this("","","")
+    protected constructor() : this("", "", "", "")
 }

@@ -34,7 +34,7 @@ class RobotsDefinitionController(
         @Valid @RequestBody model: RobotDefinitionModel
     ): RobotDefinitionModel {
         val userId = principal.name;
-        var entity = RobotDefinition(userId, model.name, model.sourceCode)
+        var entity = RobotDefinition(userId, model.name, model.code, model.xml)
         entity = repository.save(entity);
         return mapper.map(entity);
     }
@@ -58,7 +58,7 @@ class RobotsDefinitionController(
                     throw OptimisticLockException()
                 }
                 existingRobotDefinition.name = updatedRobotDefinition.name;
-                existingRobotDefinition.sourceCode = updatedRobotDefinition.sourceCode;
+                existingRobotDefinition.code = updatedRobotDefinition.code;
                 ResponseEntity.ok().body(mapper.map(repository.save(existingRobotDefinition)))
             }.orElse(ResponseEntity.notFound().build())
 
