@@ -70,10 +70,8 @@ Blockly.Robocode['logic_compare'] = function(block) {
 
   if (!argument0) {
     argument0 = '""';
-  } else {
-    argument0 = 'Var.valueOf(' + argument0 + ')';
-    Blockly.Robocode.provideVarClass();
   }
+
   if (!argument1) {
     argument1 = '""';
   }
