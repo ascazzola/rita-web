@@ -27,7 +27,7 @@
           <a mat-icon-button  [routerLink]="['../edit', element.id]">
             <mat-icon>edit</mat-icon>
           </a>
-          <button mat-icon-button>
+          <button mat-icon-button type="button" (click)="delete(element.id, element.name)">
             <mat-icon color="warn">delete</mat-icon>
           </button>
         </mat-cell>

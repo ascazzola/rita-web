@@ -4,12 +4,12 @@ import { Observable } from 'rxjs';
 import { environment } from '../environments/environment';
 import { RobotDefinition } from '../models/robot-definition';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class RobotDefinitionsService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAll() : Observable<RobotDefinition[]> {
+  getAll(): Observable<RobotDefinition[]> {
     return this.httpClient.get<RobotDefinition[]>(`${environment.apiUrl}/api/robots-definitions`);
   }
 
@@ -25,5 +25,10 @@ export class RobotDefinitionsService {
     const id = robotDefinition.id;
     return this.httpClient.put<RobotDefinition>(`${environment.apiUrl}/api/robots-definitions/${id}`, robotDefinition);
   }
+
+  delete(id: string): Observable<any> {
+    return this.httpClient.delete<RobotDefinition>(`${environment.apiUrl}/api/robots-definitions/${id}`);
+  }
+
 
 }

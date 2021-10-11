@@ -18,10 +18,17 @@ import {MatCardModule} from '@angular/material/card';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatInputModule} from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
-  declarations: [],
+  declarations: [
+    ConfirmationDialogComponent
+  ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatButtonModule,
+    MatDialogModule
   ],
   exports: [
     FormsModule,
@@ -41,6 +48,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatInputModule,
     MatExpansionModule,
     MatSnackBarModule,
+    MatDialogModule,
     NgxRobocodeBlocklyModule,
     MonacoEditorModule
   ]

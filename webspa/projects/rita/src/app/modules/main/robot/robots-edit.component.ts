@@ -7,6 +7,7 @@ import { BehaviorSubject, combineLatest, Observable, of, Subject } from 'rxjs';
 import { catchError, filter, first, map, mapTo, shareReplay, startWith, switchMap, tap } from 'rxjs/operators';
 import { RobotDefinition } from '../../../models/robot-definition';
 import { RobotDefinitionsService } from '../../../services/robot-definitions.service';
+import { SNACKBAR_DURATION } from '../../../models/constants';
 declare var defaultWorkspaceBlocks: string;
 
 export type IdType = string | number;
@@ -56,7 +57,7 @@ export class RobotsEditComponent implements OnInit {
         }),
         catchError((res: HttpErrorResponse) => {
           if (res.status === 409) {
-            this.snackBar.open('Error de concurrencia, otra persona guardo el mismo registro', undefined, { duration: 3000 });
+            this.snackBar.open('Error de concurrencia, otra persona guardo el mismo registro', undefined, { duration: SNACKBAR_DURATION });
             this.reloadSubject.next(null);
             return of(null);
           }
