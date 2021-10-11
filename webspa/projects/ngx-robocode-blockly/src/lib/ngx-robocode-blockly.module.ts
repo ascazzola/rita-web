@@ -5,8 +5,7 @@ import { NgxRobocodeBlocklyComponent } from './ngx-robocode-blockly.component';
   declarations: [
     NgxRobocodeBlocklyComponent
   ],
-  imports: [
-  ],
+  imports: [],
   exports: [
     NgxRobocodeBlocklyComponent
   ]
