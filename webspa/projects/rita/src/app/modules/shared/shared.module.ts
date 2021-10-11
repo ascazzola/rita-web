@@ -17,6 +17,7 @@ import { MonacoEditorModule } from '@materia-ui/ngx-monaco-editor';
 import {MatCardModule} from '@angular/material/card';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatInputModule} from '@angular/material/input';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 @NgModule({
   declarations: [],
   imports: [
@@ -39,6 +40,7 @@ import {MatInputModule} from '@angular/material/input';
     MatCardModule,
     MatInputModule,
     MatExpansionModule,
+    MatSnackBarModule,
     NgxRobocodeBlocklyModule,
     MonacoEditorModule
   ]

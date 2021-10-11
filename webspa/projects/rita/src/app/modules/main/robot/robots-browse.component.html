@@ -14,32 +14,32 @@
 
 
 
-  <mat-table [dataSource]="model" class="mat-elevation-z8">
+    <mat-table [dataSource]="model" class="mat-elevation-z8">
 
-    <!-- Position Column -->
-    <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="actions">
-      <mat-header-cell *matHeaderCellDef class="action-link"> Acciones </mat-header-cell>
-      <mat-cell *matCellDef="let element">
-        <button mat-icon-button>
-          <mat-icon>edit</mat-icon>
-        </button>
-        <button mat-icon-button>
-          <mat-icon color="warn">delete</mat-icon>
-        </button>
-      </mat-cell>
-    </ng-container>
+      <!-- Position Column -->
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef class="action-link"> Acciones </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <a mat-icon-button  [routerLink]="['../edit', element.id]">
+            <mat-icon>edit</mat-icon>
+          </a>
+          <button mat-icon-button>
+            <mat-icon color="warn">delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
 
-    <mat-header-row *matHeaderRowDef="datasource"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: datasource;"></mat-row>
-  </mat-table>
+      <mat-header-row *matHeaderRowDef="datasource"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: datasource;"></mat-row>
+    </mat-table>
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
-  </mat-paginator>
-</mat-card>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
+    </mat-paginator>
+  </mat-card>
 </ng-container>
 <ng-template #loading>
   loading...

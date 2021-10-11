@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '../shared/shared.module';
 import { BattleModule } from '../battle/battle.module';
 import { RobotsBrowseComponent } from './robot/robots-browse.component';
+import { CodeViewerComponent } from './robot/code-viewer.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { RobotsBrowseComponent } from './robot/robots-browse.component';
     HomeComponent,
     AppContainerComponent,
     HomeComponent,
+    CodeViewerComponent,
     RobotsBrowseComponent,
     RobotsEditComponent
   ],

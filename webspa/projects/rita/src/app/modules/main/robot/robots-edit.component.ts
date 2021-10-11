@@ -1,8 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MonacoEditorConstructionOptions } from '@materia-ui/ngx-monaco-editor';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { BehaviorSubject, combineLatest, Observable, of, Subject } from 'rxjs';
 import { catchError, filter, first, map, mapTo, shareReplay, startWith, switchMap, tap } from 'rxjs/operators';
 import { RobotDefinition } from '../../../models/robot-definition';
@@ -22,47 +22,43 @@ interface EditState<TModel> {
 
 @Component({
   templateUrl: './robots-edit.component.html',
-  styleUrls: ['./robots-edit.component.scss']
+  styleUrls: ['./robots-edit.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RobotsEditComponent implements OnInit {
   private saveSubject = new Subject();
   protected reloadSubject = new BehaviorSubject(null);
 
+  code$!: Observable<string>;
+
   model$!: Observable<EditState<string>>;
   form!: FormGroup;
-  currentXml = defaultWorkspaceBlocks;
-  editorOptions: MonacoEditorConstructionOptions = { theme: 'vs-dark', language: 'java', readOnly: true };
+  defaultXml = defaultWorkspaceBlocks;
 
-  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private robotDefinitionsService: RobotDefinitionsService) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
+    private robotDefinitionsService: RobotDefinitionsService,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit() {
 
     this.form = this.buildForm(this.formBuilder);
 
+    this.code$ = this.form.controls.definition.valueChanges.pipe(map(x => x.code));
+
     const saving$ = this.saveSubject.pipe(
       switchMap(__ => this.buildSaveRequest().pipe(
-        // tap(() => this.notifySaveSuccess()),
         tap(() => {
           this.form.reset(this.form.value, { emitEvent: false });
           this.return();
         }),
         catchError((res: HttpErrorResponse) => {
           if (res.status === 409) {
-            // const errorDetails = res.error as ConflictDetails;
-            // if (errorDetails && errorDetails.title === 'Conflict') {
-            //   const text1 = errorDetails.updatedAt
-            //     ? 'The information you are trying to update was recently updated by {{updatedBy}} at {{updatedAt}}.'
-            //       .replace('{{updatedBy}}', errorDetails.updatedBy || '')
-            //       .replace('{{updatedAt}}', moment(errorDetails.updatedAt).format('lll'))
-            //     : 'The information you are trying to update was recently updated by another user.';
-            //   const message = text1 + '\n' + 'Data will be refreshed so you can review/apply your changes again.';
-            //   this.messageBoxService.alert('Warning', message)
-            //     .then(() => {
-            //       this.reloadSubject.next(null);
-            //     });
-            // TODO show message with error
+            this.snackBar.open('Error de concurrencia, otra persona guardo el mismo registro', undefined, { duration: 3000 });
+            this.reloadSubject.next(null);
             return of(null);
-            // }
           }
           throw res;
         }),
@@ -99,17 +95,6 @@ export class RobotsEditComponent implements OnInit {
 
   }
 
-  onCodeChanged(code: string): void {
-    this.form.controls.code.setValue(code);
-    this.form.controls.code.updateValueAndValidity();
-  }
-
-
-  onXmlChanged(xml: string): void {
-    this.form.controls.xml.setValue(xml);
-    this.form.controls.xml.updateValueAndValidity();
-  }
-
   save() {
     this.saveSubject.next();
   }
@@ -117,8 +102,7 @@ export class RobotsEditComponent implements OnInit {
   private buildForm(fb: FormBuilder): FormGroup {
     return fb.group({
       name: [null, Validators.required],
-      code: [null, Validators.required],
-      xml: [null, Validators.required],
+      definition: [null, Validators.required],
     })
   }
 
@@ -127,7 +111,9 @@ export class RobotsEditComponent implements OnInit {
       filter(editModel => !editModel.loading),
       first(),
       switchMap(editModel => {
-        const model = Object.assign({}, editModel.data, this.form.value);
+        const formValue = this.form.value;
+        const updatedModel = { name: formValue.name, code: formValue.definition?.code, xml: formValue.definition?.xml } as RobotDefinition
+        const model = Object.assign({}, editModel.data, updatedModel);
         const request = editModel.isNew
           ? this.robotDefinitionsService.insert(model)
           : this.robotDefinitionsService.update(model);
@@ -141,7 +127,8 @@ export class RobotsEditComponent implements OnInit {
   }
 
   private patchFormValue(form: FormGroup, data: RobotDefinition): void {
-    form.patchValue(data, { emitEvent: false });
+    const formModel = { name: data.name, definition: { code: data.code, xml: data.xml } };
+    form.patchValue(formModel, { emitEvent: false });
   }
 
   return(): void {

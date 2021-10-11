@@ -8,7 +8,7 @@
       <button mat-mini-fab color="secondary" style="margin:10px" click="return()">
         <mat-icon>undo</mat-icon>
       </button>
-      <button mat-mini-fab color="primary" type="submit" [disabled]="model.saving" >
+      <button mat-mini-fab color="primary" type="submit" [disabled]="model.saving">
         <mat-icon>save</mat-icon>
       </button>
     </mat-toolbar>
@@ -22,11 +22,11 @@
       <div style="flex-grow: 1;">
         <mat-grid-list cols="4" rowHeight="100%">
           <mat-grid-tile [colspan]="2">
-            <lib-ngx-robocode-blockly (codeChanged)="onCodeChanged($event);" (xmlChanged)="onXmlChanged($event)"
-              [xml]="currentXml"></lib-ngx-robocode-blockly>
+            <lib-ngx-robocode-blockly formControlName="definition" [defaultWorkspaceXml]="defaultXml">
+            </lib-ngx-robocode-blockly>
           </mat-grid-tile>
           <mat-grid-tile [colspan]="2">
-            <ngx-monaco-editor [options]="editorOptions" formControlName="code"></ngx-monaco-editor>
+            <app-code-viewer [code]="code$|async"></app-code-viewer>
           </mat-grid-tile>
         </mat-grid-list>
       </div>

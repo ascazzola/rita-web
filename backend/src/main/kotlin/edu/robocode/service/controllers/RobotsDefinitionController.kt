@@ -58,6 +58,7 @@ class RobotsDefinitionController(
                     throw OptimisticLockException()
                 }
                 existingRobotDefinition.name = updatedRobotDefinition.name;
+                existingRobotDefinition.xml = updatedRobotDefinition.xml;
                 existingRobotDefinition.code = updatedRobotDefinition.code;
                 ResponseEntity.ok().body(mapper.map(repository.save(existingRobotDefinition)))
             }.orElse(ResponseEntity.notFound().build())
