@@ -1,7 +1,7 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, EventEmitter, forwardRef, HostListener, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
 import * as BlocklyDef from 'blockly';
-import { ReplaySubject } from 'rxjs';
+import { merge, ReplaySubject } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
 declare var Blockly: any;
 declare var robocodeTolbox: string;
@@ -26,9 +26,9 @@ export class NgxRobocodeBlocklyComponent implements OnInit, AfterViewInit, Contr
   @ViewChild('blocklyDiv') blocklyDiv!: ElementRef;
   workspace!: BlocklyDef.Workspace;
   form: FormGroup;
-  defaultWorkspaceXml$ = new ReplaySubject<string>();
+  xml$ = new ReplaySubject<string>();
   @Input() set defaultWorkspaceXml(xml: string) {
-    this.defaultWorkspaceXml$.next(xml);
+    this.xml$.next(xml);
   }
 
   private finishedLoading = false;
@@ -42,6 +42,9 @@ export class NgxRobocodeBlocklyComponent implements OnInit, AfterViewInit, Contr
 
   writeValue(model: { xml: string, code: string }): void {
     this.form.patchValue(model);
+    if (model?.xml) {
+      this.xml$.next(model.xml);
+    }
   }
 
   private onChange = (_: any) => { };
@@ -70,7 +73,7 @@ export class NgxRobocodeBlocklyComponent implements OnInit, AfterViewInit, Contr
 
     this.workspace.addChangeListener(this.onWorkspaceChange.bind(this));
 
-    this.defaultWorkspaceXml$.subscribe(xml =>
+    this.xml$.subscribe(xml =>
       Blockly.Xml.clearWorkspaceAndLoadFromXml(Blockly.Xml.textToDom(xml), this.workspace)
     );
   }

@@ -8,8 +8,9 @@ declare var defaultWorkspaceBlocks: string;
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  model: {xml: string, code: string} | null = null;
+  model: { xml: string, code: string } | undefined;
+
   defaultWorkspaceXml = defaultWorkspaceBlocks;
 
-  editorOptions: MonacoEditorConstructionOptions = {theme: 'vs-dark', language: 'java', readOnly: true};
+  editorOptions: MonacoEditorConstructionOptions = { theme: 'vs-dark', language: 'java', readOnly: true };
 }
