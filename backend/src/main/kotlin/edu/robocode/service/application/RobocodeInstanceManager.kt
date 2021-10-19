@@ -15,7 +15,6 @@ import robocode.control.BattlefieldSpecification
 import robocode.control.RobocodeEngine
 import java.io.File
 import java.util.*
-import kotlin.collections.HashMap
 import edu.robocode.service.models.BattleSpecification as BattleSpecificationModel
 
 

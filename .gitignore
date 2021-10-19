@@ -54,3 +54,7 @@ _vars.custom.sh
 webspa/projects/robocode-blockly/node_modules/*
 webspa/projects/robocode-blockly/build/*
 webspa/projects/robocode-blockly/dist/*
+backend/robots/config/*
+backend/robots/robots/
+backend/robots/robot.database
+backend/robots/sample/config/*
