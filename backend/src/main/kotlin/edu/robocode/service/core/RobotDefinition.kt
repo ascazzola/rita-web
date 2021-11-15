@@ -22,7 +22,11 @@ data class RobotDefinition(
     @Column(nullable = false)
     @Lob
     @Type(type = "org.hibernate.type.TextType")
-    var xml: String
+    var xml: String,
+    @Column(nullable = false)
+    var compiled: Boolean = false,
+    @Column(nullable = true)
+    var fileId: String? = null
 ) : BaseEntity() {
     protected constructor() : this("", "", "", "")
 }

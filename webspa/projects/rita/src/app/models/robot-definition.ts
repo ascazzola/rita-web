@@ -4,5 +4,7 @@ export interface RobotDefinition {
   name: string;
   code: string;
   xml: string;
+  compiled: boolean;
+  fileId?: string;
 }
 

@@ -13,10 +13,12 @@
       </button>
     </mat-toolbar>
     <mat-card>
-      <mat-form-field class="example-full-width" appearance="fill">
+      <mat-form-field>
         <mat-label>Nombre</mat-label>
-        <input matInput formControlName="name" name="name" id="name">
+        <input matInput formControlName="name" name="name" id="name" [readonly]="true" [value]="name$|async">
       </mat-form-field>
+      <!-- <mat-label>Compila?</mat-label>
+      <mat-icon>{{model.data?.compiled ? 'check' : 'error'}}</mat-icon> -->
     </mat-card>
     <mat-card style="display: flex; height: 70vh">
       <div style="flex-grow: 1;">

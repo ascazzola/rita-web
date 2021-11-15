@@ -37,3 +37,9 @@ keycloak:
 app:
   robocode:
     homePath: ""
+  minio:
+    accessKey: "AKIAIOSFODNN7EXAMPLE"
+    secretKey: "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
+    host: "localhost"
+    port: 9000
+    bucketName: "robocode"

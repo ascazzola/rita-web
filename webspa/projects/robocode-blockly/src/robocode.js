@@ -6,7 +6,7 @@
  * @return {string} String with all the imports.
  */
 function getImports(imports) {
-  return imports.map((x) => `import ${x};`).join('\n');
+  return '\n' + imports.map((x) => `import ${x};`).join('\n') + '\n';
 }
 
 const robocodeGenerator = new Blockly.Generator('Robocode');
@@ -125,7 +125,7 @@ robocodeGenerator.getCodeBlock = function(code) {
 };
 
 robocodeGenerator.finish = function(code) {
-  const imports = [];
+  const imports = ['robocode.JuniorRobot'];
   const definitions = [];
   let className = 'MyRobot';
   // eslint-disable-next-line guard-for-in

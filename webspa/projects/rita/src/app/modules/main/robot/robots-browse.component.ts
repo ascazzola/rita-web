@@ -15,7 +15,7 @@ import { ConfirmationDialogComponent } from '../../shared/confirmation-dialog/co
 })
 
 export class RobotsBrowseComponent implements OnInit {
-  readonly datasource: string[] = ['name', 'actions'];
+  readonly datasource: string[] = ['name', 'compiled', 'actions'];
   model$!: Observable<RobotDefinition[]>;
   reload$ = new BehaviorSubject(null);;
   constructor(private service: RobotDefinitionsService, private dialog: MatDialog, private snackBar: MatSnackBar) { }

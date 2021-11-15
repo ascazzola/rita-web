@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration
 @ConfigurationProperties(prefix="app")
 class AppConfiguration {
     var robocode: RobocodeConfiguration = RobocodeConfiguration()
+    var minio: MinioConfiguration = MinioConfiguration()
 }
 
 @Configuration
@@ -17,3 +18,4 @@ class AppConfiguration {
 class RobocodeConfiguration {
     var homePath: String = ""
 }
+

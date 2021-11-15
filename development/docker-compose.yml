@@ -2,13 +2,14 @@ version: "3.4"
 
 services:
   file:
-    image: minio/minio
+    image: quay.io/minio/minio
     environment:
-      - MINIO_SECRET_KEY=${MINIO_SECRET_KEY}
-      - MINIO_ACCESS_KEY=${MINIO_ACCESS_KEY}
+      - MINIO_ROOT_PASSWORD=${MINIO_SECRET_KEY}
+      - MINIO_ROOT_USER=${MINIO_ACCESS_KEY}
     ports:
       - ${MINIO_PORT}:9000
-    command: server /data
+      - ${MINIO_CONSOLE_PORT}:${MINIO_CONSOLE_PORT}
+    command: server --console-address :${MINIO_CONSOLE_PORT} /data
     volumes:
       - file_store:/data
   keycloak: 

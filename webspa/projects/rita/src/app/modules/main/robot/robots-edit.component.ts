@@ -9,7 +9,7 @@ import { RobotDefinition } from '../../../models/robot-definition';
 import { RobotDefinitionsService } from '../../../services/robot-definitions.service';
 import { SNACKBAR_DURATION } from '../../../models/constants';
 declare var defaultWorkspaceBlocks: string;
-
+const CLASS_REGEX = /(?<=\n|\A)(?:public\s)?(class|interface|enum)\s([^\n\s]*)/gsi;
 export type IdType = string | number;
 interface EditState<TModel> {
   id: IdType;
@@ -31,8 +31,9 @@ export class RobotsEditComponent implements OnInit {
   protected reloadSubject = new BehaviorSubject(null);
 
   code$!: Observable<string>;
+  name$!: Observable<string | null>;
 
-  model$!: Observable<EditState<string>>;
+  model$!: Observable<EditState<RobotDefinition>>;
   form!: FormGroup;
   defaultXml = defaultWorkspaceBlocks;
 
@@ -94,6 +95,12 @@ export class RobotsEditComponent implements OnInit {
       shareReplay(1)
     );
 
+    this.name$ = this.code$.pipe(
+      map(res => {
+        const m = CLASS_REGEX.exec(res);
+        return m !== null && m.length === 3 && m[2] || null;
+      })
+    );
   }
 
   save() {
