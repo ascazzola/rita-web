@@ -7,7 +7,10 @@ import robocode.control.snapshot.BulletState
 import robocode.control.snapshot.RobotState
 import java.util.*
 
-data class BattleSpecification(val numberOfRounds: Int, val inactivityTime: Long, val gunCoolingRate: Double, val robots: List<String>, val battlefieldSpecification: BattlefieldSpecification)
+data class BattleSpecification(val numberOfRounds: Int, val inactivityTime: Long, val gunCoolingRate: Double,
+                               val predefinedRobots: List<String>, val userRobots: List<UUID>,
+                               val battlefieldSpecification: BattlefieldSpecification)
+
 data class Battle(val id: UUID, val name: String, val started: Boolean, val specification: BattleSpecification, val lastEvent: IBattleEvent? = null)
 data class NewBattle(val name: String, val specification: BattleSpecification)
 

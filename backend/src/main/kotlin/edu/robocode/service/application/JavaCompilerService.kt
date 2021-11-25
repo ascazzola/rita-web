@@ -2,15 +2,14 @@ package edu.robocode.service.application
 
 import org.springframework.stereotype.Service
 import java.io.*
-import java.net.URI
 import java.nio.file.Files
 import javax.tools.ToolProvider
 
 @Service
 class JavaCompilerService : IJavaCompilerService {
 
-    override fun compile(className: String, code: String): InputStream {
-        val dir = Files.createTempDirectory("temp")
+    override fun compile(className: String, code: String): JavaCompilerResult {
+        val dir = Files.createTempDirectory("robocode.compile")
         val filePath = "$dir/$className.java";
 
         val writer = BufferedWriter(FileWriter(filePath));
@@ -27,7 +26,14 @@ class JavaCompilerService : IJavaCompilerService {
             throw Exception("Cannot compile java file $className result is $result")
         }
 
-        val bytes = File("$dir/$className.class").inputStream().readBytes()
-        return ByteArrayInputStream(bytes)
+
+        val compiledFile = File("$dir/$className.class")
+        val compiledStream = ByteArrayInputStream(compiledFile.inputStream().readBytes())
+        val size = compiledFile.length()
+        val originalFile = File(filePath)
+        originalFile.delete()
+        compiledFile.delete()
+        compiledFile.parentFile.delete()
+        return JavaCompilerResult(compiledStream, size)
     }
 }

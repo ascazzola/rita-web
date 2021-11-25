@@ -148,7 +148,7 @@ robocodeGenerator.finish = function(code) {
   // eslint-disable-next-line max-len
   const classBody = this.getCodeBlock(this.prefixLines(`${variables}\n\n${code}`, this.INDENT));
 
-  return `package robots;\n${javaImports}\n${classLine}${classBody}`;
+  return `${javaImports}\n${classLine}${classBody}`;
 };
 
 

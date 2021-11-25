@@ -11,6 +11,7 @@ import java.util.*
 import java.util.regex.Pattern
 import javax.persistence.OptimisticLockException
 
+
 @Service
 class RobotDefinitionService(
     private val compilerService: IJavaCompilerService,
@@ -46,9 +47,10 @@ class RobotDefinitionService(
                 entity.xml = model.xml
                 entity.code = model.code
 
-                val (className, compiled) = persistCompiledRobot(model)
+                val (className, compiled, fileId) = persistCompiledRobot(model)
                 entity.name = className
                 entity.compiled = compiled
+                entity.fileId = fileId
                 Optional.of(mapper.map(repository.save(entity)))
             }
             .orElse(Optional.empty())
@@ -70,9 +72,9 @@ class RobotDefinitionService(
         if (matcher.find() && matcher.groupCount() == 2) {
             try {
                 className = matcher.group(2)
-                val file = compilerService.compile(className, model.code)
+                val result = compilerService.compile(className, model.code)
                 fileId = model.fileId ?: UUID.randomUUID().toString()
-                fileStore.put(fileId, file)
+                fileStore.put(fileId, result.stream, result.size)
                 compiled = true
             } catch (e: Exception) {
                 logger.error(

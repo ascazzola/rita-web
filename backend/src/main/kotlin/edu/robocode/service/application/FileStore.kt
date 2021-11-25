@@ -5,6 +5,8 @@ import io.minio.*
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
+import java.io.ByteArrayInputStream
+import java.io.File
 import java.io.InputStream
 
 @Service
@@ -13,7 +15,6 @@ class FileStore: IFileStore {
     private val minioClient: MinioClient;
     private val logger: Logger = LoggerFactory.getLogger(FileStore::class.java)
     private val bucketName: String
-    private val chunkSize: Long = 256 * 1024 * 1024
 
     constructor(minioConfiguration: MinioConfiguration) {
         minioClient =  MinioClient.builder()
@@ -34,9 +35,9 @@ class FileStore: IFileStore {
         }
     }
 
-    override fun put(id: String, stream: InputStream) {
+    override fun put(id: String, stream: InputStream, size: Long) {
         val params = PutObjectArgs.builder()
-            .bucket(bucketName).stream(stream, stream.available().toLong(), chunkSize)
+            .bucket(bucketName).stream(stream, size, -1)
             .`object`(id)
             .build()
       minioClient.putObject(params)

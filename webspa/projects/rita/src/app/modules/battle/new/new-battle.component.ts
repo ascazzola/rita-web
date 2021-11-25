@@ -31,7 +31,8 @@ export class NewBattleComponent implements OnInit {
         numberOfRounds: 10,
         inactivityTime: 450,
         gunCoolingRate: 0.1,
-        robots: ['sample.Corners', 'sample.Walls'],
+        predefinedRobots: ['sample.Corners', 'sample.Walls'],
+        userRobots: ['fc680f88-f17d-495d-9fee-e57cd4f38703'],
         battlefieldSpecification: {
           height: 600,
           width: 800

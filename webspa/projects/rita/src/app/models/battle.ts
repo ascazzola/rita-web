@@ -24,7 +24,8 @@ export interface NewBattleSpecification {
   numberOfRounds: number;
   inactivityTime: number;
   gunCoolingRate: number;
-  robots: string[];
+  predefinedRobots: string[];
+  userRobots: string[];
   battlefieldSpecification: BattlefieldSpecification;
 }
 
