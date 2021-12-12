@@ -7,7 +7,6 @@ import { AppContainerComponent } from './app-container/app-container.component';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '../shared/shared.module';
-import { BattleModule } from '../battle/battle.module';
 import { RobotsBrowseComponent } from './robot/robots-browse.component';
 import { CodeViewerComponent } from './robot/code-viewer.component';
 
@@ -26,8 +25,7 @@ import { CodeViewerComponent } from './robot/code-viewer.component';
     CommonModule,
     HttpClientModule,
     MainRoutingModule,
-    SharedModule,
-    BattleModule
+    SharedModule
   ]
 })
 export class MainModule { }

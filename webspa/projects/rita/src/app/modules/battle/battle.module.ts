@@ -1,19 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
-import { BattleListComponent } from './list/battle-list.component';
 import { NewBattleComponent } from './new/new-battle.component';
 import { BattleViewerComponent } from './viewer/battle-viewer.component';
 import { BattleRoutingModule } from './battle-routing.module';
-import { RobotsComponent } from './viewer/robots.component';
 import { BulletsComponent } from './viewer/bullets.component';
+import { BatttlesBrowseComponent } from './browse/battles-browse.component';
 
 @NgModule({
   declarations: [
-    BattleListComponent,
+    BatttlesBrowseComponent,
     NewBattleComponent,
     BattleViewerComponent,
-    RobotsComponent,
     BulletsComponent
   ],
   imports: [
@@ -21,8 +19,6 @@ import { BulletsComponent } from './viewer/bullets.component';
     SharedModule,
     BattleRoutingModule,
   ],
-  exports: [
-    BattleListComponent
-  ]
+  exports: []
 })
 export class BattleModule { }

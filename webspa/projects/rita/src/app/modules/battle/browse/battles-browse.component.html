@@ -1,0 +1,54 @@
+<ng-container *ngIf="battles$|async as battles else loading;">
+  <mat-card>
+    <mat-toolbar class="toolbar" color="accent">
+      <span>Battallas actuales</span>
+      <span style="flex: 1 1 auto;"></span>
+      <div class="flex-stretch"></div>
+      <a mat-mini-fab color="primary" routerLink="/battles/new">
+        <mat-icon>add</mat-icon>
+      </a>
+    </mat-toolbar>
+
+
+
+
+    <mat-table *ngIf="battles.length > 0; else noBattles" [dataSource]="battles" class="mat-elevation-z8">
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="started">
+        <mat-header-cell mat-header-cell *matHeaderCellDef> Iniciada? </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <mat-icon>{{element.started ? 'check' : 'close'}}</mat-icon>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="numberOfRounds">
+        <mat-header-cell *matHeaderCellDef> # Of rounds </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.specification.numberOfRounds}} </mat-cell>
+      </ng-container>
+      <!-- Esta columna sirve para ver cualquier batalla (iniciada o no) si no está iniciada aparecerá botón de iniciar-->
+      <ng-container matColumnDef="see">
+        <mat-header-cell *matHeaderCellDef class="action-link"> Ver </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <a mat-icon-button [routerLink]="['..', element.id, 'view']">
+            <mat-icon>remove_red_eye</mat-icon>
+          </a>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    <ng-template #noBattles>
+      <p>No hay batallas creadas</p>
+    </ng-template>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons  [length]="battles.length" [pageSize]="10">
+    </mat-paginator>
+  </mat-card>
+</ng-container>
+<ng-template #loading>
+  loading...
+</ng-template>

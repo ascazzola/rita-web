@@ -1,37 +1,41 @@
 <ng-container *ngIf="model$|async as model">
-  <form #robotForm="ngForm" [formGroup]="form" (ngSubmit)="robotForm.valid && save()">
-    <mat-toolbar class="toolbar" color="accent">
-      <span *ngIf="model.isNew">Crear robot</span>
-      <span *ngIf="!model.isNew">Editar robot</span>
-      <span style="flex: 1 1 auto;"></span>
-      <div class="flex-stretch"></div>
-      <button mat-mini-fab color="secondary" style="margin:10px" click="return()">
-        <mat-icon>undo</mat-icon>
-      </button>
-      <button mat-mini-fab color="primary" type="submit" [disabled]="model.saving">
-        <mat-icon>save</mat-icon>
-      </button>
-    </mat-toolbar>
-    <mat-card>
-      <mat-form-field>
-        <mat-label>Nombre</mat-label>
-        <input matInput formControlName="name" name="name" id="name" [readonly]="true" [value]="name$|async">
-      </mat-form-field>
-      <!-- <mat-label>Compila?</mat-label>
-      <mat-icon>{{model.data?.compiled ? 'check' : 'error'}}</mat-icon> -->
-    </mat-card>
-    <mat-card style="display: flex; height: 70vh">
-      <div style="flex-grow: 1;">
-        <mat-grid-list cols="4" rowHeight="100%">
-          <mat-grid-tile [colspan]="2">
-            <lib-ngx-robocode-blockly formControlName="definition" [defaultWorkspaceXml]="defaultXml">
-            </lib-ngx-robocode-blockly>
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="2">
-            <app-code-viewer [code]="code$|async"></app-code-viewer>
-          </mat-grid-tile>
-        </mat-grid-list>
-      </div>
-    </mat-card>
-  </form>
+  <mat-card>
+    <form #robotForm="ngForm" [formGroup]="form" (ngSubmit)="robotForm.valid && save()">
+      <mat-toolbar class="toolbar" color="accent">
+        <span *ngIf="model.isNew">Crear robot</span>
+        <span *ngIf="!model.isNew">Editar robot</span>
+        <span style="flex: 1 1 auto;"></span>
+        <div class="flex-stretch"></div>
+        <button mat-mini-fab color="secondary" style="margin:10px" click="return()">
+          <mat-icon>undo</mat-icon>
+        </button>
+        <button mat-mini-fab color="primary" type="submit" [disabled]="model.saving">
+          <mat-icon>save</mat-icon>
+        </button>
+      </mat-toolbar>
+      <mat-card style="display: flex; flex-direction:row;">
+        <mat-form-field>
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="name" name="name" id="name" [readonly]="true">
+        </mat-form-field>
+        <div *ngIf="!model.isNew" style="display: flex; flex-direction:column; margin-left: 50px;">
+          <mat-label>Compila?</mat-label>
+          <mat-icon>{{model.data?.compiled ? 'check' : 'close'}}</mat-icon>
+        </div>
+      </mat-card>
+      <mat-card style="display: flex; height: 65vh">
+        <div style="flex-grow: 1;">
+          <mat-grid-list cols="4" rowHeight="100%">
+            <mat-grid-tile [colspan]="2">
+              <lib-ngx-robocode-blockly formControlName="definition" [defaultWorkspaceXml]="defaultXml">
+              </lib-ngx-robocode-blockly>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="2">
+              <app-code-viewer [code]="code$|async"></app-code-viewer>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </div>
+      </mat-card>
+    </form>
+  </mat-card>
 </ng-container>

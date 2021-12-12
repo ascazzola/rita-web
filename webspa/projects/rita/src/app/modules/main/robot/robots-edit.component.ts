@@ -1,15 +1,14 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { BehaviorSubject, combineLatest, Observable, of, Subject } from 'rxjs';
+import { BehaviorSubject, combineLatest, Observable, of, Subject, Subscription } from 'rxjs';
 import { catchError, filter, first, map, mapTo, shareReplay, startWith, switchMap, tap } from 'rxjs/operators';
 import { RobotDefinition } from '../../../models/robot-definition';
 import { RobotDefinitionsService } from '../../../services/robot-definitions.service';
 import { SNACKBAR_DURATION } from '../../../models/constants';
 declare var defaultWorkspaceBlocks: string;
-const CLASS_REGEX = /(?<=\n|\A)(?:public\s)?(class|interface|enum)\s([^\n\s]*)/gsi;
 export type IdType = string | number;
 interface EditState<TModel> {
   id: IdType;
@@ -26,12 +25,12 @@ interface EditState<TModel> {
   styleUrls: ['./robots-edit.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RobotsEditComponent implements OnInit {
+export class RobotsEditComponent implements OnInit, OnDestroy {
   private saveSubject = new Subject();
+  private subscription!: Subscription;
   protected reloadSubject = new BehaviorSubject(null);
 
   code$!: Observable<string>;
-  name$!: Observable<string | null>;
 
   model$!: Observable<EditState<RobotDefinition>>;
   form!: FormGroup;
@@ -95,12 +94,18 @@ export class RobotsEditComponent implements OnInit {
       shareReplay(1)
     );
 
-    this.name$ = this.code$.pipe(
+    const name$ = this.code$.pipe(
       map(res => {
-        const m = CLASS_REGEX.exec(res);
+        const m =  /(?<=\n|\A)(?:public\s)?(class|interface|enum)\s([^\n\s]*)/gsi.exec(res);
         return m !== null && m.length === 3 && m[2] || null;
-      })
+      }),
     );
+
+    this.subscription = name$.subscribe(x => this.form.controls.name.setValue(x));
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   save() {

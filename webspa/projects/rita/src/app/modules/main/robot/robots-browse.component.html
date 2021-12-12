@@ -24,7 +24,7 @@
       <ng-container matColumnDef="compiled">
         <mat-header-cell *matHeaderCellDef> Compila </mat-header-cell>
         <mat-cell *matCellDef="let element">
-          <mat-icon>{{element.compiled ? 'check' : 'error'}}</mat-icon>
+          <mat-icon>{{element.compiled ? 'check' : 'close'}}</mat-icon>
         </mat-cell>
       </ng-container>
       <ng-container matColumnDef="actions">
@@ -43,7 +43,7 @@
       <mat-row *matRowDef="let row; columns: datasource;"></mat-row>
     </mat-table>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" [length]="model.length" [pageSize]="10" showFirstLastButtons>
     </mat-paginator>
   </mat-card>
 </ng-container>
