@@ -8,15 +8,27 @@
   </ng-template>
 
   <ng-template #battleViewer let-battle="battle">
-    <ng-container>
-      <div #battle
-        style="margin-top:40px; display: inline-block; background-image:url('/assets/battle/battlefield.png')">
-        <ng-container *ngIf="stage">
-          <!-- <app-robots [robots]="battle.snapshot.robots"></app-robots> -->
-          <app-bullets [bullets]="battle.snapshot.bullets"></app-bullets>
-        </ng-container>
-      </div>
-    </ng-container>
+    <mat-grid-list cols="2">
+      <mat-grid-tile>
+        <div #battle
+          style="margin-top:40px; display: inline-block; background-image:url('/assets/battle/battlefield.png')">
+          <ng-container *ngIf="stage">
+            <app-robots [robots]="battle.snapshot.robots"></app-robots>
+            <app-bullets [bullets]="battle.snapshot.bullets"></app-bullets>
+          </ng-container>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <div>
+          <span>Ronda {{battle.round}}</span>
+          <ul *ngFor="let robot of battle.snapshot.robots; track by robotIndex">
+            <li>Nombre: {{robot.name}}</li>
+            <li>Estado: {{robot.state}}</li>
+            <li>Energía: {{robot.energy}}</li>
+          </ul>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
   </ng-template>
 
   <ng-template #startBattleTemplate>

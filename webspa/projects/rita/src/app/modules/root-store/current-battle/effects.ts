@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as battleActions from './actions';
 import { map, takeUntil, switchMap, tap, filter } from 'rxjs/operators';
-import { BattlesService } from 'services/battles.service';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { State } from '..';
-import { BattleEvent } from 'models/battle-event';
+import { BattlesService } from '../../../services/battles.service';
+import { BattleEvent } from '../../../models/battle-event';
 
 @Injectable()
 export class CurrentBattleEffects {

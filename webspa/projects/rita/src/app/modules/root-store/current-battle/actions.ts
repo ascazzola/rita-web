@@ -1,7 +1,7 @@
 import { createAction } from '@ngrx/store';
-import { BattleSnapshot } from 'models/battle-snapshot';
-import { BattleResult } from 'models/battle-result';
 import { NewBattle } from '../../../models/battle';
+import { BattleResult } from '../../../models/battle-result';
+import { BattleSnapshot } from '../../../models/battle-snapshot';
 
 export const create = createAction('[CurrentBattle] create', (item: NewBattle) => ({ item }));
 export const load = createAction('[CurrentBattle] load', (id: string) => ({ id }));

@@ -6,9 +6,9 @@ import { map, first, tap, switchMapTo, shareReplay, filter, switchMap } from 'rx
 import { Observable, Subject } from 'rxjs';
 import Konva from 'konva';
 import * as fromCurrentBattle from 'app/modules/root-store/current-battle';
-import { BattleBundle } from 'models/battle-bundle';
 import { BattlefieldSpecification } from 'models/battle';
 import { STAGE } from './stage';
+import { BattleBundle } from '../../../models/battle-bundle';
 
 @Component({
   templateUrl: './battle-viewer.component.html',
@@ -55,7 +55,6 @@ export class BattleViewerComponent implements OnInit, AfterViewInit, OnDestroy {
     this.battleContainer$.pipe(
       switchMap(container =>
         this.battle$.pipe(
-          tap(x => console.error(x)),
           filter(x => !!x.state.snapshot && !!x.definition),
           map(x => x.definition.specification.battlefieldSpecification),
           first(),

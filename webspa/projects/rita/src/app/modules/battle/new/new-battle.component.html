@@ -6,7 +6,7 @@
     <button mat-mini-fab color="secondary" style="margin:10px" click="return()">
       <mat-icon>undo</mat-icon>
     </button>
-    <button mat-mini-fab color="primary" type="submit">
+    <button mat-mini-fab color="primary" type="submit" [disabled]="saving">
       <mat-icon>save</mat-icon>
     </button>
   </mat-toolbar>

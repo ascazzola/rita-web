@@ -1,11 +1,11 @@
 import { Component, Input, ChangeDetectionStrategy, AfterViewInit, OnDestroy, Inject, OnInit } from '@angular/core';
 import { ReplaySubject, Subject, combineLatest } from 'rxjs';
-import { takeUntil, switchMap } from 'rxjs/operators';
-import { Robot } from 'models/robot';
+import { takeUntil, switchMap, map } from 'rxjs/operators';
 import Konva from 'konva';
-import { ImagesService } from 'services/images.service';
+import { ImagesService } from '../../../services/images.service';
 import { STAGE } from './stage';
 import { Group } from 'konva/lib/Group';
+import { Robot } from '../../../models/robot';
 
 @Component({
   selector: 'app-robots',
@@ -30,8 +30,10 @@ export class RobotsComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
     this.robots$.pipe(
+      map(robots => robots.filter(r => r.energy > 0)),
       switchMap(robots =>
-        combineLatest(robots.map(robot => this.imagesService.getRobotImage(robot.bodyColor, robot.gunColor, robot.x, robot.y)))
+        combineLatest(robots.map(robot =>
+          this.imagesService.getRobotImage(robot.name, robot.energy, robot.bodyColor, robot.gunColor, robot.x, robot.y, robot.bodyHeading, robot.gunHeading)))
       ),
       takeUntil(this.onDestroy$))
       .subscribe((robots: Group[]) => {

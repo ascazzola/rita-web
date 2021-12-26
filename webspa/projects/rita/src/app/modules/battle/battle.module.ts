@@ -6,13 +6,15 @@ import { BattleViewerComponent } from './viewer/battle-viewer.component';
 import { BattleRoutingModule } from './battle-routing.module';
 import { BulletsComponent } from './viewer/bullets.component';
 import { BatttlesBrowseComponent } from './browse/battles-browse.component';
+import { RobotsComponent } from './viewer/robots.component';
 
 @NgModule({
   declarations: [
     BatttlesBrowseComponent,
     NewBattleComponent,
     BattleViewerComponent,
-    BulletsComponent
+    BulletsComponent,
+    RobotsComponent
   ],
   imports: [
     CommonModule,

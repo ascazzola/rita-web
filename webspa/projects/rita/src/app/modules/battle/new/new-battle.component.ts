@@ -37,6 +37,7 @@ export class NewBattleComponent implements OnInit {
   }
 
   save() {
+    this.saving = true;
     const value = this.form.value;
     this.store.dispatch(fromCurrentBattle.create({
       name: value.name,

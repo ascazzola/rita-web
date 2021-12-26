@@ -31,7 +31,7 @@ class BattleListener(private val manager: IRobocodeInstanceManager, private val 
 
     init {
         this.robocodeBattleEventProcessor
-                .delayElements(Duration.ofMillis(500))
+                .delayElements(Duration.ofMillis(100))
                 .doAfterTerminate {  this.manager.disposeBattle(this.id); }
                 .subscribe { e ->
                     customBattleEventProcessor.onNext(e)
@@ -45,16 +45,16 @@ class BattleListener(private val manager: IRobocodeInstanceManager, private val 
     }
 
     override fun onRoundStarted(event: RoundStartedEvent) {
-        val model = RoundStartedEventModel(event.round, mapTurnSnapshot(event.startSnapshot))
+        val model = RoundStartedEventModel(event.round + 1, mapTurnSnapshot(event.startSnapshot))
         robocodeBattleEventProcessor.onNext(model)
     }
 
-    override fun onTurnEnded(event: TurnEndedEvent) {
+    override fun onTurnEnded(event: TurnEndedEvent) { // Agregar ronda
         robocodeBattleEventProcessor.onNext(TurnEndedEventModel(mapTurnSnapshot(event.turnSnapshot)))
     }
 
     override fun onRoundEnded(event: RoundEndedEvent) {
-        robocodeBattleEventProcessor.onNext(RoundEndedEventModel(event.round, event.turns, event.totalTurns))
+        robocodeBattleEventProcessor.onNext(RoundEndedEventModel(event.round + 1, event.turns, event.totalTurns))
     }
 
     override fun onBattleCompleted(event: BattleCompletedEvent) {
