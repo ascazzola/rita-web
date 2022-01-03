@@ -1,11 +1,18 @@
-FROM maven:3.6.3-adoptopenjdk-14 AS MAVEN_BUILD
-COPY ./ ./
-RUN basedir=$pwd
-RUN mvn clean
-RUN mvn package
+FROM openjdk:8u292 as build
+WORKDIR /workspace/app
 
-FROM adoptopenjdk/openjdk14:ubi
-COPY --from=MAVEN_BUILD /target/api-0.0.1-SNAPSHOT.jar /robocode-service.jar
+COPY mvnw .
+COPY .mvn .mvn
+COPY pom.xml .
+COPY src src
 
-# set the startup command to execute the jar
-CMD ["java", "-jar", "/robocode-service.jar"]
+RUN ./mvnw install -DskipTests
+RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
+
+FROM openjdk:8u292
+VOLUME /tmp
+ARG DEPENDENCY=/workspace/app/target/dependency
+COPY --from=build ${DEPENDENCY}/BOOT-INF/lib /app/lib
+COPY --from=build ${DEPENDENCY}/META-INF /app/META-INF
+COPY --from=build ${DEPENDENCY}/BOOT-INF/classes /app
+ENTRYPOINT ["java","-cp","app:app/lib/*","edu.robocode.service.RobocodeServiceApplication"]

@@ -1,0 +1,29 @@
+version: '3.4'
+
+services:
+
+  rita_api:
+    image: rita/api
+    environment:
+      PGSQL_DB_HOST: ${PGSQL_DB_HOST}
+      PGSQL_DB_PORT: ${PGSQL_DB_PORT}
+      RITA_DB_NAME: ${RITA_DB_NAME}
+      PGSQL_DB_USER: ${PGSQL_DB_USER}
+      PGSQL_DB_PASSWORD: ${PGSQL_DB_PASSWORD}
+      AUTH_SERVER_URL: ${AUTH_SERVER_URL}
+      AUTH_SERVER_SECRET: ${AUTH_SERVER_SECRET}
+      MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY}
+      MINIO_SECRET_KEY: ${MINIO_SECRET_KEY}
+      MINIO_HOST: ${MINIO_HOST}
+      MINIO_PORT: ${MINIO_PORT}
+      ROBOCODE_EXAMPLES_PATH: ${RITA_ROBOCODE_EXAMPLES_PATH}
+    ports:
+      - ${RITA_API_PORT}:8080
+  rita_webspa:
+    image: rita/webspa
+    environment:
+      API_URL: ${API_URL}
+      AUTH_SERVER_URL: ${AUTH_SERVER_URL}
+      WEBSOCKETS_BROKER_URL: ${RITA_WEBSOCKETS_BROKER_URL}
+    ports:
+      - ${RITA_WEBSPA_PORT}:80

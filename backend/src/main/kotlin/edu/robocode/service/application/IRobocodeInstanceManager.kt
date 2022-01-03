@@ -25,6 +25,6 @@ data class BattleParameters(
 
 data class RobotsParameters (
     val preDefinedRobots: List<String>,
-    val robotsIds : List<UUID>,
+    val robotsIds : List<UUID>?,
 )
 

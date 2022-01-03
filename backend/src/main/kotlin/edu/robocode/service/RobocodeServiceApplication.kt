@@ -4,8 +4,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class RobocodeServiceApplication
-
-fun main(args: Array<String>) {
-    runApplication<RobocodeServiceApplication>(*args)
+class RobocodeServiceApplication {
+    companion object {
+        @JvmStatic
+        fun main(args: Array<String>) {
+            runApplication<RobocodeServiceApplication>(*args);
+        }
+    }
 }

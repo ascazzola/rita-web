@@ -1,6 +1,6 @@
 package edu.robocode.service.application
 
-import org.springframework.core.io.ClassPathResource
+import edu.robocode.service.config.RobocodeConfiguration
 import org.springframework.stereotype.Service
 import java.io.ByteArrayInputStream
 import java.io.File
@@ -14,14 +14,14 @@ import kotlin.io.path.absolutePathString
 @Service
 class BattleWorkspaceFactory (
     val robotsDefinitionsService: IRobotDefinitionsService,
+    val robocodeConfiguration: RobocodeConfiguration,
     val fileStore: IFileStore
 ) : IBattleWorkspaceFactory {
 
-    private val exampleRobotsPath: String = "default-robots"
     private val examplePackageDirName = "sample"
 
-    override fun create(preDefinedRobots: List<String>, robotsIds: List<UUID>): BattleWorkspace {
-        val userRobots = robotsIds.associate { id -> getUserRobotData(id) }
+    override fun create(preDefinedRobots: List<String>, robotsIds: List<UUID>?): BattleWorkspace {
+        val userRobots = (robotsIds ?:  listOf()).associate { id -> getUserRobotData(id) }
         val sampleRobots = preDefinedRobots.associate { name -> getExampleRobotData(name)}
 
         val homePath = createRobocodeHomeWithFiles(userRobots, sampleRobots)
@@ -46,8 +46,7 @@ class BattleWorkspaceFactory (
 
     private fun getExampleRobotData(name: String) : Pair<String, InputStream> {
         val realName = name.substring(name.indexOf(".") + 1)
-        val res = ClassPathResource("${exampleRobotsPath}/${realName}.class")
-        val file = res.file
+        val file = File("${robocodeConfiguration.examplesPath}/${realName}.class")
         val stream = ByteArrayInputStream(file.inputStream().readBytes())
         return realName to stream
     }

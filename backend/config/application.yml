@@ -1,14 +1,18 @@
-#app:
-#  robocode:
-#    homePath: ""
-#spring:
-#  jpa:
-#    properties:
-#      hibernate:
-#        show_sql: true
-#        format_sql: true
-#logging:
-#  level:
-#    org:
-#      hibernate:
-#        type: trace
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/robocode
+    username: robocodeuser
+    password: robocodepassword
+keycloak:
+  auth-server-url: http://localhost:8081/auth
+  credentials:
+    secret: 041b58d4-2a73-4c4b-a8c8-c78304b43191
+app:
+  robocode:
+    examplesPath: "default-robots"
+  minio:
+    accessKey: "AKIAIOSFODNN7EXAMPLE"
+    secretKey: "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
+    host: "localhost"
+    port: 9000
+ 

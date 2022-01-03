@@ -19,7 +19,7 @@ class FileStore: IFileStore {
     constructor(minioConfiguration: MinioConfiguration) {
         minioClient =  MinioClient.builder()
             .credentials(minioConfiguration.accessKey, minioConfiguration.secretKey)
-            .endpoint(minioConfiguration.host, minioConfiguration.port.toInt(), false)
+            .endpoint(minioConfiguration.host, minioConfiguration.port, false)
             .build()
         bucketName = minioConfiguration.bucketName
         addBucketIfDoesNotExists()

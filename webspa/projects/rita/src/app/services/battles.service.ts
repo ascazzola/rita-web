@@ -5,7 +5,7 @@ import { Battle, NewBattle } from 'models/battle';
 import { RxStompService } from '@stomp/ng2-stompjs';
 import { map } from 'rxjs/operators';
 import { BattleEvent } from 'models/battle-event';
-import { environment } from '../environments/environment';
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class BattlesService {

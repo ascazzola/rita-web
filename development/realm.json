@@ -712,7 +712,9 @@
       "clientAuthenticatorType": "client-secret",
       "secret": "**********",
       "redirectUris": [
-        "http://localhost:4200/*"
+        "http://localhost:4200/*",
+        "http://localhost/*",
+        "http://172.17.0.1/*"
       ],
       "webOrigins": [
         "*"

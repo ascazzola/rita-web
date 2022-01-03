@@ -16,6 +16,6 @@ class AppConfiguration {
 @Configuration
 @ConfigurationProperties(prefix="app.robocode")
 class RobocodeConfiguration {
-    var homePath: String = ""
+    var examplesPath: String = ""
 }
 

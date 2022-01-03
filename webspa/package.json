@@ -7,6 +7,7 @@
     "start:blockly-example": "ng serve --open --port 4201 ngx-robocode-blockly-test",
     "build": "ng build",
     "build:ngx-robocode-blockly": "ng build --configuration production ngx-robocode-blockly",
+    "build:rita": "ng build --configuration production rita",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },

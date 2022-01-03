@@ -2,18 +2,19 @@ server:
   port: 8080
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/robocode
-    username: robocodeuser
-    password: robocodepassword
+    url: jdbc:postgresql://${PGSQL_DB_HOST}:${PGSQL_DB_PORT}/${RITA_DB_NAME}
+    username: ${PGSQL_DB_USER}
+    password: ${PGSQL_DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
   jpa.hibernate.ddl-auto: update
+  jpa.database-platform: org.hibernate.dialect.PostgreSQLDialect
 keycloak:
   realm: RITA
-  auth-server-url: http://localhost:8081/auth
+  auth-server-url: ${AUTH_SERVER_URL}/auth
   ssl-required: external
   resource: robocode-service
   credentials:
-    secret: 041b58d4-2a73-4c4b-a8c8-c78304b43191
+    secret: ${AUTH_SERVER_SECRET}
   use-resource-role-mappings: true
   bearer-only: true
   security-constraints:
@@ -36,10 +37,10 @@ keycloak:
   enabled: true
 app:
   robocode:
-    homePath: ""
+    examplesPath: "${ROBOCODE_EXAMPLES_PATH}"
   minio:
-    accessKey: "AKIAIOSFODNN7EXAMPLE"
-    secretKey: "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
-    host: "localhost"
-    port: 9000
+    accessKey: ${MINIO_ACCESS_KEY}
+    secretKey: ${MINIO_SECRET_KEY}
+    host: ${MINIO_HOST}
+    port: ${MINIO_PORT}
     bucketName: "robocode"

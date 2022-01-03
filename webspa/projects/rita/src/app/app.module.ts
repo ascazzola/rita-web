@@ -10,13 +10,14 @@ import { RootStoreModule } from './modules/root-store/root-store.module';
 import { rxStompConfig } from './rx-stomp.config';
 import * as Blockly from 'blockly';
 import * as ES from 'blockly/msg/es';
+import { environment } from '../environments/environment';
 
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
     keycloak.init({
       config: {
-        url: 'http://localhost:8081/auth',
+        url: `${environment.authServer}/auth`,
         realm: 'RITA',
         clientId: 'RITA-angular',
       },
