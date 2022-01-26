@@ -7,6 +7,8 @@ import { Bullet } from '../../../models/bullet';
 import { ImagesService } from '../../../services/images.service';
 import { Group } from 'konva/lib/Group';
 
+const EXPLOSIONS_LENGTH = 2;
+const EXPOSIONS_LENGHT = [17, 71];
 @Component({
   selector: 'app-explosions',
   template: '',
@@ -18,7 +20,8 @@ export class ExplosionsComponent implements OnInit, AfterViewInit, OnDestroy {
   private layer = new Konva.Layer();
 
   @Input() set bullets(val: Bullet[]) {
-    this.bullets$.next(val);
+    //TODO review index and frame functionality
+    this.bullets$.next(val.filter(x => x.explosionImageIndex < EXPLOSIONS_LENGTH && x.frame < EXPOSIONS_LENGHT[x.explosionImageIndex]));
   }
 
   constructor(@Inject(STAGE) private stage: Konva.Stage, private imagesService: ImagesService) { }

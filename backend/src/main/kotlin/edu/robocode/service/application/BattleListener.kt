@@ -31,7 +31,7 @@ class BattleListener(private val manager: IRobocodeInstanceManager, private val 
 
     init {
         this.robocodeBattleEventProcessor
-                .delayElements(Duration.ofMillis(100))
+                .delayElements(Duration.ofMillis(150))
                 .doAfterTerminate {  this.manager.disposeBattle(this.id); }
                 .subscribe { e ->
                     customBattleEventProcessor.onNext(e)
