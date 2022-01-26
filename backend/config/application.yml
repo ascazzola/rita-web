@@ -1,15 +1,15 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/robocode
-    username: robocodeuser
-    password: robocodepassword
+    url: jdbc:postgresql://localhost:5432/rita
+    username: rita
+    password: rita_1234
 keycloak:
   auth-server-url: http://localhost:8081/auth
   credentials:
     secret: 041b58d4-2a73-4c4b-a8c8-c78304b43191
 app:
   robocode:
-    examplesPath: "default-robots"
+    examplesPath: "/home/adriano/Documents/Facu/Tesis/rita-web/backend/src/main/resources/default-robots"
   minio:
     accessKey: "AKIAIOSFODNN7EXAMPLE"
     secretKey: "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"

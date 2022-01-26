@@ -22,7 +22,6 @@ export class BatttlesBrowseComponent implements OnInit {
   }
 
   viewBattle(battle: Battle) {
-    console.log(battle);
   }
 
 }

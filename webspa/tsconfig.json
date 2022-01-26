@@ -13,6 +13,7 @@
     "downlevelIteration": true,
     "paths": {},
     "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "es2017",

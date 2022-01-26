@@ -7,6 +7,7 @@ import { BattleRoutingModule } from './battle-routing.module';
 import { BulletsComponent } from './viewer/bullets.component';
 import { BatttlesBrowseComponent } from './browse/battles-browse.component';
 import { RobotsComponent } from './viewer/robots.component';
+import { ExplosionsComponent } from './viewer/explosions.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { RobotsComponent } from './viewer/robots.component';
     NewBattleComponent,
     BattleViewerComponent,
     BulletsComponent,
-    RobotsComponent
+    RobotsComponent,
+    ExplosionsComponent
   ],
   imports: [
     CommonModule,
