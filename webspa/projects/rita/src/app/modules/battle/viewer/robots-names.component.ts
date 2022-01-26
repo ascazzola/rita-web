@@ -41,6 +41,7 @@ export class RobotsNamesComponent implements OnInit, AfterViewInit, OnDestroy {
 
         this.addNewRobots(newRobots);
         this.deleteRobots(robotsToDelete);
+        this.layer.moveToTop();
       });
   }
 
