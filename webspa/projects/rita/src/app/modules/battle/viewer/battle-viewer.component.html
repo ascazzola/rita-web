@@ -8,6 +8,7 @@
   </ng-template>
 
   <ng-template #battleViewer let-battle="battle">
+    <h2 *ngIf="battle.finalized">Batalla finalizada</h2>
     <mat-grid-list cols="2">
       <mat-grid-tile>
         <div #battle
@@ -25,10 +26,14 @@
       <mat-grid-tile>
         <div>
           <span>Ronda {{battle.round}}</span>
-          <ul *ngFor="let robot of battle.snapshot.robots; track by robotIndex">
-            <li>Nombre: {{robot.name}}</li>
-            <li>Estado: {{robot.state}}</li>
-            <li>Energía: {{robot.energy}}</li>
+          <ul *ngFor="let robot of battle.snapshot.robots" style="list-style-type:none;">
+            <li><b>Nombre:</b> {{robot.name}}</li>
+            <li><b>Estado:</b>
+              <app-robot-state-viewer [state]="robot.state"></app-robot-state-viewer>
+            </li>
+            <li>
+              <mat-progress-bar mode="determinate" value="{{robot.energy}}"></mat-progress-bar>
+            </li>
           </ul>
         </div>
       </mat-grid-tile>

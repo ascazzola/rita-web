@@ -49,8 +49,8 @@ class BattleListener(private val manager: IRobocodeInstanceManager, private val 
         robocodeBattleEventProcessor.onNext(model)
     }
 
-    override fun onTurnEnded(event: TurnEndedEvent) { // Agregar ronda
-        robocodeBattleEventProcessor.onNext(TurnEndedEventModel(mapTurnSnapshot(event.turnSnapshot)))
+    override fun onTurnEnded(event: TurnEndedEvent) {
+        robocodeBattleEventProcessor.onNext(TurnEndedEventModel(event.turnSnapshot.round + 1, mapTurnSnapshot(event.turnSnapshot)))
     }
 
     override fun onRoundEnded(event: RoundEndedEvent) {

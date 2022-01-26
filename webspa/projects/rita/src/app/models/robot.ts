@@ -5,7 +5,7 @@ export interface Robot {
   teamName: string;
   robotIndex: number;
   teamIndex: number;
-  state: string;
+  state: RobotState;
   energy: number;
   velocity: number;
   gunHeat: number;
@@ -33,3 +33,6 @@ export interface Robot {
     type: number;
   };
 }
+
+
+export type RobotState = 'ACTIVE' | 'HIT_WALL' | 'HIT_ROBOT' | 'DEAD';

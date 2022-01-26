@@ -1,14 +1,15 @@
-import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ViewChild, ElementRef, AfterViewInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { State } from 'app/modules/root-store';
 import { ActivatedRoute } from '@angular/router';
 import { map, first, tap, switchMapTo, shareReplay, filter, switchMap } from 'rxjs/operators';
 import { Observable, Subject } from 'rxjs';
 import Konva from 'konva';
-import * as fromCurrentBattle from 'app/modules/root-store/current-battle';
-import { BattlefieldSpecification } from 'models/battle';
+import * as fromCurrentBattle from '../../root-store/current-battle';
+
 import { STAGE } from './stage';
 import { BattleBundle } from '../../../models/battle-bundle';
+import { State } from '../../root-store';
+import { BattlefieldSpecification } from '../../../models/battle';
 
 @Component({
   templateUrl: './battle-viewer.component.html',

@@ -1,7 +1,7 @@
 import { BattleSnapshot } from './battle-snapshot';
 import { BattleResult } from './battle-result';
 
-export type BattleEvent = BattleStarted | RoundStarted | TurnChanged | BattleFinished;
+export type BattleEvent = BattleStarted | RoundStarted | RoundEnded | TurnChanged | BattleFinished;
 
 export interface BattleStarted {
     id: string;
@@ -23,6 +23,7 @@ export interface RoundStarted {
 export interface TurnChanged {
     id: string;
     type: 'TurnEnded';
+    round: number;
     turnSnapshot: BattleSnapshot;
 }
 
@@ -30,4 +31,13 @@ export interface BattleFinished {
     id: string;
     type: 'BattleCompletedEvent';
     results: BattleResult[];
+}
+
+
+export interface RoundEnded {
+  id: string;
+  type: 'RoundEnded';
+  round: number;
+  turns: number;
+  totalTurns: number;
 }

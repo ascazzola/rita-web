@@ -41,10 +41,6 @@ export class RobotsEnergyComponent implements OnInit, AfterViewInit, OnDestroy {
         const robotsToDelete = existing.filter(x => receivedIds.indexOf(x.id()) < 0);
         const robotsToUpdate = robots.filter(x => existingIds.indexOf(x.name) >= 0);
 
-        if (robotsToUpdate.length > 0) {
-          console.error(robotsToUpdate);
-        }
-
         this.addNewRobots(newRobots);
         this.deleteRobots(robotsToDelete);
         this.updateRobots(robotsToUpdate, existing);

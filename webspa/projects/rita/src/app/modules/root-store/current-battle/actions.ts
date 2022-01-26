@@ -9,6 +9,8 @@ export const start = createAction('[CurrentBattle] start', (id: string) => ({ id
 export const battleStarted = createAction('[CurrentBattle] started');
 export const roundStarted = createAction('[CurrentBattle] round started', (round: number, snapshot: BattleSnapshot) =>
   ({ round, snapshot }));
-export const snapshotChanged = createAction('[CurrentBattle] snapshot changed', (snapshot: BattleSnapshot) => ({ snapshot }));
+  export const roundEnded = createAction('[CurrentBattle] round ended', (round: number, turns: number, totalTurns: number) =>
+  ({ round, turns, totalTurns }));
+export const snapshotChanged = createAction('[CurrentBattle] snapshot changed', (round: number, snapshot: BattleSnapshot) => ({ round, snapshot }));
 export const battleFinished = createAction('[CurrentBattle] battle finished', (results: BattleResult[]) => ({ results }));
 export const unload = createAction('[CurrentBattle] unload');

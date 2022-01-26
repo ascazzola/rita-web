@@ -24,9 +24,12 @@ export class CurrentBattleEffects {
         case 'RoundStarted':
           return battleActions.roundStarted(event.round, event.startSnapshot);
         case 'TurnEnded':
-          return battleActions.snapshotChanged(event.turnSnapshot);
+          return battleActions.snapshotChanged(event.round, event.turnSnapshot);
         case 'BattleCompletedEvent':
           return battleActions.battleFinished(event.results);
+        case 'RoundEnded':
+          return battleActions.roundEnded(event.round, event.turns, event.totalTurns);
+        default: throw event
       }
     })
   ));

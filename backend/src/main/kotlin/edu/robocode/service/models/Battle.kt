@@ -60,6 +60,6 @@ data class RoundEndedEvent(val round: Int, val turns: Int, val totalTurns: Int):
     override val type: BattleEventType = BattleEventType.RoundEnded
 }
 
-data class TurnEndedEvent(val turnSnapshot: TurnSnapshot): BattleEvent(), IBattleEvent {
+data class TurnEndedEvent(val round: Int, val turnSnapshot: TurnSnapshot): BattleEvent(), IBattleEvent {
     override val type: BattleEventType = BattleEventType.TurnEnded
 }

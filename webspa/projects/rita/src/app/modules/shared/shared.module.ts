@@ -20,7 +20,7 @@ import {MatInputModule} from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { MatSelectModule } from '@angular/material/select';
 @NgModule({
   declarations: [
@@ -52,7 +52,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatDialogModule,
     MatSelectModule,
     NgxRobocodeBlocklyModule,
-    MonacoEditorModule
+    MonacoEditorModule,
+    MatProgressBarModule,
   ]
 })
 export class SharedModule { }

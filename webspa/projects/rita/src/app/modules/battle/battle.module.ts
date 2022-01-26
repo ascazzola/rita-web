@@ -11,6 +11,7 @@ import { ExplosionsComponent } from './viewer/explosions.component';
 import { DeadsRobotsComponent } from './viewer/dead-robots.component';
 import { RobotsNamesComponent } from './viewer/robots-names.component';
 import { RobotsEnergyComponent } from './viewer/robots-energy.component';
+import { RobotStateViewierComponent } from './viewer/robot-state-viewer.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { RobotsEnergyComponent } from './viewer/robots-energy.component';
     DeadsRobotsComponent,
     RobotsNamesComponent,
     RobotsEnergyComponent,
+    RobotStateViewierComponent,
   ],
   imports: [
     CommonModule,
