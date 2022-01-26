@@ -8,6 +8,9 @@ import { BulletsComponent } from './viewer/bullets.component';
 import { BatttlesBrowseComponent } from './browse/battles-browse.component';
 import { RobotsComponent } from './viewer/robots.component';
 import { ExplosionsComponent } from './viewer/explosions.component';
+import { DeadsRobotsComponent } from './viewer/dead-robots.component';
+import { RobotsNamesComponent } from './viewer/robots-names.component';
+import { RobotsEnergyComponent } from './viewer/robots-energy.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +19,10 @@ import { ExplosionsComponent } from './viewer/explosions.component';
     BattleViewerComponent,
     BulletsComponent,
     RobotsComponent,
-    ExplosionsComponent
+    ExplosionsComponent,
+    DeadsRobotsComponent,
+    RobotsNamesComponent,
+    RobotsEnergyComponent,
   ],
   imports: [
     CommonModule,

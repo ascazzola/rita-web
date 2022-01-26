@@ -11,11 +11,14 @@
     <mat-grid-list cols="2">
       <mat-grid-tile>
         <div #battle
-          style="margin-top:40px; display: inline-block; background-image:url('/assets/battle/battlefield.png')">
+          style="margin-top:40px; display: inline-block; background-image:url('/assets/battle/battlefield.png');">
           <ng-container *ngIf="stage">
             <app-robots [robots]="battle.snapshot.robots"></app-robots>
+            <app-robots-names [robots]="battle.snapshot.robots"></app-robots-names>
+            <app-robots-energy [robots]="battle.snapshot.robots"></app-robots-energy>
             <app-bullets [bullets]="battle.snapshot.bullets"></app-bullets>
             <app-explosions [bullets]="battle.snapshot.bullets"></app-explosions>
+            <app-deads-robots [robots]="battle.snapshot.robots"></app-deads-robots>
           </ng-container>
         </div>
       </mat-grid-tile>

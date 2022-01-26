@@ -41,22 +41,6 @@ export class ExplosionsComponent implements OnInit, AfterViewInit, OnDestroy {
         this.addNewBullets(newBullets);
         this.deleteBullets(bulletsToDelete);
         this.updateBullets(bulletsToUpdate, existing);
-
-        // this.layer.removeChildren();
-        // console.log(bullets);
-        // bullets.forEach(b => {
-        //   const imgUrl = this.imagesService.getExplosionImagePath(b.explosionImageIndex + 1, b.frame + 1);
-        //   Konva.Image.fromURL(imgUrl, (image: any) => {
-        //     image.setAttrs({
-        //       x: b.paintX,
-        //       y: b.paintY,
-        //     });
-
-        //     this.layer.add(image);
-        //     this.layer.draw();
-        //   });
-        // });
-        // this.layer.draw();
       });
   }
 
@@ -74,7 +58,7 @@ export class ExplosionsComponent implements OnInit, AfterViewInit, OnDestroy {
     bulletsToUpdate.forEach(bullet => {
       const currentBullet = existing.find(x => x.id() === bullet.bulletId.toString()) as any;
 
-      if (currentBullet === null) {
+      if (!currentBullet) {
         throw "Bullet cannot be null";
       }
 

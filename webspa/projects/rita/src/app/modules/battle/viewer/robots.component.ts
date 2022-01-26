@@ -1,13 +1,12 @@
 import { Component, Input, ChangeDetectionStrategy, AfterViewInit, OnDestroy, Inject, OnInit } from '@angular/core';
 import { ReplaySubject, Subject, combineLatest } from 'rxjs';
-import { takeUntil, switchMap, map, tap } from 'rxjs/operators';
+import { takeUntil, map } from 'rxjs/operators';
 import Konva from 'konva';
 import { BODY_SIZE, DYNAMIC_COLOR_CLASS, ImagesService, TURRET_SIZE } from '../../../services/images.service';
 import { STAGE } from './stage';
 import { Group } from 'konva/lib/Group';
 import { Robot } from '../../../models/robot';
 import { getColor } from '../../shared/get-color.fn';
-import { Shape, ShapeConfig } from 'konva/lib/Shape';
 
 const TURRET_ID = 'turret';
 const DEGREES_CONVERSION_FACTOR = 57.2958;
@@ -88,13 +87,13 @@ export class RobotsComponent implements OnInit, AfterViewInit, OnDestroy {
     robotsToUpdate.forEach(robot => {
       const body = existing.find(x => x.id() === robot.name);
 
-      if (body == null) {
+      if (!body) {
         throw "body cannot be null"
       }
 
       const turret = body.getChildren(x => x.id() == TURRET_ID)[0] as Group;
 
-      if (turret == null) {
+      if (!turret) {
         throw "Turret cannot be null"
       }
 
@@ -147,8 +146,8 @@ export class RobotsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private getBodyPosition(x: number, y: number) {
     return {
-      x: x - (BODY_SIZE.width / 2),
-      y: y - (BODY_SIZE.height / 2),
+      x: x,
+      y: y,
     };
   }
 }

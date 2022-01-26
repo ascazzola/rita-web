@@ -67,7 +67,7 @@ export class BulletsComponent implements OnInit, AfterViewInit, OnDestroy {
     bulletsToUpdate.forEach(bullet => {
         const currentBullet = existing.find(x => x.id() === bullet.bulletId.toString());
 
-        if (currentBullet === null) {
+        if (!currentBullet) {
           throw "Bullet cannot be null";
         }
 

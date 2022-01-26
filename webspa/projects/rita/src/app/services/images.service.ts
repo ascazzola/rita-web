@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';
 
+const BATTLE_IMAGES_PATH = 'assets/battle/';
 const BODY_URI = '/assets/battle/body.svg';
 const TURRET_URI = '/assets/battle/turret.svg';
 const EXPLOSION_IMAGES_PATH = 'assets/battle/explosion';
@@ -27,5 +28,9 @@ export class ImagesService {
 
   getExplosionImagePath(explosionIndex: number, frame: number) {
     return `${EXPLOSION_IMAGES_PATH}/explosion${explosionIndex}-${frame}.png`;
+  }
+
+  getExplodeDebrisImagePath() {
+    return `${BATTLE_IMAGES_PATH}/explode_debris.png`;
   }
 }
