@@ -1,9 +1,3 @@
-
-# RITA web
-
-RITA - Robot Inventor to Teach Algorithms is an educational development 
-and allows users to create Robots compatibles with Robocode
-
 # RITA web
 
 RITA - Robot Inventor to Teach Algorithms 
