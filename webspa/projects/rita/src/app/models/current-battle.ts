@@ -6,4 +6,5 @@ export interface CurrentBattle {
   round?: number;
   snapshot?: BattleSnapshot;
   results?: BattleResult[];
+  finalized?: boolean
 }
