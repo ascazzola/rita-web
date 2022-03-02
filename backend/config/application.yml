@@ -12,7 +12,8 @@ app:
     examplesPath: "/home/adriano/Documents/Facu/Tesis/rita-web/backend/src/main/resources/default-robots"
   minio:
     accessKey: "AKIAIOSFODNN7EXAMPLE"
-    secretKey: "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
+    secretKey: "AKIAU3MOVHLFEQY4HA6O"
     host: "localhost"
     port: 9000
+    bucketName: "robocode"
  

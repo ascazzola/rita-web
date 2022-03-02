@@ -7,7 +7,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainModule } from './modules/main/main.module';
 import { RootStoreModule } from './modules/root-store/root-store.module';
-import { rxStompConfig } from './rx-stomp.config';
 import * as Blockly from 'blockly';
 import * as ES from 'blockly/msg/es';
 import { environment } from '../environments/environment';
@@ -50,7 +49,12 @@ function initializeKeycloak(keycloak: KeycloakService) {
     },
     {
       provide: InjectableRxStompConfig,
-      useValue: rxStompConfig
+      useValue: {
+        brokerURL: `${environment.websocketsBrokerUrl}/ws`,
+        heartbeatIncoming: 0, // Typical value 0 - disabled
+        heartbeatOutgoing: 20000, // Typical value 20000 - every 20 seconds
+        reconnectDelay: 500,
+      }
     },
     {
       provide: RxStompService,

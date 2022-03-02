@@ -43,4 +43,4 @@ app:
     secretKey: ${MINIO_SECRET_KEY}
     host: ${MINIO_HOST}
     port: ${MINIO_PORT}
-    bucketName: "robocode"
+    bucketName: ${BUCKET_NAME}

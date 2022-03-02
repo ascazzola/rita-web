@@ -1,5 +1,5 @@
 {
   "apiUrl": "${API_URL}",
   "authServer": "${AUTH_SERVER_URL}",
-  "brokerUrl": "${WEBSOCKETS_BROKER_URL}"
+  "websocketsBrokerUrl": "${WEBSOCKETS_BROKER_URL}"
 }

@@ -3,7 +3,7 @@ version: '3.4'
 services:
 
   rita_api:
-    image: rita/api
+    image: adrianoscazzola/rita-api
     environment:
       PGSQL_DB_HOST: ${PGSQL_DB_HOST}
       PGSQL_DB_PORT: ${PGSQL_DB_PORT}
@@ -16,11 +16,12 @@ services:
       MINIO_SECRET_KEY: ${MINIO_SECRET_KEY}
       MINIO_HOST: ${MINIO_HOST}
       MINIO_PORT: ${MINIO_PORT}
+      BUCKET_NAME: robocode
       ROBOCODE_EXAMPLES_PATH: ${RITA_ROBOCODE_EXAMPLES_PATH}
     ports:
       - ${RITA_API_PORT}:8080
   rita_webspa:
-    image: rita/webspa
+    image: adrianoscazzola/rita-webspa
     environment:
       API_URL: ${API_URL}
       AUTH_SERVER_URL: ${AUTH_SERVER_URL}
