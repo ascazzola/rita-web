@@ -1,45 +1,47 @@
+
 <ng-container *ngIf="battle$|async as battle">
-  <ng-container [ngTemplateOutlet]="battle.state.snapshot ? battleViewer : startBattleTemplate"
-    [ngTemplateOutletContext]="{battle: battle.state}">
-  </ng-container>
+  <h2 *ngIf="battle.state.finalized">Batalla finalizada</h2>
+  <mat-grid-list cols="2">
+    <mat-grid-tile>
+      <ng-container *ngIf="battle.definition.specification.battlefieldSpecification as specification">
+      <div #battleViewer
+        style="display: inline-block; background-image:url('/assets/battle/battlefield.png'); display: flex; justify-content: center; align-items: center;" [style.height]="specification.height + 'px'" [style.width]="specification.width + 'px'">
+        <ng-container *ngIf="battle.state?.snapshot as snapshot; else startBattleTemplate">
+          <ng-container  *ngIf="stage">
+          <app-robots [robots]="snapshot.robots"></app-robots>
+          <app-robots-names [robots]="snapshot.robots"></app-robots-names>
+          <app-robots-energy [robots]="snapshot.robots"></app-robots-energy>
+          <app-bullets [bullets]="snapshot.bullets"></app-bullets>
+          <app-explosions [bullets]="snapshot.bullets"></app-explosions>
+          <app-deads-robots [robots]="snapshot.robots"></app-deads-robots>
+        </ng-container>
+        </ng-container>
+        <ng-template #startBattleTemplate>
+          <button mat-raised-button color="primary" (click)="startBattle()" [disabled]="battle.definition.started">Iniciar batalla</button>
+        </ng-template>
+      </div>
+      </ng-container>
+    </mat-grid-tile>
+    <mat-grid-tile *ngIf="battle.state?.snapshot as snapshot">
+      <div>
+        <span>Ronda {{battle.state.round}}</span>
+        <ul *ngFor="let robot of snapshot.robots" style="list-style-type:none;">
+          <li><b>Nombre:</b> {{robot.name}}</li>
+          <li><b>Estado:</b>
+            <app-robot-state-viewer [state]="robot.state"></app-robot-state-viewer>
+          </li>
+          <li>
+            <mat-progress-bar mode="determinate" value="{{robot.energy}}"></mat-progress-bar>
+          </li>
+        </ul>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</ng-container>
 
   <ng-template #loading>
     loading...
   </ng-template>
 
-  <ng-template #battleViewer let-battle="battle">
-    <h2 *ngIf="battle.finalized">Batalla finalizada</h2>
-    <mat-grid-list cols="2">
-      <mat-grid-tile>
-        <div #battle
-          style="margin-top:40px; display: inline-block; background-image:url('/assets/battle/battlefield.png');">
-          <ng-container *ngIf="stage">
-            <app-robots [robots]="battle.snapshot.robots"></app-robots>
-            <app-robots-names [robots]="battle.snapshot.robots"></app-robots-names>
-            <app-robots-energy [robots]="battle.snapshot.robots"></app-robots-energy>
-            <app-bullets [bullets]="battle.snapshot.bullets"></app-bullets>
-            <app-explosions [bullets]="battle.snapshot.bullets"></app-explosions>
-            <app-deads-robots [robots]="battle.snapshot.robots"></app-deads-robots>
-          </ng-container>
-        </div>
-      </mat-grid-tile>
-      <mat-grid-tile>
-        <div>
-          <span>Ronda {{battle.round}}</span>
-          <ul *ngFor="let robot of battle.snapshot.robots" style="list-style-type:none;">
-            <li><b>Nombre:</b> {{robot.name}}</li>
-            <li><b>Estado:</b>
-              <app-robot-state-viewer [state]="robot.state"></app-robot-state-viewer>
-            </li>
-            <li>
-              <mat-progress-bar mode="determinate" value="{{robot.energy}}"></mat-progress-bar>
-            </li>
-          </ul>
-        </div>
-      </mat-grid-tile>
-    </mat-grid-list>
-  </ng-template>
 
-  <ng-template #startBattleTemplate>
-    <button mat-raised-button color="primary" (click)="startBattle()">Iniciar batalla</button>
-  </ng-template>
+

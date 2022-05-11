@@ -28,7 +28,7 @@ export class BattleViewerComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private battleContainer$ = new Subject<ElementRef>();
 
-  @ViewChild('battle') set content(content: ElementRef) {
+  @ViewChild('battleViewer') set content(content: ElementRef) {
     if (content) { // initially setter gets called with undefined
       this.battleContainer$.next(content);
     }
