@@ -2,7 +2,7 @@
 
 /**
  * Method used to get all the imports.
- * @param {string[]} imports Array of imports.
+ * @param {Array<string>} imports Array of imports.
  * @return {string} String with all the imports.
  */
 function getImports(imports) {

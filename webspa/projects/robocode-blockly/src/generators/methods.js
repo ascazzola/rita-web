@@ -1,22 +1,22 @@
 'use strict';
 
 Blockly.Robocode['action_turn_gun_left'] = function(block) {
-  const degress = block.getFieldValue('DEGRESS');
+  const degress = Blockly.Robocode.valueToCode(block, 'DEGRESS', 0) || 0;
   return `turnGunLeft(${degress});\n`;
 };
 
 Blockly.Robocode['action_turn_gun_right'] = function(block) {
-  const degress = block.getFieldValue('DEGRESS');
+  const degress = Blockly.Robocode.valueToCode(block, 'DEGRESS', 0) || 0;
   return `turnGunRight(${degress});\n`;
 };
 
 Blockly.Robocode['action_turn_gun_to'] = function(block) {
-  const degress = block.getFieldValue('DEGRESS');
+  const degress = Blockly.Robocode.valueToCode(block, 'DEGRESS', 0) || 0;
   return `turnGunTo(${degress});\n`;
 };
 
 Blockly.Robocode['action_bear_gun_to'] = function(block) {
-  const degress = block.getFieldValue('DEGRESS');
+  const degress = Blockly.Robocode.valueToCode(block, 'DEGRESS', 0) || 0;
   return `bearGunTo(${degress});\n`;
 };
 
@@ -25,7 +25,7 @@ Blockly.Robocode['action_do_nothing'] = function(block) {
 };
 
 Blockly.Robocode['action_do_nothing_turns'] = function(block) {
-  const turns = block.getFieldValue('TURNS');
+  const turns = Blockly.Robocode.valueToCode(block, 'TURNS', 0) || 0;
   return `doNothing(${turns});\n`;
 };
 
@@ -34,56 +34,56 @@ Blockly.Robocode['action_fire'] = function(block) {
 };
 
 Blockly.Robocode['action_fire_power'] = function(block) {
-  const power = block.getFieldValue('POWER');
+  const power = Blockly.Robocode.valueToCode(block, 'POWER', 0) || 0;
   return `fire(${power});\n`;
 };
 
 Blockly.Robocode['move_ahead'] = function(block) {
-  const distance = block.getFieldValue('DISTANCE');
+  const distance = Blockly.Robocode.valueToCode(block, 'DISTANCE', 0) || 0;
   return `ahead(${distance});\n`;
 };
 
 Blockly.Robocode['move_back'] = function(block) {
-  const distance = block.getFieldValue('DISTANCE');
+  const distance = Blockly.Robocode.valueToCode(block, 'DISTANCE', 0) || 0;
   return `back(${distance});\n`;
 };
 
 Blockly.Robocode['move_ahead_left'] = function(block) {
-  const distance = block.getFieldValue('DISTANCE');
-  const degress = block.getFieldValue('DEGRESS');
+  const distance = Blockly.Robocode.valueToCode(block, 'DISTANCE', 0) || 0;
+  const degress = Blockly.Robocode.valueToCode(block, 'DEGRESS', 0) || 0;
   return `turnAheadLeft(${distance},${degress});\n`;
 };
 
 Blockly.Robocode['move_ahead_right'] = function(block) {
-  const distance = block.getFieldValue('DISTANCE');
-  const degress = block.getFieldValue('DEGRESS');
+  const distance = Blockly.Robocode.valueToCode(block, 'DISTANCE', 0) || 0;
+  const degress = Blockly.Robocode.valueToCode(block, 'DEGRESS', 0) || 0;
   return `turnAheadRight(${distance},${degress});\n`;
 };
 
 Blockly.Robocode['move_back_left'] = function(block) {
-  const distance = block.getFieldValue('DISTANCE');
-  const degress = block.getFieldValue('DEGRESS');
+  const distance = Blockly.Robocode.valueToCode(block, 'DISTANCE', 0) || 0;
+  const degress = Blockly.Robocode.valueToCode(block, 'DEGRESS', 0) || 0;
   return `turnBackLeft(${distance},${degress});\n`;
 };
 
 Blockly.Robocode['move_back_right'] = function(block) {
-  const distance = block.getFieldValue('DISTANCE');
-  const degress = block.getFieldValue('DEGRESS');
+  const distance = Blockly.Robocode.valueToCode(block, 'DISTANCE', 0) || 0;
+  const degress = Blockly.Robocode.valueToCode(block, 'DEGRESS', 0) || 0;
   return `turnBackRight(${distance},${degress});\n`;
 };
 
 Blockly.Robocode['move_turn_left'] = function(block) {
-  const degress = block.getFieldValue('DEGRESS');
+  const degress = Blockly.Robocode.valueToCode(block, 'DEGRESS', 0) || 0;
   return `turnLeft(${degress});\n`;
 };
 
 Blockly.Robocode['move_turn_right'] = function(block) {
-  const degress = block.getFieldValue('DEGRESS');
+  const degress = Blockly.Robocode.valueToCode(block, 'DEGRESS', 0) || 0;
   return `turnRight(${degress});\n`;
 };
 
 Blockly.Robocode['move_turn'] = function(block) {
-  const degress = block.getFieldValue('DEGRESS');
+  const degress = Blockly.Robocode.valueToCode(block, 'DEGRESS', 0) || 0;
   return `turnTo(${degress});\n`;
 };
 

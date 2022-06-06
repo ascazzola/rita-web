@@ -104,10 +104,9 @@ Blockly.defineBlocksWithJsonArray([{
   'message0': '%{BKY_MOVE_AHEAD}',
   'args0': [
     {
-      'type': 'field_number',
+      'type': 'input_value',
       'name': 'DISTANCE',
-      'value': 1,
-      'min': 1,
+      'check': 'Number',
     },
   ],
   'colour': 220,
@@ -121,10 +120,9 @@ Blockly.defineBlocksWithJsonArray([{
   'message0': '%{BKY_MOVE_BACK}',
   'args0': [
     {
-      'type': 'field_number',
+      'type': 'input_value',
       'name': 'DISTANCE',
-      'value': 1,
-      'min': 1,
+      'check': 'Number',
     },
   ],
   'colour': 220,
@@ -138,15 +136,14 @@ Blockly.defineBlocksWithJsonArray([{
   'message0': '%{BKY_MOVE_AHEAD_LEFT}',
   'args0': [
     {
-      'type': 'field_number',
+      'type': 'input_value',
       'name': 'DISTANCE',
-      'value': 1,
-      'min': 1,
+      'check': 'Number',
     },
     {
-      'type': 'field_angle',
+      'type': 'input_value',
       'name': 'DEGRESS',
-      'angle': 90,
+      'check': 'Number',
     },
   ],
   'colour': 220,
@@ -160,15 +157,14 @@ Blockly.defineBlocksWithJsonArray([{
   'message0': '%{BKY_MOVE_AHEAD_RIGHT}',
   'args0': [
     {
-      'type': 'field_number',
+      'type': 'input_value',
       'name': 'DISTANCE',
-      'value': 1,
-      'min': 1,
+      'check': 'Number',
     },
     {
-      'type': 'field_angle',
+      'type': 'input_value',
       'name': 'DEGRESS',
-      'angle': 90,
+      'check': 'Number',
     },
   ],
   'colour': 220,
@@ -182,15 +178,14 @@ Blockly.defineBlocksWithJsonArray([{
   'message0': '%{BKY_MOVE_BACK_LEFT}',
   'args0': [
     {
-      'type': 'field_number',
+      'type': 'input_value',
       'name': 'DISTANCE',
-      'value': 1,
-      'min': 1,
+      'check': 'Number',
     },
     {
-      'type': 'field_angle',
+      'type': 'input_value',
       'name': 'DEGRESS',
-      'angle': 90,
+      'check': 'Number',
     },
   ],
   'colour': 220,
@@ -204,15 +199,14 @@ Blockly.defineBlocksWithJsonArray([{
   'message0': '%{BKY_MOVE_BACK_RIGHT}',
   'args0': [
     {
-      'type': 'field_number',
+      'type': 'input_value',
       'name': 'DISTANCE',
-      'value': 1,
-      'min': 1,
+      'check': 'Number',
     },
     {
-      'type': 'field_angle',
+      'type': 'input_value',
       'name': 'DEGRESS',
-      'angle': 90,
+      'check': 'Number',
     },
   ],
   'colour': 220,
@@ -226,9 +220,9 @@ Blockly.defineBlocksWithJsonArray([{
   'message0': '%{BKY_MOVE_TURN_LEFT}',
   'args0': [
     {
-      'type': 'field_angle',
+      'type': 'input_value',
       'name': 'DEGRESS',
-      'angle': 90,
+      'check': 'Number',
     },
   ],
   'colour': 220,
@@ -242,9 +236,9 @@ Blockly.defineBlocksWithJsonArray([{
   'message0': '%{BKY_MOVE_TURN_RIGHT}',
   'args0': [
     {
-      'type': 'field_angle',
+      'type': 'input_value',
       'name': 'DEGRESS',
-      'angle': 90,
+      'check': 'Number',
     },
   ],
   'colour': 220,
@@ -258,9 +252,9 @@ Blockly.defineBlocksWithJsonArray([{
   'message0': '%{BKY_MOVE_TURN}',
   'args0': [
     {
-      'type': 'field_angle',
+      'type': 'input_value',
       'name': 'DEGRESS',
-      'angle': 90,
+      'check': 'Number',
     },
   ],
   'colour': 220,
@@ -274,9 +268,9 @@ Blockly.defineBlocksWithJsonArray([{
   'message0': '%{BKY_TURN_GUN_LEFT}',
   'args0': [
     {
-      'type': 'field_angle',
+      'type': 'input_value',
       'name': 'DEGRESS',
-      'angle': 90,
+      'check': 'Number',
     },
   ],
   'colour': 230,
@@ -290,9 +284,9 @@ Blockly.defineBlocksWithJsonArray([{
   'message0': '%{BKY_TURN_GUN_RIGHT}',
   'args0': [
     {
-      'type': 'field_angle',
+      'type': 'input_value',
       'name': 'DEGRESS',
-      'angle': 90,
+      'check': 'Number',
     },
   ],
   'colour': 230,
@@ -306,9 +300,9 @@ Blockly.defineBlocksWithJsonArray([{
   'message0': '%{BKY_TURN_GUN_TO}',
   'args0': [
     {
-      'type': 'field_angle',
+      'type': 'input_value',
       'name': 'DEGRESS',
-      'angle': 90,
+      'check': 'Number',
     },
   ],
   'colour': 230,
@@ -322,9 +316,9 @@ Blockly.defineBlocksWithJsonArray([{
   'message0': '%{BKY_BEAR_GUN_TO}',
   'args0': [
     {
-      'type': 'field_angle',
+      'type': 'input_value',
       'name': 'DEGRESS',
-      'angle': 90,
+      'check': 'Number',
     },
   ],
   'colour': 230,
@@ -347,10 +341,9 @@ Blockly.defineBlocksWithJsonArray([{
   'message0': '%{BKY_DO_NOTHING_TURNS}',
   'args0': [
     {
-      'type': 'field_number',
+      'type': 'input_value',
       'name': 'TURNS',
-      'value': 1,
-      'min': 1,
+      'check': 'Number',
     },
   ],
   'colour': 230,
@@ -373,12 +366,9 @@ Blockly.defineBlocksWithJsonArray([{
   'message0': '%{BKY_FIRE_POWER}',
   'args0': [
     {
-      'type': 'field_number',
+      'type': 'input_value',
       'name': 'POWER',
-      'value': 0.1,
-      'min': 0.1,
-      'max': 3,
-      'precision': 0.0001,
+      'check': 'Number',
     },
   ],
   'colour': 230,
