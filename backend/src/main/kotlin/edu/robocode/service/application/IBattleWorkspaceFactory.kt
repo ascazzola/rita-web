@@ -3,10 +3,10 @@ package edu.robocode.service.application
 import java.util.*
 
 interface IBattleWorkspaceFactory {
-    fun create(preDefinedRobots: List<String>, robotsIds: List<UUID>?) : BattleWorkspace
+    fun create(preDefinedRobots: Map<String, Triple<Double, Double, Double>?>?, robotsIds: Map<UUID, Triple<Double, Double, Double>?>?) : BattleWorkspace
 }
 
 data class BattleWorkspace(
     val homePath: String,
-    val robotNames: List<String>
+    val robots: Map<String, Triple<Double, Double, Double>?>
 )

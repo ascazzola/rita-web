@@ -8,6 +8,7 @@ import java.io.InputStream
 import java.nio.file.Files
 import java.nio.file.Paths
 import java.nio.file.StandardCopyOption
+import java.security.KeyStore.Entry
 import java.util.*
 import kotlin.io.path.absolutePathString
 
@@ -20,15 +21,22 @@ class BattleWorkspaceFactory (
 
     private val examplePackageDirName = "sample"
 
-    override fun create(preDefinedRobots: List<String>, robotsIds: List<UUID>?): BattleWorkspace {
-        val userRobots = (robotsIds ?:  listOf()).associate { id -> getUserRobotData(id) }
-        val sampleRobots = preDefinedRobots.associate { name -> getExampleRobotData(name)}
+    override fun create(preDefinedRobots: Map<String, Triple<Double, Double, Double>?>?,
+                        robotsIds: Map<UUID, Triple<Double, Double, Double>?>?): BattleWorkspace {
+        val userRobotsIds = (robotsIds ?: mapOf())
+        val userRobotsMapIdToRobot = userRobotsIds.keys.associateWith { key -> getUserRobotData(key) }
+        val userRobots = userRobotsMapIdToRobot.values.toMap()
+        var sampleRobotsMap = (preDefinedRobots ?: mapOf());
+        val sampleRobots = sampleRobotsMap.keys.associate { key -> getExampleRobotData(key)}
 
         val homePath = createRobocodeHomeWithFiles(userRobots, sampleRobots)
 
-        val robotNames = preDefinedRobots.union(userRobots.keys.map { name -> "$name*" })
+        val userRobotsNamesWithPosition = userRobotsMapIdToRobot.entries.associate {  it.value.first + "*" to userRobotsIds[it.key] }.toMap()
+        val robotNames = (sampleRobotsMap.keys + userRobotsNamesWithPosition.keys).associateWith {
+            setOf(sampleRobotsMap[it], userRobotsNamesWithPosition[it]).filterNotNull().first()
+        }
 
-        return BattleWorkspace(homePath, ArrayList(robotNames))
+        return BattleWorkspace(homePath, robotNames)
     }
 
     private fun getUserRobotData(id: UUID) : Pair<String, InputStream> {

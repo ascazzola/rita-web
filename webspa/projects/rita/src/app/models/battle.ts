@@ -24,9 +24,15 @@ export interface NewBattleSpecification {
   numberOfRounds: number;
   inactivityTime: number;
   gunCoolingRate: number;
-  predefinedRobots: string[];
-  userRobots: string[];
+  predefinedRobots: {[key: string]: RobotPosition | null};
+  userRobots: {[key: string]: RobotPosition | null};
   battlefieldSpecification: BattlefieldSpecification;
+}
+
+export interface RobotPosition {
+  first: number | null;
+  second: number | null;
+  third: number | null;
 }
 
 export interface BattlefieldSpecification {

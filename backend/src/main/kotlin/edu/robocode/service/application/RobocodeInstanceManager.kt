@@ -1,6 +1,5 @@
 package edu.robocode.service.application
 
-import edu.robocode.service.config.RobocodeConfiguration
 import edu.robocode.service.config.WebSocketConfig
 import edu.robocode.service.controllers.BattlesController
 import edu.robocode.service.models.Battle
@@ -13,6 +12,7 @@ import reactor.core.publisher.ReplayProcessor
 import robocode.control.BattleSpecification
 import robocode.control.BattlefieldSpecification
 import robocode.control.RobocodeEngine
+import robocode.control.RobotSetup
 import java.io.File
 import java.util.*
 import edu.robocode.service.models.BattleSpecification as BattleSpecificationModel
@@ -46,10 +46,11 @@ class RobocodeInstanceManager(
         val numberOfRounds = params.numberOfRounds
         val inactivityTime = params.inactivityTime
         val gunCoolingRate = params.gunCoolingRate
-        val robotNames = workspace.robotNames
+        val robots = workspace.robots
         val battlefieldSpecification = params.battlefieldSpecification
-        battles[id] = BattleState(engine, listener, name, getBattleSpecification(engine, numberOfRounds,
-            inactivityTime, gunCoolingRate, robotNames, battlefieldSpecification))
+        val robocodeBattleSpecification = getBattleSpecification(engine, numberOfRounds, inactivityTime, gunCoolingRate,
+            robots, battlefieldSpecification)
+        battles[id] = BattleState(engine, listener, name, robocodeBattleSpecification)
         battlesProcessor.onNext(mapBattles())
         return id
     }
@@ -79,9 +80,14 @@ class RobocodeInstanceManager(
         return battlesProcessor.take(1).last()
     }
 
-    private fun getBattleSpecification(engine: RobocodeEngine, numberOfRounds: Int, inactivityTime: Long, gunCoolingRate: Double, robots: List<String>, battlefieldSpecification: BattlefieldSpecification): BattleSpecification {
-        val robotsSpecifications = engine.getLocalRepository(robots.joinToString())
-        return BattleSpecification(numberOfRounds, inactivityTime, gunCoolingRate, battlefieldSpecification, robotsSpecifications)
+    private fun getBattleSpecification(engine: RobocodeEngine, numberOfRounds: Int,
+                                       inactivityTime: Long, gunCoolingRate: Double,
+                                       robots: Map<String, Triple<Double?, Double?, Double>?>,
+                                       battlefieldSpecification: BattlefieldSpecification): BattleSpecification {
+        val robotsSpecifications = engine.getLocalRepository(robots.keys.joinToString())
+        val initialSetups = robots.values.map { x -> RobotSetup(x?.first, x?.second, x?.third)}.toTypedArray()
+        return BattleSpecification(battlefieldSpecification, numberOfRounds, inactivityTime, gunCoolingRate, 100,
+            false, robotsSpecifications, initialSetups)
     }
 
     private fun getBattleState(id: UUID): BattleState {
@@ -112,6 +118,6 @@ class BattleState(private val engine: RobocodeEngine, val listener: BattleListen
 
     fun getBattleSpecificationModel(): BattleSpecificationModel {
         // ToDo review it
-        return  BattleSpecificationModel(specification.numRounds, specification.inactivityTime, specification.gunCoolingRate, specification.robots.map { robot -> robot.name }, listOf(), specification.battlefield)
+        return  BattleSpecificationModel(specification.numRounds, specification.inactivityTime, specification.gunCoolingRate, mapOf(), mapOf(), specification.battlefield)
     }
 }
