@@ -9,6 +9,8 @@ import { RobotDefinition } from '../../../models/robot-definition';
 import { PREDEFINED_ROBOTS } from '../../../models/predefined-robots';
 import { ListType } from '../../../models/list-type';
 import { map } from 'rxjs/operators';
+import { ROBOT_ORIENTATIONS } from '../../../models/robot-orientations';
+import { BATTLE_HEIGHT, BATTLE_WIDTH } from '../../../models/battle';
 
 @Component({
   templateUrl: './new-battle.component.html',
@@ -19,6 +21,7 @@ export class NewBattleComponent implements OnInit {
   form!: FormGroup;
   saving = false;
   predefinedRobots: ListType[] = PREDEFINED_ROBOTS;
+  robotOrientations = ROBOT_ORIENTATIONS;
   userRobots$!: Observable<RobotDefinition[]>;
 
   constructor(private fb: FormBuilder, private store: Store<State>, private robotDefinitionsService: RobotDefinitionsService) { }
@@ -27,7 +30,7 @@ export class NewBattleComponent implements OnInit {
     this.form = this.fb.group({
       name: [null, Validators.required],
       numberOfRounds: [null, Validators.required],
-      predefinedRobots: this.fb.array([]), 
+      predefinedRobots: this.fb.array([]),
       userRobots: this.fb.array([]),
     }, { validators: this.atLeastOneRobotSelected });
 
@@ -39,16 +42,20 @@ export class NewBattleComponent implements OnInit {
   save() {
     this.saving = true;
     const value = this.form.value;
-    const predefinedRobots = ((value.predefinedRobots as RobotDefinitionSelected[]) || []).reduce((ac,a) => ({...ac,[a.id]: {
-      first: a.first,
-      third: a.third,
-      second: a.second,
-    }}),{});
-    const userRobots = ((value.userRobots as RobotDefinitionSelected[]) || []).reduce((ac,a) => ({...ac,[a.id]: {
-      first: a.first,
-      third: a.third,
-      second: a.second,
-    }}),{});
+    const predefinedRobots = ((value.predefinedRobots as RobotDefinitionSelected[]) || []).reduce((ac, a) => ({
+      ...ac, [a.id]: {
+        first: a.first,
+        third: a.third,
+        second: a.second,
+      }
+    }), {});
+    const userRobots = ((value.userRobots as RobotDefinitionSelected[]) || []).reduce((ac, a) => ({
+      ...ac, [a.id]: {
+        first: a.first,
+        third: a.third,
+        second: a.second,
+      }
+    }), {});
     this.store.dispatch(fromCurrentBattle.create({
       name: value.name,
       specification: {
@@ -58,8 +65,8 @@ export class NewBattleComponent implements OnInit {
         predefinedRobots: predefinedRobots,
         userRobots: userRobots,
         battlefieldSpecification: {
-          height: 600,
-          width: 800
+          height: BATTLE_HEIGHT,
+          width: BATTLE_WIDTH
         }
       }
     }));
@@ -73,6 +80,11 @@ export class NewBattleComponent implements OnInit {
   userRobotsChanged(definitions: RobotDefinition[]): void {
     const userRobotsFormArray = this.form.controls.userRobots as FormArray;
     this.robotsChanged(userRobotsFormArray, definitions);
+  }
+
+
+  getRobotId(_: any, item: any) {
+    return item.id;
   }
 
   private robotsChanged(formArray: FormArray, definitions: RobotDefinition[]): void {

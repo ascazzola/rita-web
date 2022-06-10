@@ -7,8 +7,10 @@ import { STAGE } from './stage';
 import { Group } from 'konva/lib/Group';
 import { Robot } from '../../../models/robot';
 import { getColor } from '../../shared/get-color.fn';
+import { getPosition } from './positionFn';
 
 const TURRET_ID = 'turret';
+const BODY_ID = 'body';
 const DEGREES_CONVERSION_FACTOR = 57.2958;
 @Component({
   selector: 'app-robots',
@@ -57,26 +59,28 @@ export class RobotsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   addNewRobots(robots: Robot[], bodyImg: string, turretImg: string) {
     robots.forEach(robot => {
+      var g = new Konva.Group();
+      g.id(robot.name);
       const body = this.getColoredGroup(bodyImg, getColor(robot.bodyColor), BODY_SIZE);
-      body.id(robot.name);
+      body.id(BODY_ID);
 
       const turret = this.getColoredGroup(turretImg, getColor(robot.gunColor), TURRET_SIZE);
       turret.id(TURRET_ID);
-      turret.setPosition({
-        x: 8 + turret.width() / 2,
-        y: -8 + turret.height() / 2
-      });
+
 
       turret.offsetY(turret.height() / 2);
       turret.offsetX(turret.width() / 2);
 
-      body.add(turret);
+
       body.offsetY(body.height() / 2);
       body.offsetX(body.width() / 2);
 
-      this.positionRobot(robot, body, turret);
+      g.add(body);
+      g.add(turret);
 
-      this.layer.add(body);
+      this.positionRobot(robot, g, body, turret);
+
+      this.layer.add(g);
     });
   }
 
@@ -86,19 +90,25 @@ export class RobotsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   updateRobots(robotsToUpdate: Robot[], existing: Group[]) {
     robotsToUpdate.forEach(robot => {
-      const body = existing.find(x => x.id() === robot.name);
+      const group = existing.find(x => x.id() === robot.name);
 
-      if (!body) {
-        throw "body cannot be null"
+      if (!group) {
+        throw "group cannot be null"
       }
 
-      const turret = body.getChildren(x => x.id() == TURRET_ID)[0] as Group;
+      const body =  group.getChildren(x => x.id() == BODY_ID)[0] as Group;
+
+      if (!body) {
+        throw "Body cannot be null"
+      }
+
+      const turret = group.getChildren(x => x.id() == TURRET_ID)[0] as Group;
 
       if (!turret) {
         throw "Turret cannot be null"
       }
 
-      this.positionRobot(robot, body, turret);
+      this.positionRobot(robot, group, body, turret);
     })
   }
 
@@ -131,24 +141,18 @@ export class RobotsComponent implements OnInit, AfterViewInit, OnDestroy {
     return g;
   }
 
-  private positionRobot(robot: Robot, body: Group, turret: Group) {
+  private positionRobot(robot: Robot, group: Group, body: Group, turret: Group) {
     const bodyRotation = robot.bodyHeading * DEGREES_CONVERSION_FACTOR;
     if (body.rotation() !== bodyRotation) {
       body.rotation(robot.bodyHeading * DEGREES_CONVERSION_FACTOR);
     }
 
     const turretRotation = robot.gunHeading * DEGREES_CONVERSION_FACTOR;
+
     if (turret.rotation() !== turretRotation) {
       turret.rotation(turretRotation);
     }
 
-    body.setPosition(this.getBodyPosition(robot.x, robot.y));
-  }
-
-  private getBodyPosition(x: number, y: number) {
-    return {
-      x: x,
-      y: y,
-    };
+    group.setPosition(getPosition(robot.x, robot.y));
   }
 }

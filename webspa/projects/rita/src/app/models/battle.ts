@@ -40,4 +40,6 @@ export interface BattlefieldSpecification {
   width: number;
 }
 
+export const BATTLE_HEIGHT = 600;
+export const BATTLE_WIDTH = 800;
 

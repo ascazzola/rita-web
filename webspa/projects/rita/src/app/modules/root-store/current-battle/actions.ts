@@ -12,5 +12,5 @@ export const roundStarted = createAction('[CurrentBattle] round started', (round
   export const roundEnded = createAction('[CurrentBattle] round ended', (round: number, turns: number, totalTurns: number) =>
   ({ round, turns, totalTurns }));
 export const snapshotChanged = createAction('[CurrentBattle] snapshot changed', (round: number, snapshot: BattleSnapshot) => ({ round, snapshot }));
-export const battleFinished = createAction('[CurrentBattle] battle finished', (results: BattleResult[]) => ({ results }));
+export const battleFinished = createAction('[CurrentBattle] battle finished', (result: BattleResult[]) => ({ result }));
 export const unload = createAction('[CurrentBattle] unload');

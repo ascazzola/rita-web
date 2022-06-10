@@ -14,7 +14,7 @@ const currentBattleReducer = createReducer(
   })),
   on(currentBattleActions.roundEnded, (state, { round, turns, totalTurns }) => ({ ...state, current: { ...(state.current as CurrentBattle)} })),
   on(currentBattleActions.snapshotChanged, (state, { round, snapshot }) => ({ ...state, current: { ...(state.current as CurrentBattle), round, snapshot } })),
-  on(currentBattleActions.battleFinished, (state, { results }) => ({ ...state, current: { ...(state.current as CurrentBattle), results, finalized: true } })),
+  on(currentBattleActions.battleFinished, (state, { result }) => ({ ...state, current: { ...(state.current as CurrentBattle), result, finalized: true } })),
   on(currentBattleActions.unload, _ => ({ loading: false })),
 );
 

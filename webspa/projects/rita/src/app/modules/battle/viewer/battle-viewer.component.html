@@ -1,6 +1,10 @@
 <ng-container *ngIf="battle$|async as battle">
-  <h2 *ngIf="battle.state.finalized">Batalla finalizada</h2>
-  <mat-grid-list cols="2">
+  <ng-container *ngIf="battle.state.finalized">
+    <h2>Batalla finalizada</h2>
+    <span>Ganador {{battle.state.result && battle.state.result[0].teamLeaderName}}</span>
+    <p><a routerLink="/home">Voler al inicio</a></p>
+  </ng-container>
+  <mat-grid-list *ngIf="!battle.state.finalized" cols="2">
     <mat-grid-tile>
       <ng-container *ngIf="battle.definition?.specification?.battlefieldSpecification as specification">
         <div #battleViewer
