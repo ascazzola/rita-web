@@ -29,8 +29,8 @@ export interface TurnChanged {
 
 export interface BattleFinished {
     id: string;
-    type: 'BattleCompletedEvent';
-    results: BattleResult[];
+    type: 'BattleCompleted';
+    result: BattleResult[];
 }
 
 

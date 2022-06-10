@@ -6,6 +6,7 @@ import { STAGE } from './stage';
 import { Group } from 'konva/lib/Group';
 import { Robot } from '../../../models/robot';
 import { BODY_SIZE } from '../../../services/images.service';
+import { getPosition } from './positionFn';
 
 
 @Component({
@@ -52,11 +53,12 @@ export class RobotsNamesComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private addNewRobots(robots: Robot[]) {
     robots.forEach(robot => {
+      const position = getPosition(robot.x, robot.y);
       const text = new Konva.Text({
         text: robot.name,
         fill: 'white',
-        x: robot.x - BODY_SIZE.width,
-        y: robot.y -  BODY_SIZE.height - 5,
+        x: position.x - BODY_SIZE.width,
+        y: position.y -  BODY_SIZE.height - 5,
         align: 'center'
       });
 

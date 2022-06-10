@@ -1,43 +1,117 @@
 <mat-card>
-<form #f="ngForm" [formGroup]="form" (ngSubmit)="form.valid && save()">
-  <mat-toolbar class="toolbar" color="accent">
-    <span>Crear batalla</span>
-    <span style="flex: 1 1 auto;"></span>
-    <button mat-mini-fab color="secondary" style="margin:10px" click="return()">
-      <mat-icon>undo</mat-icon>
-    </button>
-    <button mat-mini-fab color="primary" type="submit" [disabled]="saving">
-      <mat-icon>save</mat-icon>
-    </button>
-  </mat-toolbar>
-  <mat-card style="display: flex; flex-direction:column;">
-    <mat-form-field>
-      <mat-label>Nombre</mat-label>
-      <input matInput formControlName="name" name="name" id="name">
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Numero de rondas</mat-label>
-      <input type="number" matInput formControlName="numberOfRounds" name="name" id="name">
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>Robots predefinidos</mat-label>
-      <mat-select multiple formControlName="predefinedRobots">
-        <mat-option *ngFor="let predefinedRobot of predefinedRobots" [value]="predefinedRobot.id">
-          {{predefinedRobot.name}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>Robots del usuario</mat-label>
-      <mat-select multiple formControlName="userRobots">
-        <mat-option *ngFor="let userRobot of userRobots$|async" [value]="userRobot.id">
-          {{userRobot.name}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-error *ngIf="form.hasError('atLeastOneRobotSelected') && (form.get('predefinedRobots')?.dirty || form.get('userRobots')?.dirty || f.submitted)">
-      Debe seleccionar algún robot
-    </mat-error>
-  </mat-card>
-</form>
+  <form #f="ngForm" [formGroup]="form" (ngSubmit)="form.valid && save()">
+    <mat-toolbar class="toolbar" color="accent">
+      <span>Crear batalla</span>
+      <span style="flex: 1 1 auto;"></span>
+      <button mat-mini-fab color="secondary" style="margin:10px" click="return()">
+        <mat-icon>undo</mat-icon>
+      </button>
+      <button mat-mini-fab color="primary" type="submit" [disabled]="saving">
+        <mat-icon>save</mat-icon>
+      </button>
+    </mat-toolbar>
+    <mat-card style="display: flex; flex-direction:column;">
+      <mat-grid-list cols="2" rowHeight="100px">
+        <mat-grid-tile colspan="1" rowspan="1">
+          <mat-form-field>
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="name" name="name" id="name">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="1">
+          <mat-form-field>
+            <mat-label>Numero de rondas</mat-label>
+            <input type="number" matInput formControlName="numberOfRounds" name="numberOfRounds" id="numberOfRounds">
+          </mat-form-field>
+        </mat-grid-tile>
+      </mat-grid-list>
+      <mat-grid-list cols="2" rowHeight="100px">
+        <mat-grid-tile colspan="1" rowspan="1">
+          <mat-form-field>
+            <mat-label>Robots predefinidos</mat-label>
+            <mat-select multiple (selectionChange)="predefinedRobotsChanged($event.value)">
+              <mat-option *ngFor="let predefinedRobot of predefinedRobots" [value]="predefinedRobot">
+                {{predefinedRobot.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="1">
+          <mat-form-field>
+            <mat-label>Robots del usuario</mat-label>
+            <mat-select multiple (selectionChange)="userRobotsChanged($event.value)">
+              <mat-option *ngFor="let userRobot of userRobots$|async" [value]="userRobot">
+                {{userRobot.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-grid-tile>
+      </mat-grid-list>
+      <mat-error
+        *ngIf="form.hasError('atLeastOneRobotSelected') && (form.get('predefinedRobots')?.dirty || form.get('userRobots')?.dirty || f.submitted)">
+        Debe seleccionar algún robot
+      </mat-error>
+      <div *ngIf="form.hasError('atLeastOneRobotSelected') === false">
+        <h4>Inicialización de Robots</h4>
+        <ng-container formArrayName="predefinedRobots">
+        <mat-grid-list *ngFor="let predefinedRobot of form.get('predefinedRobots')?.value; let i = index; trackBy: getRobotId" [formGroupName]="i" cols="4" rowHeight="100px">
+          <mat-grid-tile colspan="1" rowspan="1">
+            <mat-label>{{predefinedRobot.name}}</mat-label>
+          </mat-grid-tile>
+          <mat-grid-tile colspan="1" rowspan="1">
+            <mat-form-field>
+              <mat-label>Posición X</mat-label>
+              <input type="number" matInput formControlName="first" name="predefinedpositionX{{i}}" id="predefinedpositionX{{i}}">
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile colspan="1" rowspan="1">
+            <mat-form-field>
+              <mat-label>Posición Y</mat-label>
+              <input type="number" matInput formControlName="second" name="predefinedpositionY{{i}}" id="predefinedpositionX{{i}}">
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile colspan="1" rowspan="1">
+            <mat-form-field>
+              <mat-label>Orientación</mat-label>
+              <mat-select formControlName="third">
+                <mat-option *ngFor="let robotOrientation of robotOrientations" [value]="robotOrientation.id">
+                  {{robotOrientation.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </ng-container>
+      <ng-container formArrayName="userRobots">
+        <mat-grid-list *ngFor="let userRobot of form.get('userRobots')?.value; let i = index; trackBy: getRobotId" [formGroupName]="i" cols="4" rowHeight="100px">
+          <mat-grid-tile colspan="1" rowspan="1">
+            <mat-label>{{userRobot.name}}</mat-label>
+          </mat-grid-tile>
+          <mat-grid-tile colspan="1" rowspan="1">
+            <mat-form-field>
+              <mat-label>Posición X</mat-label>
+              <input type="number" matInput formControlName="first" name="userpositionX{{i}}" id="userpositionX{{i}}">
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile colspan="1" rowspan="1">
+            <mat-form-field>
+              <mat-label>Posición Y</mat-label>
+              <input type="number" matInput formControlName="second" name="userpositionY{{i}}" id="userpositionX{{i}}">
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile colspan="1" rowspan="1">
+            <mat-form-field>
+              <mat-label>Orientación</mat-label>
+              <mat-select formControlName="third">
+                <mat-option *ngFor="let robotOrientation of robotOrientations" [value]="robotOrientation.id">
+                  {{robotOrientation.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </ng-container>
+      </div>
+    </mat-card>
+  </form>
 </mat-card>

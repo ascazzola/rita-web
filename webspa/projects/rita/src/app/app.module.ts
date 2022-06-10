@@ -28,6 +28,15 @@ function initializeKeycloak(keycloak: KeycloakService) {
     });
 }
 
+function initializeWebSocets() {
+  return {
+    brokerURL: `${environment.websocketsBrokerUrl}/ws`,
+    heartbeatIncoming: 0, // Typical value 0 - disabled
+    heartbeatOutgoing: 20000, // Typical value 20000 - every 20 seconds
+    reconnectDelay: 500,
+  };
+}
+
 @NgModule({
   declarations: [
     AppComponent
@@ -49,12 +58,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
     },
     {
       provide: InjectableRxStompConfig,
-      useValue: {
-        brokerURL: `${environment.websocketsBrokerUrl}/ws`,
-        heartbeatIncoming: 0, // Typical value 0 - disabled
-        heartbeatOutgoing: 20000, // Typical value 20000 - every 20 seconds
-        reconnectDelay: 500,
-      }
+      useFactory: initializeWebSocets
     },
     {
       provide: RxStompService,

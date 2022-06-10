@@ -6,6 +6,7 @@ import { STAGE } from './stage';
 import { Group } from 'konva/lib/Group';
 import { Robot } from '../../../models/robot';
 import { BODY_SIZE } from '../../../services/images.service';
+import { getPosition } from './positionFn';
 
 const PERCENTAGE_ID = 'percentage';
 
@@ -62,7 +63,7 @@ export class RobotsEnergyComponent implements OnInit, AfterViewInit, OnDestroy {
         height: BODY_SIZE.width
       });
 
-      g.position(this.getPosition(robot));
+      g.position(this.getEnergyPosition(robot));
 
       var innerRect = new Konva.Rect({
         width: 100,
@@ -105,7 +106,7 @@ export class RobotsEnergyComponent implements OnInit, AfterViewInit, OnDestroy {
         throw "Percentage must exist";
       }
 
-      group.position(this.getPosition(robot));
+      group.position(this.getEnergyPosition(robot));
       energy.width(robot.energy);
       (energy as any).fill(this.getEnergy(robot.energy));
     })
@@ -115,10 +116,11 @@ export class RobotsEnergyComponent implements OnInit, AfterViewInit, OnDestroy {
     return energy > 50 ? 'green' : energy > 25 ? 'yellow' : 'red';
   }
 
-  private getPosition(robot: Robot) {
+  private getEnergyPosition(robot: Robot) {
+    var position = getPosition(robot.x, robot.y);
     return {
-      x: robot.x - BODY_SIZE.width,
-      y: robot.y + BODY_SIZE.height + 5,
+      x: position.x - BODY_SIZE.width,
+      y: position.y + BODY_SIZE.height + 5,
     }
   }
 }

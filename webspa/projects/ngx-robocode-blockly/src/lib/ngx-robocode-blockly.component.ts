@@ -1,7 +1,7 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, EventEmitter, forwardRef, HostListener, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, forwardRef, Input, OnInit, ViewChild } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
 import * as BlocklyDef from 'blockly';
-import { merge, ReplaySubject } from 'rxjs';
+import { ReplaySubject } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
 declare var Blockly: any;
 declare var robocodeTolbox: string;
