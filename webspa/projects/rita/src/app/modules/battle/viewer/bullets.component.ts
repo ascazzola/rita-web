@@ -7,6 +7,7 @@ import { STAGE } from './stage';
 import { Bullet } from '../../../models/bullet';
 import { Group } from 'konva/lib/Group';
 import { getColor } from '../../shared/get-color.fn';
+import { getPosition } from './positionFn';
 
 @Component({
   selector: 'app-bullets',
@@ -47,9 +48,10 @@ export class BulletsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private addNewBullets(bullets: Bullet[]) {
     bullets.forEach(b => {
+      const position = getPosition(b.x, b.y);
       const circle = new Konva.Circle({
-        x: b.x,
-        y: b.y,
+        x: position.x,
+        y: position.y,
         radius: b.power * 2,
         fill: getColor(b.color),
         id: b.bulletId.toString()
@@ -71,7 +73,7 @@ export class BulletsComponent implements OnInit, AfterViewInit, OnDestroy {
           throw "Bullet cannot be null";
         }
 
-        currentBullet!.setPosition({x: bullet.x, y: bullet.y});
+        currentBullet!.setPosition(getPosition(bullet.x, bullet.y);
         (currentBullet as any).radius(bullet.power * 2);
     });
   }

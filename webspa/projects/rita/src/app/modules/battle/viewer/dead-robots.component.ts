@@ -6,6 +6,7 @@ import { ImagesService } from '../../../services/images.service';
 import { STAGE } from './stage';
 import { Group } from 'konva/lib/Group';
 import { Robot } from '../../../models/robot';
+import { getPosition } from './positionFn';
 
 
 @Component({
@@ -53,9 +54,10 @@ export class DeadsRobotsComponent implements OnInit, AfterViewInit, OnDestroy {
     robots.forEach(robot => {
       const imgUrl = this.imagesService.getExplodeDebrisImagePath();
       Konva.Image.fromURL(imgUrl, (image: any) => {
+        const position = getPosition(robot.x, robot.y);
         image.setAttrs({
-          x: robot.x,
-          y: robot.y,
+          x: position.x,
+          y: position.y,
         });
 
         image.id(robot.name);
