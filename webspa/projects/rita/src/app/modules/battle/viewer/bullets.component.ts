@@ -73,7 +73,7 @@ export class BulletsComponent implements OnInit, AfterViewInit, OnDestroy {
           throw "Bullet cannot be null";
         }
 
-        currentBullet!.setPosition(getPosition(bullet.x, bullet.y);
+        currentBullet!.setPosition(getPosition(bullet.x, bullet.y));
         (currentBullet as any).radius(bullet.power * 2);
     });
   }
