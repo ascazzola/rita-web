@@ -6,6 +6,7 @@ import { STAGE } from './stage';
 import { Bullet } from '../../../models/bullet';
 import { ImagesService } from '../../../services/images.service';
 import { Group } from 'konva/lib/Group';
+import { getPosition } from './positionFn';
 
 const EXPLOSIONS_LENGTH = 2;
 const EXPOSIONS_LENGHT = [17, 71];
@@ -72,10 +73,11 @@ export class ExplosionsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private AddBullet(b: Bullet) {
     const imgUrl = this.imagesService.getExplosionImagePath(b.explosionImageIndex + 1, b.frame + 1);
+    const position = getPosition(b.paintX, b.paintY);
     Konva.Image.fromURL(imgUrl, (image: any) => {
       image.setAttrs({
-        x: b.paintX,
-        y: b.paintY,
+        x: position.x,
+        y: position.y,
       });
 
       image.id(b.bulletId.toString());
