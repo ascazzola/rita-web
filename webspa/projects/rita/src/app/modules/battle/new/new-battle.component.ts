@@ -24,6 +24,14 @@ export class NewBattleComponent implements OnInit {
   robotOrientations = ROBOT_ORIENTATIONS;
   userRobots$!: Observable<RobotDefinition[]>;
 
+  get userRobotsFormArray() {
+    return this.form.controls.userRobots as FormArray;
+  }
+
+  get predefinedRobotsFormArray() {
+    return this.form.controls.predefinedRobots as FormArray;
+  }
+
   constructor(private fb: FormBuilder, private store: Store<State>, private robotDefinitionsService: RobotDefinitionsService) { }
 
   ngOnInit() {
@@ -82,10 +90,6 @@ export class NewBattleComponent implements OnInit {
     this.robotsChanged(userRobotsFormArray, definitions);
   }
 
-
-  getRobotId(_: any, item: any) {
-    return item.id;
-  }
 
   private robotsChanged(formArray: FormArray, definitions: RobotDefinition[]): void {
     const currentDefinitions = formArray.value as RobotDefinition[];

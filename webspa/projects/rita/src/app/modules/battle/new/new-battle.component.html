@@ -54,9 +54,9 @@
       <div *ngIf="form.hasError('atLeastOneRobotSelected') === false">
         <h4>Inicialización de Robots</h4>
         <ng-container formArrayName="predefinedRobots">
-        <mat-grid-list *ngFor="let predefinedRobot of form.get('predefinedRobots')?.value; let i = index; trackBy: getRobotId" [formGroupName]="i" cols="4" rowHeight="100px">
+        <mat-grid-list *ngFor="let predefinedRobotFormArray of predefinedRobotsFormArray.controls; let i = index" [formGroupName]="i" cols="4" rowHeight="100px">
           <mat-grid-tile colspan="1" rowspan="1">
-            <mat-label>{{predefinedRobot.name}}</mat-label>
+            <mat-label>{{predefinedRobotFormArray.value.name}}</mat-label>
           </mat-grid-tile>
           <mat-grid-tile colspan="1" rowspan="1">
             <mat-form-field>
@@ -83,9 +83,9 @@
         </mat-grid-list>
       </ng-container>
       <ng-container formArrayName="userRobots">
-        <mat-grid-list *ngFor="let userRobot of form.get('userRobots')?.value; let i = index; trackBy: getRobotId" [formGroupName]="i" cols="4" rowHeight="100px">
+        <mat-grid-list *ngFor="let userRobotControl of userRobotsFormArray.controls; let i = index;" [formGroupName]="i" cols="4" rowHeight="100px">
           <mat-grid-tile colspan="1" rowspan="1">
-            <mat-label>{{userRobot.name}}</mat-label>
+            <mat-label>{{userRobotControl.value.name}}</mat-label>
           </mat-grid-tile>
           <mat-grid-tile colspan="1" rowspan="1">
             <mat-form-field>
