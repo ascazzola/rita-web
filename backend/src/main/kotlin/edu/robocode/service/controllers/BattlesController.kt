@@ -15,7 +15,7 @@ import java.util.*
 @RestController
 @Scope(value = WebApplicationContext.SCOPE_REQUEST)
 @RequestMapping("api/battles")
-@CrossOrigin()
+@CrossOrigin(origins = ["*"], methods= [RequestMethod.GET, RequestMethod.POST])
 class BattlesController(private val instanceManager: IRobocodeInstanceManager) {
 
     @GetMapping("")

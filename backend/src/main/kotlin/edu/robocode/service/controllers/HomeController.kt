@@ -1,12 +1,11 @@
 package edu.robocode.service.controllers
 
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import reactor.core.publisher.Mono
 
 @RestController
 @RequestMapping("api/")
+@CrossOrigin(origins = ["*"], methods= [RequestMethod.GET])
 class HomeController {
 
     @GetMapping("version")
