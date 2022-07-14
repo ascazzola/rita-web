@@ -16,4 +16,13 @@ app:
     host: "localhost"
     port: 9000
     bucketName: "robocode"
+    secure: false
+#server:
+#  ssl:
+#    key-store: classpath:rita.p12
+#    key-store-password: 123456
+#    key-store-type: pkcs12
+#    key-alias: rita
+#    key-password: 123456
+#  port: 8443
  

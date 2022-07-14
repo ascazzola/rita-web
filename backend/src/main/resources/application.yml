@@ -43,4 +43,5 @@ app:
     secretKey: ${MINIO_SECRET_KEY}
     host: ${MINIO_HOST}
     port: ${MINIO_PORT}
+    secure: ${MINIO_SECURE}
     bucketName: ${BUCKET_NAME}

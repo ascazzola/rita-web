@@ -11,5 +11,5 @@ class MinioConfiguration {
     var host: String = ""
     var port: Int = 0
     var bucketName: String = ""
-    val secure: Boolean = false
+    var secure: Boolean = false
 }

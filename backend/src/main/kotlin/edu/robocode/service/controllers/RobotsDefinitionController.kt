@@ -17,7 +17,7 @@ import javax.validation.Valid
 @RestController
 @Scope(value = WebApplicationContext.SCOPE_REQUEST)
 @RequestMapping("api/robots-definitions")
-@CrossOrigin(origins = ["*"], methods= [RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE])
+@CrossOrigin()
 class RobotsDefinitionController(private val robotDefinitionsService: IRobotDefinitionsService) {
 
     @GetMapping("")
