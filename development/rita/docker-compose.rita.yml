@@ -27,7 +27,7 @@ services:
     ports:
       - ${RITA_API_PORT}:8443
     volumes:
-      - ${PWD}/cert/rita.jks:/cert/rita.jks
+      - ${PWD}/cert/rita.jks:/etc/ssl/certs/rita.jks
   rita_webspa:
     image: adrianoscazzola/rita-webspa
     environment:
