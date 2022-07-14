@@ -16,7 +16,7 @@ export MINIO_SECRET_KEY=AKIAU3MOVHLFEQY4HA6O
 export MINIO_ACCESS_KEY=AKIAIOSFODNN7EXAMPLE
 export MINIO_PORT=9000
 export MINIO_CONSOLE_PORT=9001
-exoirt MINIO_SECURE=false
+export MINIO_SECURE=false
 export MINIO_HOST='172.17.0.1'
 
 export KEYCLOAK_HTTP_PORT=8081
@@ -29,10 +29,15 @@ export KEYCLOAK_PASSWORD='admin'
 #VARS NEEDED ONLY IF RITA IS INCLUDED
 export AUTH_SERVER_URL="http://172.17.0.1:${KEYCLOAK_HTTP_PORT}"
 export AUTH_SERVER_SECRET='041b58d4-2a73-4c4b-a8c8-c78304b43191'
-export RITA_API_PORT='8080'
-export API_URL="http://172.17.0.1:${RITA_API_PORT}"
-export RITA_WEBSPA_PORT='80'
-export RITA_WEBSOCKETS_BROKER_URL="ws://${API_URL}"
+export RITA_API_PORT='8084'
+export API_URL="https://172.17.0.1:${RITA_API_PORT}"
+export RITA_WEBSPA_PORT='801'
+export RITA_WEBSOCKETS_BROKER_URL="wss://172.17.0.1:${RITA_API_PORT}"
 export RITA_ROBOCODE_EXAMPLES_PATH="/app/default-robots"
+export SSL_KEY_STORE_PASSWORD="password"
+export SSL_KEY_STORE="/cert/rita.jks"
+export SSL_KEY_STORE_TYPE="jks"
+export SSL_KEY_ALIAS="ritaweb"
+export SSL_KEY_PASSWORD="password"
 
 test -e ./_vars.custom.sh && . ./_vars.custom.sh
