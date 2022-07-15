@@ -18,6 +18,7 @@ spring:
 keycloak:
   realm: RITA
   auth-server-url: ${AUTH_SERVER_URL}/auth
+  proxy-url: ${AUTH_SERVER_PROXY_URL}/auth
   ssl-required: external
   resource: robocode-service
   credentials:
