@@ -1,11 +1,12 @@
 server:
  ssl:
+   enabled: ${SSL_ENABLED:false}
    key-store: ${SSL_KEY_STORE}
    key-store-password: ${SSL_KEY_STORE_PASSWORD}
    key-store-type: ${SSL_KEY_STORE_TYPE}
    key-alias: ${SSL_KEY_ALIAS}
    key-password: ${SSL_KEY_PASSWORD}
- port: 8443
+ port: ${SERVER_PORT:8443}
 spring:
   datasource:
     url: jdbc:postgresql://${PGSQL_DB_HOST}:${PGSQL_DB_PORT}/${RITA_DB_NAME}
@@ -49,5 +50,10 @@ app:
     secretKey: ${MINIO_SECRET_KEY}
     host: ${MINIO_HOST}
     port: ${MINIO_PORT}
-    secure: ${MINIO_SECURE}
+    secure: ${MINIO_SECURE:false}
     bucketName: ${BUCKET_NAME}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,info"

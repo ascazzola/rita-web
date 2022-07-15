@@ -27,13 +27,15 @@ export KEYCLOAK_USER='admin'
 export KEYCLOAK_PASSWORD='admin'
 
 #VARS NEEDED ONLY IF RITA IS INCLUDED
+export AUTH_SERVER_URL_WEBSPA="http://localhost:${KEYCLOAK_HTTP_PORT}"
 export AUTH_SERVER_URL="http://172.17.0.1:${KEYCLOAK_HTTP_PORT}"
 export AUTH_SERVER_SECRET='041b58d4-2a73-4c4b-a8c8-c78304b43191'
-export RITA_API_PORT='8084'
-export API_URL="https://172.17.0.1:${RITA_API_PORT}"
-export RITA_WEBSPA_PORT='801'
-export RITA_WEBSOCKETS_BROKER_URL="wss://172.17.0.1:${RITA_API_PORT}"
+export RITA_API_PORT='8443'
+export API_URL="https://localhost:${RITA_API_PORT}"
+export RITA_WEBSPA_PORT='80'
+export RITA_WEBSOCKETS_BROKER_URL="wss://localhost:${RITA_API_PORT}"
 export RITA_ROBOCODE_EXAMPLES_PATH="/app/default-robots"
+export SSL_ENABLED=true
 export SSL_KEY_STORE_PASSWORD="password"
 export SSL_KEY_STORE="/etc/ssl/certs/rita.jks"
 export SSL_KEY_STORE_TYPE="jks"
