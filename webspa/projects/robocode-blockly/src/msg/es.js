@@ -1,3 +1,4 @@
+ /* eslint-disable */
 Blockly.Msg['CLASS_NAME'] = 'Robot %1';
 Blockly.Msg['JUNIOR_ROBOT_CLASS'] = 'Junior Robot %1 %2 %3';
 Blockly.Msg['RUN_METHOD'] = 'Ejecutar %1 %2';
@@ -30,26 +31,67 @@ Blockly.Msg['VARIABLE_GUN_HEADING'] = 'Ángulo del arma';
 Blockly.Msg['VARIABLE_GUN_READY'] = 'Arma lista para disparar?';
 Blockly.Msg['VARIABLE_HEADING'] = 'Ángulo dirección robot';
 Blockly.Msg['VARIABLE_HIT_BY_BULLET_ANGLE'] = 'Ángulo donde recibió bala';
-// eslint-disable-next-line max-len
 Blockly.Msg['VARIABLE_HIT_BY_BULLET_BEARING'] = 'Ángulo donde recibió bala comparado con el robot';
 Blockly.Msg['VARIABLE_HIT_ROBOT_ANGLE'] = 'Ángulo donde golpeó otro robot';
-// eslint-disable-next-line max-len
 Blockly.Msg['VARIABLE_HIT_ROBOT_BEARING'] = 'Ángulo donde golpeó otro robot comparado con el robot';
 Blockly.Msg['VARIABLE_HIT_WALL_ANGLE'] = 'Ángulo donde golpeó la pared';
-// eslint-disable-next-line max-len
 Blockly.Msg['VARIABLE_HIT_WALL_BEARING'] = 'Ángulo donde golpeó la pared comparado con el robot';
 Blockly.Msg['VARIABLE_OTHERS'] = 'Cantidad de robots en batalla';
 Blockly.Msg['VARIABLE_ROBOT_X'] = 'Robot X';
 Blockly.Msg['VARIABLE_ROBOT_Y'] = 'Robot Y';
 Blockly.Msg['VARIABLE_SCANNED_ANGLE'] = 'Ángulo hacia el robot escaneado';
-// eslint-disable-next-line max-len
 Blockly.Msg['VARIABLE_SCANNED_BEARING'] = 'Ángulo hacia el robot escaneado comparado con el robot';
 Blockly.Msg['VARIABLE_SCANNED_DISTANCE'] = 'Distancia hasta el robot escaneado';
 Blockly.Msg['VARIABLE_SCANNED_ENERGY'] = 'Energía del robot escaneado';
 Blockly.Msg['VARIABLE_SCANNED_VELOCITY'] = 'Velocidad del robot escaneado';
 Blockly.Msg['VARIABLE_SCANNED_HEADING'] = 'Rumbo del robot escaneado';
 Blockly.Msg['SET_SOME_COLOURS'] = 'Setear colores, cuerpo %1 arma %2 radar %3';
-// eslint-disable-next-line max-len
 Blockly.Msg['SET_ALL_COLOURS'] = 'Setear colores, cuerpo %1 arma %2 radar %3 bala %4 arco de escaneo %5';
-
-
+//Blocks tooltips
+Blockly.Msg['CLASS_NAME_TOOLTIP'] = 'Nombre del robot';
+Blockly.Msg['RUN_METHOD_TOOLTIP'] = 'Este método se ejecuta siempre que no ocurra ningún evento que afecte a éste robot.';
+Blockly.Msg['ON_HIT_BY_BULLET_TOOLTIP'] = 'Este método se ejecuta cuando éste robot es alcanzado por las balas de otro robot.';
+Blockly.Msg['ON_HIT_ROBOT_TOOLTIP'] = 'Este método se ejecuta cuando una bala de este robot ha alcanzado a otro robot.';
+Blockly.Msg['ON_HIT_WALL_TOOLTIP'] = 'Este metodo se ejecuta cuando este robot ha chocado contra una pared.';
+Blockly.Msg['ON_SCANNED_ROBOT_TOOLTIP'] = 'Este metodo se ejecuta cuando el radar de este robot detecta otro robot.';
+Blockly.Msg['MOVE_AHEAD_TOOLTIP'] = 'El robot se mueve la cantidad especificada de pasos hacia adelante.';
+Blockly.Msg['MOVE_BACK_TOOLTIP'] = 'El robot se mueve la cantidad especificada de pasos hacia atrás.';
+Blockly.Msg['MOVE_AHEAD_LEFT_TOOLTIP'] = 'El robot se mueve hacia adelante la cantidad especificada de pixels y a su vez gira hacia la izquierda la cantidad de grados especificada.';
+Blockly.Msg['MOVE_AHEAD_LEFT_RIGHT'] = 'El robot se mueve hacia adelante la cantidad especificada de pixels y a su vez gira hacia la derecha la cantidad de grados especificada.';
+Blockly.Msg['MOVE_BACK_LEFT_TOOLTIP'] = 'El robot se mueve hacia atrás la cantidad especificada de pixels y a su vez gira hacia la izquierda la cantidad de grados especificada.';
+Blockly.Msg['MOVE_BACK_RIGHT_TOOLTIP'] = 'El robot se mueve hacia atrás la cantidad especificada de pixels y a su vez gira hacia la derecha la cantidad de grados especificada.';
+Blockly.Msg['MOVE_TURN_LEFT_TOOLTIP'] = 'El robot gira a la izquiera la cantidad de grados especificada.';
+Blockly.Msg['MOVE_TURN_RIGHT_TOOLTIP'] = 'El robot gira a la derecha la cantidad de grados especificada.';
+Blockly.Msg['MOVE_TURN_TOOLTIP'] = 'El robot gira en un ángulo absoluto.';
+Blockly.Msg['TURN_GUN_LEFT_TOOLTIP'] = 'El robot gira el arma a la izquierda la cantidad de grados especificados.';
+Blockly.Msg['TURN_GUN_RIGHT_TOOLTIP'] = 'El robot gira el arma a la derecha la cantidad de grados especificados.';
+Blockly.Msg['TURN_GUN_TO_TOOLTIP'] = 'El robot gira el arma en un ángulo absoluto.';
+Blockly.Msg['BEAR_GUN_TO_TOOLTIP'] = 'El robot gira el arma en el ángulo especificado relativo al robot.';
+Blockly.Msg['DO_NOTHING_TOOLTIP'] = 'No hace nada en su turno';
+Blockly.Msg['DO_NOTHING_TURNS_TOOLTIP'] = 'No hace nada durante la cantidad especificada de turnos';
+Blockly.Msg['FIRE_TOOLTIP'] = 'Dispara una bala con poder default de 1';
+Blockly.Msg['FIRE_POWER_TOOLTIP'] = 'Dispara una bala con el especificado poder, el cual va entre 0.1 y 3 donde 3 es el maximo poder';
+Blockly.Msg['VARIABLE_ENERGY_TOOLTIP'] = 'Eenergia actual del robot.';
+Blockly.Msg['FIELD_HEIGHT_TOOLTIP'] = 'Altura del campo de batalla.';
+Blockly.Msg['FIELD_WIDTH_TOOLTIP'] = 'Ancho del campo de batalla.';
+Blockly.Msg['VARIABLE_GUN_BEARING_TOOLTIP'] = 'Angulo del arma relativo al cuerpo del robot (en grados).';
+Blockly.Msg['VARIABLE_GUN_HEADING_TOOLTIP'] = 'Angulo absoluto del arma de este robot (en grados).';
+Blockly.Msg['VARIABLE_GUN_READY_TOOLTIP'] = 'Indica si el arma está lista para disparar (verdadero o falso).';
+Blockly.Msg['VARIABLE_HEADING_TOOLTIP'] = 'Angulo actual del robot (en grados).';
+Blockly.Msg['VARIABLE_HIT_BY_BULLET_ANGLE_TOOLTIP'] = 'Último angulo desde donde este robot fue alcanzado por una bala (en grados).';
+Blockly.Msg['VARIABLE_HIT_ROBOT_ANGLE_TOOLTIP'] = 'Ultimo angulo en el que este robot golpeó a otro robot (en grados).';
+Blockly.Msg['VARIABLE_HIT_ROBOT_BEARING_TOOLTIP'] = 'Último ángulo en el que este robot golpeó a otro robot (en grados) en comparación con el cuerpo de este robot.';
+Blockly.Msg['VARIABLE_HIT_WALL_ANGLE_TOOLTIP'] = 'Último ángulo en el que este robot chocó contra una pared (en grados).';
+Blockly.Msg['VARIABLE_HIT_WALL_BEARING_TOOLTIP'] = 'Último ángulo en el que este robot chocó contra una pared (en grados) en comparación con el cuerpo de este robot.';
+Blockly.Msg['VARIABLE_OTHERS_TOOLTIP'] = 'Cantidad de otros robot en el campo de batalla.';
+Blockly.Msg['VARIABLE_ROBOT_X_TOOLTIP'] = 'Ubicación horizontal actual de este robot (en pixels).';
+Blockly.Msg['VARIABLE_ROBOT_Y_TOOLTIP'] = 'Ubicación vertical actual de este robot (en pixels).';
+Blockly.Msg['VARIABLEE_SCANNED_ANGLE_TOOLTIP'] = 'Ángulo actual al robot más cercano que fue escaneado (en grados)';
+Blockly.Msg['VARIABLEE_SCANNED_BEARING_TOOLTIP'] = 'Ángulo actual al robot más cercano que fue escaneado (en grados) comparado al cuerpo de este robot';
+Blockly.Msg['VARIABLEE_SCANNED_DISTANCE_TOOLTIP'] = 'Distancia actual al robot escaneado más cercano (en pixels).';
+Blockly.Msg['VARIABLEE_SCANNED_ENERGY_TOOLTIP'] = 'Energía actual del robot más cercano que fue escaneado.';
+Blockly.Msg['VARIABLEE_SCANNED_HEADING_TOOLTIP'] = 'Rumbo actual del robot más cercano que fue escaneado (en grados)';
+Blockly.Msg['VARIABLEE_SCANNED_VELOCITY_TOOLTIP'] = 'Velocidad actual del robot más cercano que fue escaneado.';
+Blockly.Msg['SET_SOME_COLOURS_TOOLTIP'] = 'Setea los colores enviados en los parámetros.';
+Blockly.Msg['SET_COLOURS_TOOLTIP'] = 'Setea los colores enviados en los parámetros.';
+ /* eslint-enable */
