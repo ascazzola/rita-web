@@ -5,6 +5,7 @@ spring:
     password: rita_1234
 keycloak:
   auth-server-url: http://localhost:8081/auth
+  proxy-url: http://localhost:8081/auth
   credentials:
     secret: 041b58d4-2a73-4c4b-a8c8-c78304b43191
 app:
@@ -19,11 +20,6 @@ app:
     secure: false
 server:
  ssl:
-   enabled: true
-   key-store: classpath:rita.p12
-   key-store-password: 123456
-   key-store-type: pkcs12
-   key-alias: rita
-   key-password: 123456
- port: 8443
+   enabled: false
+ port: 8080
  

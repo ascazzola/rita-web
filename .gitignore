@@ -47,7 +47,7 @@ backend/target/classes/application.yml
 */target/*
 
 # java files
-*.class
+
 
 _vars.custom.sh
 
