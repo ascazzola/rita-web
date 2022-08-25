@@ -22,6 +22,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { MatSelectModule } from '@angular/material/select';
+import { NgxResizableModule } from '@3dgenomes/ngx-resizable';
+
 @NgModule({
   declarations: [
     ConfirmationDialogComponent
@@ -54,6 +56,7 @@ import { MatSelectModule } from '@angular/material/select';
     NgxRobocodeBlocklyModule,
     MonacoEditorModule,
     MatProgressBarModule,
+    NgxResizableModule
   ]
 })
 export class SharedModule { }

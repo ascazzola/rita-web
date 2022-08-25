@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -8,7 +8,9 @@ import { catchError, filter, first, map, mapTo, shareReplay, startWith, switchMa
 import { RobotDefinition } from '../../../models/robot-definition';
 import { RobotDefinitionsService } from '../../../services/robot-definitions.service';
 import { SNACKBAR_DURATION } from '../../../models/constants';
+import { NgxRobocodeBlocklyComponent } from 'ngx-robocode-blockly';
 declare var defaultWorkspaceBlocks: string;
+declare var Blockly: any;
 export type IdType = string | number;
 interface EditState<TModel> {
   id: IdType;
@@ -26,6 +28,8 @@ interface EditState<TModel> {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RobotsEditComponent implements OnInit, OnDestroy {
+  @ViewChild(NgxRobocodeBlocklyComponent) blocklyComponent!: NgxRobocodeBlocklyComponent;
+  
   private saveSubject = new Subject();
   private subscription!: Subscription;
   protected reloadSubject = new BehaviorSubject(null);
@@ -96,7 +100,7 @@ export class RobotsEditComponent implements OnInit, OnDestroy {
 
     const name$ = this.code$.pipe(
       map(res => {
-        const m =  /(?<=\n|\A)(?:public\s)?(class|interface|enum)\s([^\n\s]*)/gsi.exec(res);
+        const m = /(?<=\n|\A)(?:public\s)?(class|interface|enum)\s([^\n\s]*)/gsi.exec(res);
         return m !== null && m.length === 3 && m[2] || null;
       }),
     );
@@ -146,5 +150,9 @@ export class RobotsEditComponent implements OnInit, OnDestroy {
 
   return(): void {
     this.router.navigate(['/robots/browse']);
+  }
+
+  updateBlocklyWorkspace() {
+    Blockly.svgResize(this.blocklyComponent.workspace);
   }
 }

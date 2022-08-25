@@ -23,18 +23,14 @@
           <mat-icon>{{model.data?.compiled ? 'check' : 'close'}}</mat-icon>
         </div>
       </mat-card>
-      <mat-card style="display: flex; height: 65vh">
-        <div style="flex-grow: 1;">
-          <mat-grid-list cols="4" rowHeight="100%">
-            <mat-grid-tile [colspan]="2">
-              <lib-ngx-robocode-blockly formControlName="definition" [defaultWorkspaceXml]="defaultXml">
-              </lib-ngx-robocode-blockly>
-            </mat-grid-tile>
-            <mat-grid-tile [colspan]="2">
-              <app-code-viewer [code]="code$|async"></app-code-viewer>
-            </mat-grid-tile>
-          </mat-grid-list>
-        </div>
+      <mat-card style="height: 65vh; display:flex;">
+        <rsz-layout class="cell" [directions]="['none']" [rFlex]="false">
+          <lib-ngx-robocode-blockly formControlName="definition" [defaultWorkspaceXml]="defaultXml">
+          </lib-ngx-robocode-blockly>
+        </rsz-layout>
+        <rsz-layout class="cell" style="flex: 0 0 35vw" [directions]="['left']" [rFlex]="true" (resizeEnd)="updateBlocklyWorkspace()">
+          <app-code-viewer [code]="code$|async"></app-code-viewer>
+        </rsz-layout>
       </mat-card>
     </form>
   </mat-card>
