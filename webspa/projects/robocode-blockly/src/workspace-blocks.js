@@ -73,7 +73,7 @@ export const defaultWorkspaceBlocks = `
     </statement>
   </block>
   <block type="method_onHitByBullet" id="#-U4.vh,4,#sEaz#+:Hp" deletable="false" x="300" y="350"></block>
-  <block type="method_onHitWall" id="A.%,bh%i_.iOON%]dbVH" deletable="false" x="10" y="650"></block>
-  <block type="method_onHitRobot" id="rpR!]s#sXKG[!4G~^?}~" deletable="false" x="300" y="650"></block>
+  <block type="method_onHitWall" id="A.%,bh%i_.iOON%]dbVH" deletable="false" x="10" y="500"></block>
+  <block type="method_onHitRobot" id="rpR!]s#sXKG[!4G~^?}~" deletable="false" x="300" y="500"></block>
 </xml>
   `;

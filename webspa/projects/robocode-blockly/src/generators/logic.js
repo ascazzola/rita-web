@@ -40,6 +40,47 @@ Blockly.Robocode['logic_compare'] = function(block) {
     'GTE': '>=', //  a.compareTo(b) >= 0
   };
 
+  const operator = OPERATORS[block.getFieldValue('OP')];
+  const inputATargetBlock = this.getInput('A').connection.targetBlock();
+  const inputBTargetBlock = this.getInput('B').connection.targetBlock();
+  const targetBlock = inputATargetBlock || inputBTargetBlock;
+  const checks = targetBlock && targetBlock.outputConnection.check_;
+
+  /* eslint-disable max-len */
+  const code = checks && checks.indexOf('Number') > -1 ? getLogicCompareInteger(OPERATORS, operator, block) : getLogicCompareString(operator, block);
+
+  return [code, Blockly.Robocode.ORDER_RELATIONAL];
+};
+
+/**
+ * Method used to get logic compare code for integers.
+ * @param {any} OPERATORS available operators.
+ * @param {string} operator operator to apply.
+ * @param {Blockly.block} block block to obtain the code.
+ * @return {string} String with the code.
+ */
+function getLogicCompareInteger(OPERATORS, operator, block) {
+  if (operator == OPERATORS.EQ) {
+    operator = '==';
+  } else if (operator == OPERATORS.NEQ) {
+    operator = '!=';
+  }
+  const argument0 = Blockly.Robocode
+      .valueToCode(block, 'A', Blockly.Robocode.ORDER_RELATIONAL);
+
+  const argument1 = Blockly.Robocode
+      .valueToCode(block, 'B', Blockly.Robocode.ORDER_RELATIONAL);
+
+  return `${argument0 || 0} ${operator} ${argument1 || 0}`;
+}
+
+/**
+ * Method used to get logic compare code for string type.
+ * @param {string} operator operator to apply.
+ * @param {Blockly.block} block block to obtain the code.
+ * @return {string} String with the code.
+ */
+function getLogicCompareString(operator, block) {
   const FLIPOPERATORS = {
     '': '',
     '!': '!',
@@ -48,13 +89,14 @@ Blockly.Robocode['logic_compare'] = function(block) {
     '>': '<',
     '>=': '<=',
   };
-  let operator = OPERATORS[block.getFieldValue('OP')];
-  let code = '';
+
   let argument0 = Blockly.Robocode
       .valueToCode(block, 'A', Blockly.Robocode.ORDER_RELATIONAL);
 
   let argument1 = Blockly.Robocode
       .valueToCode(block, 'B', Blockly.Robocode.ORDER_RELATIONAL);
+
+  let code = '';
 
   if (argument0.slice(-14) === '.cloneObject()' ) {
     argument0 = argument0.slice(0, -14);
@@ -80,8 +122,9 @@ Blockly.Robocode['logic_compare'] = function(block) {
   } else {
     code = argument0 + '.compareTo(' + argument1 + ') ' + operator + ' 0';
   }
-  return [code, Blockly.Robocode.ORDER_RELATIONAL];
-};
+
+  return code;
+}
 
 Blockly.Robocode['logic_operation'] = function(block) {
   // Operations 'and', 'or'.
