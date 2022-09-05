@@ -2,7 +2,6 @@ export const robocodeTolbox = `
 <xml id="toolbox" style="display: none">
   <category name="Robocode" colour="1">
     <category name="Movimiento" colour="20">
-      <block type="class_name" />
       <block type="move_ahead"/>
       <block type="move_back"/>
       <block type="move_ahead_left"/>

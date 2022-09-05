@@ -79,6 +79,7 @@ Blockly.Msg['VARIABLE_GUN_HEADING_TOOLTIP'] = 'Angulo absoluto del arma de este 
 Blockly.Msg['VARIABLE_GUN_READY_TOOLTIP'] = 'Indica si el arma está lista para disparar (verdadero o falso).';
 Blockly.Msg['VARIABLE_HEADING_TOOLTIP'] = 'Angulo actual del robot (en grados).';
 Blockly.Msg['VARIABLE_HIT_BY_BULLET_ANGLE_TOOLTIP'] = 'Último angulo desde donde este robot fue alcanzado por una bala (en grados).';
+Blockly.Msg['VARIABLE_HIT_BY_BULLET_BEARING_TOOLTIP'] = 'Último angulo desde donde este robot fue alcanzado por una bala (en grados) en comparación con el cuerpo de este robot.';
 Blockly.Msg['VARIABLE_HIT_ROBOT_ANGLE_TOOLTIP'] = 'Ultimo angulo en el que este robot golpeó a otro robot (en grados).';
 Blockly.Msg['VARIABLE_HIT_ROBOT_BEARING_TOOLTIP'] = 'Último ángulo en el que este robot golpeó a otro robot (en grados) en comparación con el cuerpo de este robot.';
 Blockly.Msg['VARIABLE_HIT_WALL_ANGLE_TOOLTIP'] = 'Último ángulo en el que este robot chocó contra una pared (en grados).';
